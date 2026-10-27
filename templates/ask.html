@@ -1,23 +1,37 @@
-{% extends "base.html" %}
-{% block title %}Ask the Database · PARSQL-Hinglish Lite{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %}Ask the Database · PARSQL-Hinglish
+Lite{% endblock %} {% block content %}
 <header class="page-head">
   <p class="eyebrow">Phase 4 · Text-to-SQL</p>
   <h1>Ask the Database</h1>
-  <p class="lede">Ask about the college's students, teachers, courses or departments in English, हिंदी or Hinglish.</p>
+  <p class="lede">
+    Ask about the college's students, teachers, courses or departments in
+    English, हिंदी or Hinglish.
+  </p>
 </header>
 
 <div class="ask-layout">
   <div class="ask-main">
     <section class="card ask-card">
       <div class="ask-box">
-        <input type="text" id="q" autocomplete="off" spellcheck="false" placeholder="e.g. computer dept me kitne students hain?">
+        <input
+          type="text"
+          id="q"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="e.g. computer dept me kitne students hain?"
+        />
         <button class="btn" id="ask">Ask</button>
       </div>
       <div class="suggestions inline" id="ac"></div>
       <div class="examples">
         <span class="muted">Try:</span>
-        {% for label, q in examples %}<button class="chip" data-q="{{ q }}" title="{{ label }}">{{ q }}</button>{% endfor %}
+        {% for label, q in examples %}<button
+          class="chip"
+          data-q="{{ q }}"
+          title="{{ label }}"
+        >
+          {{ q }}</button
+        >{% endfor %}
       </div>
     </section>
 
@@ -57,16 +71,21 @@
     <h2 class="card-title">Database</h2>
     {% for t in tables %}
     <div class="schema-table">
-      <div class="schema-name"><b>{{ t.name }}</b> <span class="muted small">{{ t.rows }} rows</span></div>
-      <div class="schema-cols">{% for c in t.columns %}<span>{{ c }}</span>{% endfor %}</div>
+      <div class="schema-name">
+        <b>{{ t.name }}</b> <span class="muted small">{{ t.rows }} rows</span>
+      </div>
+      <div class="schema-cols">
+        {% for c in t.columns %}<span>{{ c }}</span>{% endfor %}
+      </div>
     </div>
     {% endfor %}
-    <p class="muted small">Cities: Mumbai, Pune, Delhi, Ahmedabad, Surat, Nagpur, Jaipur, Indore.<br>
-      Departments: Computer, IT, Mechanical, Electrical, Civil, Electronics.</p>
+    <p class="muted small">
+      Cities: Mumbai, Pune, Delhi, Ahmedabad, Surat, Nagpur, Jaipur, Indore.<br />
+      Departments: Computer, IT, Mechanical, Electrical, Civil, Electronics.
+    </p>
   </aside>
 </div>
-{% endblock %}
-{% block scripts %}
+{% endblock %} {% block scripts %}
 <script src="{{ url_for('static', filename='js/common.js') }}"></script>
 <script src="{{ url_for('static', filename='js/ask.js') }}"></script>
 {% endblock %}

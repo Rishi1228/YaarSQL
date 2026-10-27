@@ -1,23 +1,40 @@
-{% extends "base.html" %}
-{% block title %}N-gram Lab · PARSQL-Hinglish Lite{% endblock %}
-{% block head %}
+{% extends "base.html" %} {% block title %}N-gram Lab · PARSQL-Hinglish Lite{%
+endblock %} {% block head %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-{% endblock %}
-{% block content %}
+{% endblock %} {% block content %}
 <header class="page-head">
   <p class="eyebrow">Phase 2 · Unigrams, bigrams, trigrams</p>
   <h1>N-gram Lab</h1>
-  <p class="lede">N-gram language models built from scratch. Pick a corpus, the order N and a smoothing
-    method to see counts, probabilities, perplexity and generated text.</p>
+  <p class="lede">
+    N-gram language models built from scratch. Pick a corpus, the order N and a
+    smoothing method to see counts, probabilities, perplexity and generated
+    text.
+  </p>
 </header>
 
 <section class="card toolbar">
-  <label class="field-inline">Corpus
+  <label class="field-inline"
+    >Corpus
     <select id="corpus">
-      {% for key, label in corpora.items() %}<option value="{{ key }}"{% if key == "questions-hg" %} selected{% endif %}>{{ label }}</option>{% endfor %}
+      {% for key, label in corpora.items() %}
+      <option
+        value="{{ key }}"
+        {%
+        if
+        key=""
+        ="questions-hg"
+        %}
+        selected{%
+        endif
+        %}
+      >
+        {{ label }}
+      </option>
+      {% endfor %}
     </select>
   </label>
-  <label class="field-inline">N
+  <label class="field-inline"
+    >N
     <select id="n">
       <option value="1">1 · unigram</option>
       <option value="2">2 · bigram</option>
@@ -25,19 +42,46 @@
       <option value="4">4 · 4-gram</option>
     </select>
   </label>
-  <label class="field-inline">Smoothing
+  <label class="field-inline"
+    >Smoothing
     <select id="smoothing">
-      {% for key, label in smoothings.items() %}<option value="{{ key }}"{% if key == "kneser_ney" %} selected{% endif %}>{{ label }}</option>{% endfor %}
+      {% for key, label in smoothings.items() %}
+      <option
+        value="{{ key }}"
+        {%
+        if
+        key=""
+        ="kneser_ney"
+        %}
+        selected{%
+        endif
+        %}
+      >
+        {{ label }}
+      </option>
+      {% endfor %}
     </select>
   </label>
   <span class="muted small" id="status"></span>
 </section>
 
 <div class="summary-row">
-  <div class="stat"><span class="stat-label">Training sentences</span><span class="stat-value" id="st-sent">–</span></div>
-  <div class="stat"><span class="stat-label">Tokens</span><span class="stat-value" id="st-tok">–</span></div>
-  <div class="stat"><span class="stat-label">Vocabulary</span><span class="stat-value" id="st-vocab">–</span></div>
-  <div class="stat"><span class="stat-label">Held-out perplexity</span><span class="stat-value" id="st-ppl">–</span></div>
+  <div class="stat">
+    <span class="stat-label">Training sentences</span
+    ><span class="stat-value" id="st-sent">–</span>
+  </div>
+  <div class="stat">
+    <span class="stat-label">Tokens</span
+    ><span class="stat-value" id="st-tok">–</span>
+  </div>
+  <div class="stat">
+    <span class="stat-label">Vocabulary</span
+    ><span class="stat-value" id="st-vocab">–</span>
+  </div>
+  <div class="stat">
+    <span class="stat-label">Held-out perplexity</span
+    ><span class="stat-value" id="st-ppl">–</span>
+  </div>
 </div>
 
 <div class="grid-2">
@@ -57,29 +101,39 @@
         <button class="tab" data-matrix="counts">Counts</button>
       </div>
     </div>
-    <p class="muted small">Row = previous word w₁, column = next word w₂. Most frequent words only.</p>
+    <p class="muted small">
+      Row = previous word w₁, column = next word w₂. Most frequent words only.
+    </p>
     <div class="table-scroll"><table class="matrix" id="matrix"></table></div>
   </section>
 </div>
 
 <section class="card">
   <div class="card-head">
-    <h2 class="card-title">Perplexity on held-out sentences (lower is better)</h2>
+    <h2 class="card-title">
+      Perplexity on held-out sentences (lower is better)
+    </h2>
     <span class="muted small" id="ppl-note"></span>
   </div>
   <div class="grid-2 tight">
     <div class="chart-box"><canvas id="ppl-chart"></canvas></div>
     <table class="data-table" id="ppl-table"></table>
   </div>
-  <p class="muted small">MLE gives ∞ because any unseen word gets probability 0. Stupid backoff is a score, not a probability,
-    so its "perplexity" is not directly comparable.</p>
+  <p class="muted small">
+    MLE gives ∞ because any unseen word gets probability 0. Stupid backoff is a
+    score, not a probability, so its "perplexity" is not directly comparable.
+  </p>
 </section>
 
 <div class="grid-2">
   <section class="card">
     <h2 class="card-title">Sentence probability</h2>
     <div class="row-input">
-      <input type="text" id="sent-text" value="computer department mein kitne students hain">
+      <input
+        type="text"
+        id="sent-text"
+        value="computer department mein kitne students hain"
+      />
       <button class="btn" id="sent-run">Score</button>
     </div>
     <div id="sent-result"></div>
@@ -98,16 +152,26 @@
 <div class="grid-3">
   <section class="card">
     <h2 class="card-title">Autocomplete</h2>
-    <p class="muted small">Trigram Kneser-Ney model over the training questions. Keep typing; suggestions update.</p>
-    <input type="text" id="ac-text" value="kitne students " autocomplete="off">
+    <p class="muted small">
+      Trigram Kneser-Ney model over the training questions. Keep typing;
+      suggestions update.
+    </p>
+    <input
+      type="text"
+      id="ac-text"
+      value="kitne students "
+      autocomplete="off"
+    />
     <div class="suggestions" id="ac-out"></div>
   </section>
 
   <section class="card">
     <h2 class="card-title">Language identification</h2>
-    <p class="muted small">Character-trigram model per language; highest log-probability wins.</p>
+    <p class="muted small">
+      Character-trigram model per language; highest log-probability wins.
+    </p>
     <div class="row-input">
-      <input type="text" id="lid-text" value="bhai kal movie dekhne chalein?">
+      <input type="text" id="lid-text" value="bhai kal movie dekhne chalein?" />
       <button class="btn" id="lid-run">Detect</button>
     </div>
     <div id="lid-out"></div>
@@ -115,16 +179,17 @@
 
   <section class="card">
     <h2 class="card-title">Question-type (intent) detection</h2>
-    <p class="muted small">One bigram model per question type; values are masked first.</p>
+    <p class="muted small">
+      One bigram model per question type; values are masked first.
+    </p>
     <div class="row-input">
-      <input type="text" id="int-text" value="pune ke kitne students hain">
+      <input type="text" id="int-text" value="pune ke kitne students hain" />
       <button class="btn" id="int-run">Classify</button>
     </div>
     <div id="int-out"></div>
   </section>
 </div>
-{% endblock %}
-{% block scripts %}
+{% endblock %} {% block scripts %}
 <script src="{{ url_for('static', filename='js/common.js') }}"></script>
 <script src="{{ url_for('static', filename='js/ngrams.js') }}"></script>
 {% endblock %}

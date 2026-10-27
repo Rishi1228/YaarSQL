@@ -1,6 +1,10 @@
 // HMM POS Tagger page.
 const tagClass = (t) => `pos-${t === "." ? "PUNCT" : t}`;
-let modelData, evalData, f1Chart, mixChart, evalLang = "en";
+let modelData,
+  evalData,
+  f1Chart,
+  mixChart,
+  evalLang = "en";
 
 function currentModelArgs(lang) {
   const l = lang || $("pos-lang").value || "hg";
@@ -13,7 +17,11 @@ async function runTagger() {
   if (!text) return;
   let d;
   try {
-    d = await api("/api/pos/tag", { text, lang: $("pos-lang").value, mix: $("pos-mix").value });
+    d = await api("/api/pos/tag", {
+      text,
+      lang: $("pos-lang").value,
+      mix: $("pos-mix").value,
+    });
   } catch (e) {
     $("pos-error").textContent = e.message;
     $("pos-error").hidden = false;
@@ -21,8 +29,10 @@ async function runTagger() {
   }
   $("tagged").innerHTML = d.columns
     .map(
-      (c) => `<span class="pos-tok ${tagClass(c.tag)}${c.known ? "" : " unknown"}" title="${escapeHtml(d.tag_info[c.tag] || c.tag)}${c.known ? "" : " · unseen word"}">
-        <span class="w">${escapeHtml(c.word)}</span><span class="t">${c.tag}</span></span>`
+      (
+        c,
+      ) => `<span class="pos-tok ${tagClass(c.tag)}${c.known ? "" : " unknown"}" title="${escapeHtml(d.tag_info[c.tag] || c.tag)}${c.known ? "" : " · unseen word"}">
+        <span class="w">${escapeHtml(c.word)}</span><span class="t">${c.tag}</span></span>`,
     )
     .join("");
   $("pos-stats").innerHTML = `
@@ -44,7 +54,9 @@ function drawTrellis(d) {
           const v = c.scores[t];
           const onPath = c.tag === t;
           const a = Math.max(0, 1 + v / 25); // fade with distance from the best score
-          const back = c.back[t] ? `<small>${c.back[t] === "." ? "·" : c.back[t].slice(0, 2)}</small>` : "";
+          const back = c.back[t]
+            ? `<small>${c.back[t] === "." ? "·" : c.back[t].slice(0, 2)}</small>`
+            : "";
           return `<td class="${onPath ? "on-path" : ""}" style="${onPath ? "" : `background: rgba(61,90,254,${(a * 0.22).toFixed(3)})`}">${v === 0 ? "0" : v.toFixed(1)}${i > 0 ? back : ""}</td>`;
         })
         .join("");
@@ -55,7 +67,9 @@ function drawTrellis(d) {
 }
 
 async function loadModel(lang, mix) {
-  modelData = await api(`/api/pos/model?${new URLSearchParams({ lang, mix: mix || "" })}`);
+  modelData = await api(
+    `/api/pos/model?${new URLSearchParams({ lang, mix: mix || "" })}`,
+  );
   const tm = modelData.transitions;
   const head = `<tr><th>prev \\ next</th>${tm.cols.map((c) => `<th>${c === "</S>" ? "END" : c}</th>`).join("")}</tr>`;
   const body = tm.rows
@@ -66,7 +80,7 @@ async function loadModel(lang, mix) {
             const a = Math.sqrt(p);
             return `<td style="background: rgba(61,90,254,${(a * 0.85).toFixed(3)}); color:${a > 0.55 ? "#fff" : "inherit"}">${p < 0.005 ? "" : p.toFixed(2).replace(/^0/, "")}</td>`;
           })
-          .join("")}</tr>`
+          .join("")}</tr>`,
     )
     .join("");
   $("trans").innerHTML = head + body;
@@ -74,8 +88,14 @@ async function loadModel(lang, mix) {
   const sel = $("emit-tag");
   const prev = sel.value || "NOUN";
   const tags = Object.keys(modelData.emissions);
-  sel.innerHTML = tags.map((t) => `<option value="${t}"${t === prev ? " selected" : ""}>${t} — ${modelData.tag_info[t] || t}</option>`).join("");
-  $("model-meta").textContent = `Trained on ${modelData.train_tokens.toLocaleString()} tagged tokens, vocabulary ${modelData.vocab.toLocaleString()} words.`;
+  sel.innerHTML = tags
+    .map(
+      (t) =>
+        `<option value="${t}"${t === prev ? " selected" : ""}>${t} — ${modelData.tag_info[t] || t}</option>`,
+    )
+    .join("");
+  $("model-meta").textContent =
+    `Trained on ${modelData.train_tokens.toLocaleString()} tagged tokens, vocabulary ${modelData.vocab.toLocaleString()} words.`;
   drawEmissions();
 }
 
@@ -84,7 +104,10 @@ function drawEmissions() {
   const rows = modelData.emissions[t] || [];
   const max = Math.max(...rows.map((r) => r.p), 1e-9);
   $("emissions").innerHTML = rows
-    .map((r) => `<div class="bar-row"><span>${escapeHtml(r.word)}</span><div class="bar"><div style="width:${((100 * r.p) / max).toFixed(1)}%"></div></div><span class="num small">${r.p.toFixed(4)}</span></div>`)
+    .map(
+      (r) =>
+        `<div class="bar-row"><span>${escapeHtml(r.word)}</span><div class="bar"><div style="width:${((100 * r.p) / max).toFixed(1)}%"></div></div><span class="num small">${r.p.toFixed(4)}</span></div>`,
+    )
     .join("");
 }
 
@@ -94,28 +117,42 @@ async function loadEval() {
   const L = evalData.languages;
   $("eval-cards").innerHTML = Object.entries(L)
     .map(
-      ([k, r]) => `<div class="stat"><span class="stat-label">${r.label}</span><span class="stat-value">${pct(r.hmm.accuracy)}</span>
-        <span class="muted small">known ${pct(r.hmm.known_accuracy)} · unseen ${r.hmm.unknown_accuracy == null ? "–" : pct(r.hmm.unknown_accuracy)}</span></div>`
+      ([
+        k,
+        r,
+      ]) => `<div class="stat"><span class="stat-label">${r.label}</span><span class="stat-value">${pct(r.hmm.accuracy)}</span>
+        <span class="muted small">known ${pct(r.hmm.known_accuracy)} · unseen ${r.hmm.unknown_accuracy == null ? "–" : pct(r.hmm.unknown_accuracy)}</span></div>`,
     )
     .join("");
 
-  const baselineNames = [...new Set(Object.values(L).flatMap((r) => Object.keys(r.baselines)))];
+  const baselineNames = [
+    ...new Set(Object.values(L).flatMap((r) => Object.keys(r.baselines))),
+  ];
   $("baseline-table").innerHTML =
     `<thead><tr><th>Language</th><th class="num">Train / test sents</th>${baselineNames.map((b) => `<th class="num">${b}</th>`).join("")}<th class="num">Our HMM</th></tr></thead><tbody>` +
     Object.values(L)
       .map((r) => {
-        const vals = [...baselineNames.map((b) => r.baselines[b]), r.hmm.accuracy];
+        const vals = [
+          ...baselineNames.map((b) => r.baselines[b]),
+          r.hmm.accuracy,
+        ];
         const best = Math.max(...vals);
         return `<tr><td>${r.label}</td><td class="num">${r.train_sentences} / ${r.test_sentences}</td>${vals
-          .map((v) => `<td class="num${v === best ? " best" : ""}">${pct(v)}</td>`)
+          .map(
+            (v) => `<td class="num${v === best ? " best" : ""}">${pct(v)}</td>`,
+          )
           .join("")}</tr>`;
       })
       .join("") +
     "</tbody>";
   const cv = L.hg && L.hg.cv;
   if (cv) {
-    $("cv-note").innerHTML = `Hinglish test split is small (${L.hg.hmm.tokens} words), so we also report 5-fold cross-validation: ` +
-      Object.entries(cv).map(([k, v]) => `${k} <b>${pct(v)}</b>`).join(" vs ") + ".";
+    $("cv-note").innerHTML =
+      `Hinglish test split is small (${L.hg.hmm.tokens} words), so we also report 5-fold cross-validation: ` +
+      Object.entries(cv)
+        .map(([k, v]) => `${k} <b>${pct(v)}</b>`)
+        .join(" vs ") +
+      ".";
   }
 
   const mixes = Object.entries(evalData.hinglish_mixes);
@@ -125,28 +162,53 @@ async function loadEval() {
     data: {
       labels: mixes.map(([, r]) => r.label),
       datasets: [
-        { label: "Test split", data: mixes.map(([, r]) => 100 * r.accuracy), backgroundColor: "#b9c4ff", borderRadius: 3 },
-        { label: "5-fold CV", data: mixes.map(([, r]) => 100 * r.cv_accuracy), backgroundColor: cssVar("--accent"), borderRadius: 3 },
+        {
+          label: "Test split",
+          data: mixes.map(([, r]) => 100 * r.accuracy),
+          backgroundColor: "#b9c4ff",
+          borderRadius: 3,
+        },
+        {
+          label: "5-fold CV",
+          data: mixes.map(([, r]) => 100 * r.cv_accuracy),
+          backgroundColor: cssVar("--accent"),
+          borderRadius: 3,
+        },
       ],
     },
     options: {
       indexAxis: "y",
       maintainAspectRatio: false,
       plugins: { legend: { position: "bottom", labels: { boxWidth: 12 } } },
-      scales: { x: { min: 40, max: 100, title: { display: true, text: "accuracy %" }, grid: { color: "#eef0f3" } }, y: { grid: { display: false }, ticks: { font: { size: 11 } } } },
+      scales: {
+        x: {
+          min: 40,
+          max: 100,
+          title: { display: true, text: "accuracy %" },
+          grid: { color: "#eef0f3" },
+        },
+        y: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      },
     },
   });
 
   $("eval-tabs").innerHTML = Object.entries(L)
-    .map(([k, r]) => `<button class="tab${k === evalLang ? " active" : ""}" data-lang="${k}">${r.label.replace(/ \(.*\)/, k === "hi-iiit" ? " IIIT" : "")}</button>`)
+    .map(
+      ([k, r]) =>
+        `<button class="tab${k === evalLang ? " active" : ""}" data-lang="${k}">${r.label.replace(/ \(.*\)/, k === "hi-iiit" ? " IIIT" : "")}</button>`,
+    )
     .join("");
-  $("eval-tabs").querySelectorAll("[data-lang]").forEach((b) =>
-    b.addEventListener("click", () => {
-      evalLang = b.dataset.lang;
-      $("eval-tabs").querySelectorAll(".tab").forEach((x) => x.classList.toggle("active", x === b));
-      drawPerTag();
-    })
-  );
+  $("eval-tabs")
+    .querySelectorAll("[data-lang]")
+    .forEach((b) =>
+      b.addEventListener("click", () => {
+        evalLang = b.dataset.lang;
+        $("eval-tabs")
+          .querySelectorAll(".tab")
+          .forEach((x) => x.classList.toggle("active", x === b));
+        drawPerTag();
+      }),
+    );
   drawPerTag();
 }
 
@@ -159,16 +221,34 @@ function drawPerTag() {
     data: {
       labels: tags.map((t) => `${t} (${h.per_tag[t].support})`),
       datasets: [
-        { label: "Precision", data: tags.map((t) => h.per_tag[t].precision), backgroundColor: "#b9c4ff", borderRadius: 3 },
-        { label: "Recall", data: tags.map((t) => h.per_tag[t].recall), backgroundColor: "#7c8cff", borderRadius: 3 },
-        { label: "F1", data: tags.map((t) => h.per_tag[t].f1), backgroundColor: cssVar("--accent"), borderRadius: 3 },
+        {
+          label: "Precision",
+          data: tags.map((t) => h.per_tag[t].precision),
+          backgroundColor: "#b9c4ff",
+          borderRadius: 3,
+        },
+        {
+          label: "Recall",
+          data: tags.map((t) => h.per_tag[t].recall),
+          backgroundColor: "#7c8cff",
+          borderRadius: 3,
+        },
+        {
+          label: "F1",
+          data: tags.map((t) => h.per_tag[t].f1),
+          backgroundColor: cssVar("--accent"),
+          borderRadius: 3,
+        },
       ],
     },
     options: {
       indexAxis: "y",
       maintainAspectRatio: false,
       plugins: { legend: { position: "bottom", labels: { boxWidth: 12 } } },
-      scales: { x: { min: 0, max: 1, grid: { color: "#eef0f3" } }, y: { grid: { display: false } } },
+      scales: {
+        x: { min: 0, max: 1, grid: { color: "#eef0f3" } },
+        y: { grid: { display: false } },
+      },
     },
   });
   const max = Math.max(...h.confusion.flat());
@@ -183,15 +263,20 @@ function drawPerTag() {
               const col = i === j ? "61,90,254" : "192,54,44";
               return `<td style="background: rgba(${col},${(a * 0.8).toFixed(3)}); color:${a > 0.55 ? "#fff" : "inherit"}">${v || ""}</td>`;
             })
-            .join("")}</tr>`
+            .join("")}</tr>`,
       )
       .join("");
 }
 
 $("pos-run").addEventListener("click", runTagger);
-$("pos-text").addEventListener("keydown", (e) => e.key === "Enter" && runTagger());
+$("pos-text").addEventListener(
+  "keydown",
+  (e) => e.key === "Enter" && runTagger(),
+);
 $("pos-lang").addEventListener("change", () => {
-  $("mix-field").style.display = ["", "hg"].includes($("pos-lang").value) ? "" : "none";
+  $("mix-field").style.display = ["", "hg"].includes($("pos-lang").value)
+    ? ""
+    : "none";
   runTagger();
 });
 $("pos-mix").addEventListener("change", runTagger);
@@ -202,7 +287,7 @@ document.querySelectorAll("[data-text]").forEach((b) =>
     $("pos-lang").value = "";
     $("mix-field").style.display = "";
     runTagger();
-  })
+  }),
 );
 runTagger();
 loadEval();

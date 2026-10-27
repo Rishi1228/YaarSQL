@@ -19,14 +19,14 @@ idea in `NLP_EXP_1.pdf`: PARSQL's parse → reason → select approach, applied 
 The paper fine-tunes 3B-parameter models on Spider/BIRD. We don't. We keep the same **ideas**
 and build them with the coursework techniques:
 
-| Paper idea (PARSQL) | Our lab-scale version |
-|---|---|
-| Natural-language question understanding | Preprocessing + N-gram models + HMM POS tags |
-| PARSer: parse SQL into parts | Small SQL parser that splits a query into clauses (SELECT / WHERE / GROUP BY / ORDER BY / JOIN) |
-| Text-to-reason (explanation for each SQL) | Rule-based reasoning templates in English, Hindi and Hinglish |
-| Similarity-based candidate selection | Make top-k SQL candidates, score each one's reasoning text against the question with n-gram overlap, pick the best |
-| Hinglish-Spider-Aug dataset | Our own small trilingual dataset over one sample database |
-| Execution accuracy / exact match | Same metrics, split by language |
+| Paper idea (PARSQL)                       | Our lab-scale version                                                                                              |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Natural-language question understanding   | Preprocessing + N-gram models + HMM POS tags                                                                       |
+| PARSer: parse SQL into parts              | Small SQL parser that splits a query into clauses (SELECT / WHERE / GROUP BY / ORDER BY / JOIN)                    |
+| Text-to-reason (explanation for each SQL) | Rule-based reasoning templates in English, Hindi and Hinglish                                                      |
+| Similarity-based candidate selection      | Make top-k SQL candidates, score each one's reasoning text against the question with n-gram overlap, pick the best |
+| Hinglish-Spider-Aug dataset               | Our own small trilingual dataset over one sample database                                                          |
+| Execution accuracy / exact match          | Same metrics, split by language                                                                                    |
 
 ## 2. Tech stack
 
@@ -74,6 +74,7 @@ NLP_miniProject/
 ## 4. Phases
 
 ### Phase 0 — Setup, database, dataset
+
 - Virtual environment, `requirements.txt` (flask, nltk), download NLTK corpora.
 - Build `college.db` with realistic sample rows.
 - Build the trilingual dataset: ~15 intent templates (count, list, filter, max/min, average,
@@ -81,7 +82,8 @@ NLP_miniProject/
   so it isn't purely templated. Every item: `{id, lang, question, sql, intent}`.
 - **Deliverable:** working Flask skeleton with nav bar; DB + dataset files.
 
-### Phase 1 — Preprocessing  *(coursework: preprocessing)*
+### Phase 1 — Preprocessing _(coursework: preprocessing)_
+
 - Unicode normalization (NFC), lowercasing (Latin only — Devanagari has no case).
 - Sentence splitting (handles `.` `?` `!` and Hindi `।`).
 - Tokenization: regex tokenizer that keeps numbers, quoted values, Devanagari words, and
@@ -97,7 +99,8 @@ NLP_miniProject/
 - **Website page — "Preprocessing Lab":** type text, see each step side by side as a table
   (original → normalized → tokens → script tags → stopwords removed → stems).
 
-### Phase 2 — N-grams: unigrams, bigrams, trigrams, general N  *(coursework: bigrams, trigrams)*
+### Phase 2 — N-grams: unigrams, bigrams, trigrams, general N _(coursework: bigrams, trigrams)_
+
 - `NGramModel(n)` built from scratch: counts, conditional probabilities with `<s>` / `</s>` padding.
 - Smoothing: MLE, Laplace (add-1), add-k, linear interpolation, and stupid backoff.
 - **Perplexity** on held-out text; compare unigram vs bigram vs trigram vs 4-gram for each language.
@@ -114,7 +117,8 @@ NLP_miniProject/
   bar chart, the probability table, perplexity comparison chart, generated sentences,
   and a live autocomplete demo.
 
-### Phase 3 — POS tagging with HMM  *(coursework: HMM POS tagging, English + regional language)*
+### Phase 3 — POS tagging with HMM _(coursework: HMM POS tagging, English + regional language)_
+
 - `HMMTagger` from scratch:
   - Transition probs P(tagᵢ | tagᵢ₋₁) from bigram tag counts (optional trigram-tag variant).
   - Emission probs P(word | tag) with smoothing.
@@ -127,11 +131,12 @@ NLP_miniProject/
   combined with English + Hindi mapped to a shared universal tagset) and report how each
   training mix performs.
 - Uses inside the project: NOUN/PROPN tokens → candidate tables/columns/values; NUM → numeric
-  values / LIMIT; ADJ like *highest / sabse zyada / सबसे अधिक* → MAX / ORDER BY DESC.
+  values / LIMIT; ADJ like _highest / sabse zyada / सबसे अधिक_ → MAX / ORDER BY DESC.
 - **Website page — "POS Tagger":** choose language, enter sentence, see colour-coded tags,
   the **Viterbi trellis** visualised as a grid, transition-matrix heatmap, and the accuracy dashboard.
 
 ### Phase 4 — Text-to-SQL pipeline (PARSQL-lite)
+
 1. Preprocess (Phase 1) → language ID (Phase 2) → POS tags (Phase 3).
 2. **Schema linking:** match tokens/n-grams to tables, columns and cell values using a
    bilingual schema lexicon (`chhatra / छात्र → students`) + fuzzy matching.
@@ -141,10 +146,12 @@ NLP_miniProject/
 6. **Text-to-reason:** rule-based explanation for each candidate, written in the question's language.
 7. **Selection:** score (question ↔ reasoning) with n-gram overlap + intent probability; pick the best.
 8. Execute on SQLite, show the result table.
+
 - **Website page — "Ask the Database" (home):** question box with autocomplete, the result, and
   an expandable "How it worked" panel showing every step above.
 
 ### Phase 5 — Evaluation & ablations
+
 - Execution accuracy + exact-match accuracy, separately for English / Hindi / Hinglish test sets.
 - Clause-level errors (wrong table vs wrong aggregation vs wrong condition), like the paper's error analysis.
 - Ablations: (a) without reasoning-based selection, (b) without Hinglish normalization,
@@ -152,6 +159,7 @@ NLP_miniProject/
 - **Website page — "Evaluation":** charts + tables for all of the above.
 
 ### Phase 6 — Polish & report
+
 - About page tying the project back to the PARSQL paper.
 - README (how to run), unit tests for each module, short write-up of results for the lab journal.
 
@@ -159,14 +167,14 @@ NLP_miniProject/
 
 ## 5. Order of work & checkpoints
 
-| Phase | What you can show after it |
-|---|---|
-| 0 | Site runs, DB + dataset exist |
-| 1 | Preprocessing Lab page works |
-| 2 | N-gram Lab page: bigram/trigram tables, perplexity, autocomplete, language ID |
-| 3 | POS Tagger page: HMM tagging in English, Hindi, Hinglish + accuracy |
-| 4 | Ask the Database: question → SQL → results |
-| 5 | Evaluation page with accuracy per language |
-| 6 | Final polish + README |
+| Phase | What you can show after it                                                    |
+| ----- | ----------------------------------------------------------------------------- |
+| 0     | Site runs, DB + dataset exist                                                 |
+| 1     | Preprocessing Lab page works                                                  |
+| 2     | N-gram Lab page: bigram/trigram tables, perplexity, autocomplete, language ID |
+| 3     | POS Tagger page: HMM tagging in English, Hindi, Hinglish + accuracy           |
+| 4     | Ask the Database: question → SQL → results                                    |
+| 5     | Evaluation page with accuracy per language                                    |
+| 6     | Final polish + README                                                         |
 
 Each phase ends with a check-in so you can review before the next one starts.

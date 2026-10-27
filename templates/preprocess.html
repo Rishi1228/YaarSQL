@@ -1,10 +1,12 @@
-{% extends "base.html" %}
-{% block title %}Preprocessing Lab · PARSQL-Hinglish Lite{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %}Preprocessing Lab · PARSQL-Hinglish
+Lite{% endblock %} {% block content %}
 <header class="page-head">
   <p class="eyebrow">Phase 1 · Preprocessing</p>
   <h1>Preprocessing Lab</h1>
-  <p class="lede">Type a sentence in English, Hindi or Hinglish and see every preprocessing step applied to it.</p>
+  <p class="lede">
+    Type a sentence in English, Hindi or Hinglish and see every preprocessing
+    step applied to it.
+  </p>
 </header>
 
 <div class="lab-layout">
@@ -21,7 +23,8 @@
     </div>
 
     <div class="controls">
-      <label class="field-inline">Language
+      <label class="field-inline"
+        >Language
         <select id="lang">
           <option value="">Auto-detect</option>
           <option value="en">English</option>
@@ -29,7 +32,10 @@
           <option value="hg">Hinglish</option>
         </select>
       </label>
-      <label class="field-inline check"><input type="checkbox" id="stop"> Remove stopwords in final output</label>
+      <label class="field-inline check"
+        ><input type="checkbox" id="stop" /> Remove stopwords in final
+        output</label
+      >
       <button class="btn" id="run">Run preprocessing</button>
     </div>
     <p class="error" id="error" hidden></p>
@@ -37,10 +43,22 @@
 
   <section id="result" hidden>
     <div class="summary-row">
-      <div class="stat"><span class="stat-label">Detected language</span><span class="stat-value" id="s-lang"></span></div>
-      <div class="stat"><span class="stat-label">Tokens</span><span class="stat-value" id="s-tokens"></span></div>
-      <div class="stat"><span class="stat-label">Spelling fixes</span><span class="stat-value" id="s-fixes"></span></div>
-      <div class="stat"><span class="stat-label">Stopwords removed</span><span class="stat-value" id="s-stop"></span></div>
+      <div class="stat">
+        <span class="stat-label">Detected language</span
+        ><span class="stat-value" id="s-lang"></span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Tokens</span
+        ><span class="stat-value" id="s-tokens"></span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Spelling fixes</span
+        ><span class="stat-value" id="s-fixes"></span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Stopwords removed</span
+        ><span class="stat-value" id="s-stop"></span>
+      </div>
     </div>
 
     <div class="card">
@@ -51,7 +69,14 @@
     <div class="card">
       <h2 class="card-title">Token table</h2>
       <table class="data-table" id="token-table">
-        <thead><tr><th>#</th><th>Token</th><th>Script</th><th>Word language</th></tr></thead>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Token</th>
+            <th>Script</th>
+            <th>Word language</th>
+          </tr>
+        </thead>
         <tbody></tbody>
       </table>
       <div class="legend">
@@ -64,8 +89,7 @@
     </div>
   </section>
 </div>
-{% endblock %}
-{% block scripts %}
+{% endblock %} {% block scripts %}
 <script src="{{ url_for('static', filename='js/common.js') }}"></script>
 <script src="{{ url_for('static', filename='js/preprocess.js') }}"></script>
 {% endblock %}

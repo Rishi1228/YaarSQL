@@ -11,6 +11,7 @@ question
   │ 8. selection: intent probability + question↔reasoning similarity − penalties
   ▼ 9. execute the chosen SQL on SQLite
 """
+
 import math
 import sqlite3
 from collections import Counter
@@ -28,37 +29,60 @@ from nlp.sql_parser import fragments
 DB_PATH = Path(__file__).resolve().parent.parent / "data" / "college.db"
 
 OP_OF = {
-    "COUNT_ALL": "COUNT", "COUNT_DEPT": "COUNT", "COUNT_CITY": "COUNT",
-    "LIST_ALL": "LIST", "LIST_CITY": "LIST", "LIST_DEPT": "LIST", "LIST_YEAR": "LIST",
-    "LIST_GT": "LIST", "LIST_LT": "LIST",
-    "MAX_VAL": "MAX", "MIN_VAL": "MIN", "AVG_VAL": "AVG", "SUM_VAL": "SUM",
-    "ARGMAX": "ARGMAX", "ARGMIN": "ARGMIN", "TOP_K": "TOP_K",
-    "GROUP_COUNT": "GROUP_COUNT", "GROUP_AVG": "GROUP_AVG",
+    "COUNT_ALL": "COUNT",
+    "COUNT_DEPT": "COUNT",
+    "COUNT_CITY": "COUNT",
+    "LIST_ALL": "LIST",
+    "LIST_CITY": "LIST",
+    "LIST_DEPT": "LIST",
+    "LIST_YEAR": "LIST",
+    "LIST_GT": "LIST",
+    "LIST_LT": "LIST",
+    "MAX_VAL": "MAX",
+    "MIN_VAL": "MIN",
+    "AVG_VAL": "AVG",
+    "SUM_VAL": "SUM",
+    "ARGMAX": "ARGMAX",
+    "ARGMIN": "ARGMIN",
+    "TOP_K": "TOP_K",
+    "GROUP_COUNT": "GROUP_COUNT",
+    "GROUP_AVG": "GROUP_AVG",
 }
 NEEDS_COLUMN = {"MAX", "MIN", "AVG", "SUM", "ARGMAX", "ARGMIN", "TOP_K", "GROUP_AVG"}
 GROUP_OPS = {"GROUP_COUNT", "GROUP_AVG"}
 DEFAULT_COLUMN = {"students": "cgpa", "faculty": "salary", "courses": "credits"}
 SUMMABLE = {"fees", "salary", "credits"}
-NUMERIC_COLS = {"students": {"cgpa", "age", "fees", "year"}, "faculty": {"salary", "experience"},
-                "courses": {"credits"}}
+NUMERIC_COLS = {
+    "students": {"cgpa", "age", "fees", "year"},
+    "faculty": {"salary", "experience"},
+    "courses": {"credits"},
+}
 
-GT_WORDS = {normalize_unicode(w) for w in
-            "greater more above over exceeds exceed exceeding higher larger bigger than zyada adhik upar jyada "
-            "अधिक ज़्यादा ज्यादा ऊपर".split()}
-LT_WORDS = {normalize_unicode(w) for w in
-            "less lower below under smaller fewer kam neeche कम नीचे".split()}
+GT_WORDS = {
+    normalize_unicode(w)
+    for w in "greater more above over exceeds exceed exceeding higher larger bigger than zyada adhik upar jyada "
+    "अधिक ज़्यादा ज्यादा ऊपर".split()
+}
+LT_WORDS = {
+    normalize_unicode(w)
+    for w in "less lower below under smaller fewer kam neeche कम नीचे".split()
+}
 SUPERLATIVE = {normalize_unicode(w) for w in "sabse सबसे most".split()}
 
 
 @dataclass
 class Options:
     """Switches used by the ablation study (Phase 5)."""
-    use_reasoning: bool = True      # similarity between question and candidate explanation
-    use_pos: bool = True            # POS tags guide fuzzy schema linking
+
+    use_reasoning: bool = True  # similarity between question and candidate explanation
+    use_pos: bool = True  # POS tags guide fuzzy schema linking
     normalize_spelling: bool = True  # Hinglish spelling normalization (Phase 1)
-    intent_n: int = 2               # n-gram order of the intent models
-    top_k: int = 16                 # how many intents become SQL candidates (16 = all)
-    holdout_template: int = None    # validation mode: intent models trained without this phrasing
+    intent_n: int = 2  # n-gram order of the intent models
+    intent_model: str = "ngram"  # "ngram" | "transformer" (Phase 2b, needs PyTorch)
+    top_k: int = 16  # how many intents become SQL candidates (16 = all)
+    holdout_template: int = (
+        None  # validation mode: intent models trained without this phrasing
+    )
     # weights chosen by grid search on a validation phrasing of the TRAIN split (see evaluate.tune)
     w_intent: float = 1.0
     w_sim: float = 6.0
@@ -119,7 +143,11 @@ def build_sql(op, table, column=None, filters=(), k=None):
     """Canonical SQL (same formatting as the dataset's gold queries)."""
     join = op in GROUP_OPS or any(f["kind"] == "dept" for f in filters)
     q = (lambda c: f"{table}.{c}") if join else (lambda c: c)
-    src = f"{table} JOIN departments ON {table}.dept_id = departments.id" if join else table
+    src = (
+        f"{table} JOIN departments ON {table}.dept_id = departments.id"
+        if join
+        else table
+    )
     conds = []
     order = {"dept": 0, "city": 1, "year": 2, "num": 3}
     for f in sorted(filters, key=lambda f: order[f["kind"]]):
@@ -142,7 +170,9 @@ def build_sql(op, table, column=None, filters=(), k=None):
         d = "DESC" if op == "ARGMAX" else "ASC"
         return f"SELECT {q('name')} FROM {src}{where} ORDER BY {q(column)} {d} LIMIT 1"
     if op == "TOP_K":
-        return f"SELECT {q('name')} FROM {src}{where} ORDER BY {q(column)} DESC LIMIT {k}"
+        return (
+            f"SELECT {q('name')} FROM {src}{where} ORDER BY {q(column)} DESC LIMIT {k}"
+        )
     if op == "GROUP_COUNT":
         return f"SELECT departments.name, COUNT(*) FROM {src}{where} GROUP BY departments.name"
     if op == "GROUP_AVG":
@@ -155,7 +185,9 @@ def make_candidate(intent, prob, mentions, roles, tokens):
     op = OP_OF[intent]
     cand = Candidate(intent=intent, op=op, intent_prob=prob)
     tables = [m for m in mentions if m["type"] == "table" and m["key"] != "departments"]
-    dept_word = [m for m in mentions if m["type"] == "table" and m["key"] == "departments"]
+    dept_word = [
+        m for m in mentions if m["type"] == "table" and m["key"] == "departments"
+    ]
     columns = [m for m in mentions if m["type"] == "column"]
     values = [m for m in mentions if m["type"] == "value"]
     used = set()
@@ -196,7 +228,9 @@ def make_candidate(intent, prob, mentions, roles, tokens):
         table = "students"
         cand.penalties.append("no table mentioned (assumed students)")
     if tables and tables[0]["key"] != table:
-        cand.penalties.append(f"question mentions {tables[0]['key']} but query uses {table}")
+        cand.penalties.append(
+            f"question mentions {tables[0]['key']} but query uses {table}"
+        )
     for t in tables:
         if t["key"] == table:
             used.add(id(t))
@@ -220,14 +254,20 @@ def make_candidate(intent, prob, mentions, roles, tokens):
     # filters
     filters = []
     for v in values:
-        kind = {"departments.name": "dept", "students.city": "city", "students.year": "year"}[v["key"]]
+        kind = {
+            "departments.name": "dept",
+            "students.city": "city",
+            "students.year": "year",
+        }[v["key"]]
         if kind in ("city", "year") and table != "students":
             cand.invalid = f"{table} have no {kind}"
             return cand
         if kind == "dept" and (table == "departments" or op in GROUP_OPS):
             cand.invalid = "department filter does not fit this question type"
             return cand
-        filters.append({"kind": kind, "value": int(v["value"]) if kind == "year" else v["value"]})
+        filters.append(
+            {"kind": kind, "value": int(v["value"]) if kind == "year" else v["value"]}
+        )
         used.add(id(v))
     for m, op_ in num_filters:
         c = filter_cols[id(m)]
@@ -236,7 +276,9 @@ def make_candidate(intent, prob, mentions, roles, tokens):
             used.add(id(c))
         elif table in DEFAULT_COLUMN:
             col = column or DEFAULT_COLUMN[table]
-            cand.penalties.append(f"no column for the number {m['value']} (assumed {col})")
+            cand.penalties.append(
+                f"no column for the number {m['value']} (assumed {col})"
+            )
         else:
             cand.invalid = "numeric filter on a table without numeric columns"
             return cand
@@ -245,14 +287,22 @@ def make_candidate(intent, prob, mentions, roles, tokens):
 
     k = None
     if op == "TOP_K":
-        ints = [m for m in free_numbers if isinstance(m["value"], int) and 0 < m["value"] <= 100]
+        ints = [
+            m
+            for m in free_numbers
+            if isinstance(m["value"], int) and 0 < m["value"] <= 100
+        ]
         if ints:
             k = ints[0]["value"]
             used.add(id(ints[0]))
         else:
             cand.invalid = "top-k needs a number (top 5, top teen ...)"
             return cand
-    if dept_word and (op in GROUP_OPS or any(f["kind"] == "dept" for f in filters) or table == "departments"):
+    if dept_word and (
+        op in GROUP_OPS
+        or any(f["kind"] == "dept" for f in filters)
+        or table == "departments"
+    ):
         for d in dept_word:
             used.add(id(d))
 
@@ -261,9 +311,13 @@ def make_candidate(intent, prob, mentions, roles, tokens):
             what = m["text"]
             cand.penalties.append(f"“{what}” is not used by this query")
     if op in GROUP_OPS and not dept_word:
-        cand.penalties.append("grouping by department but the question never says department")
+        cand.penalties.append(
+            "grouping by department but the question never says department"
+        )
 
-    if op in ("ARGMAX", "ARGMIN", "TOP_K") and any(f["kind"] == "num" and f["column"] == column for f in filters):
+    if op in ("ARGMAX", "ARGMIN", "TOP_K") and any(
+        f["kind"] == "num" and f["column"] == column for f in filters
+    ):
         cand.penalties.append(f"filters and sorts on the same column ({column})")
 
     cand.sql = build_sql(op, table, column, filters, k)
@@ -285,10 +339,15 @@ def similarity(q_tokens, r_tokens, lang):
 
     def grams(ts):
         s = " " + " ".join(ts) + " "
-        return Counter(s[i:i + 3] for i in range(len(s) - 2))
+        return Counter(s[i : i + 3] for i in range(len(s) - 2))
+
     a, b = grams(q_tokens), grams(r_tokens)
     dot = sum(a[g] * b[g] for g in a)
-    cos = dot / (math.sqrt(sum(v * v for v in a.values())) * math.sqrt(sum(v * v for v in b.values())) or 1)
+    cos = dot / (
+        math.sqrt(sum(v * v for v in a.values()))
+        * math.sqrt(sum(v * v for v in b.values()))
+        or 1
+    )
     return 0.6 * recall + 0.4 * cos
 
 
@@ -298,7 +357,11 @@ def execute(sql, limit=100):
         cur = con.execute(sql)
         cols = [d[0] for d in cur.description]
         rows = cur.fetchmany(limit + 1)
-        return {"columns": cols, "rows": [list(r) for r in rows[:limit]], "truncated": len(rows) > limit}
+        return {
+            "columns": cols,
+            "rows": [list(r) for r in rows[:limit]],
+            "truncated": len(rows) > limit,
+        }
     finally:
         con.close()
 
@@ -325,22 +388,43 @@ def run(question, lang=None, options=None, execute_sql=True):
     if not opt.use_pos:
         # without POS tags we cannot tell a misspelled noun from any other word: fuzzy-match everything
         mentions = link(tokens, None, fuzzy=True)
-    trace["mentions"] = [{k: m[k] for k in ("type", "key", "value", "text", "fuzzy", "start", "end")} for m in mentions]
+    trace["mentions"] = [
+        {k: m[k] for k in ("type", "key", "value", "text", "fuzzy", "start", "end")}
+        for m in mentions
+    ]
 
     if not mentions:
         # nothing in the question refers to the database: refuse instead of guessing
-        trace.update({"numbers": [], "intents": [], "candidates": [], "sql": None, "reasoning": [],
-                      "error": "The question doesn't mention anything in the database (students, teachers, "
-                               "courses, departments, cities, cgpa, salary ...)."})
+        trace.update(
+            {
+                "numbers": [],
+                "intents": [],
+                "candidates": [],
+                "sql": None,
+                "reasoning": [],
+                "error": "The question doesn't mention anything in the database (students, teachers, "
+                "courses, departments, cities, cgpa, salary ...).",
+            }
+        )
         return trace
 
     roles = number_roles(tokens, mentions)
-    trace["numbers"] = [{"value": r["mention"]["value"], "role": f"filter {r['op']}" if r["op"] else "count / limit"}
-                        for r in roles]
+    trace["numbers"] = [
+        {
+            "value": r["mention"]["value"],
+            "role": f"filter {r['op']}" if r["op"] else "count / limit",
+        }
+        for r in roles
+    ]
 
-    clf = get_classifier(opt.intent_n, holdout_template=opt.holdout_template)
+    if opt.intent_model == "transformer":
+        from nlp.transformer_intent import get_classifier as get_transformer
+
+        clf = get_transformer(holdout_template=opt.holdout_template)
+    else:
+        clf = get_classifier(opt.intent_n, holdout_template=opt.holdout_template)
     ranking = clf.rank(tokens, pos, mentions) if tokens else []
-    trace["intents"] = ranking[:opt.top_k]
+    trace["intents"] = ranking[: opt.top_k]
 
     # comparison words used by a numeric filter ("8 se zyada") must not also count as
     # evidence for "sabse zyada" (highest) when comparing the question with explanations
@@ -348,16 +432,18 @@ def run(question, lang=None, options=None, execute_sql=True):
     sim_tokens = [w for i, w in enumerate(tokens) if i not in filter_words]
 
     candidates = []
-    for r in ranking[:opt.top_k]:
+    for r in ranking[: opt.top_k]:
         c = make_candidate(r["intent"], r["prob"], mentions, roles, tokens)
         if c.sql:
             c.reasoning = explain(c.sql, lang)
             c.fragments = fragments(c.sql)
             r_tokens = preprocess(" ".join(c.reasoning), lang)["final"]
             c.similarity = similarity(sim_tokens, r_tokens, lang)
-            c.score = (opt.w_intent * math.log(max(c.intent_prob, 1e-4))
-                       + (opt.w_sim * c.similarity if opt.use_reasoning else 0.0)
-                       - opt.w_penalty * len(c.penalties))
+            c.score = (
+                opt.w_intent * math.log(max(c.intent_prob, 1e-4))
+                + (opt.w_sim * c.similarity if opt.use_reasoning else 0.0)
+                - opt.w_penalty * len(c.penalties)
+            )
         candidates.append(c)
 
     # the same SQL can come from several intents (COUNT_ALL / COUNT_CITY ...): keep the best score
@@ -369,9 +455,19 @@ def run(question, lang=None, options=None, execute_sql=True):
     chosen = valid[0] if valid else None
 
     trace["candidates"] = [
-        {"intent": c.intent, "op": c.op, "sql": c.sql, "intent_prob": c.intent_prob, "similarity": c.similarity,
-         "penalties": c.penalties, "invalid": c.invalid, "score": None if c.score == -math.inf else c.score,
-         "reasoning": c.reasoning, "fragments": c.fragments, "chosen": c is chosen}
+        {
+            "intent": c.intent,
+            "op": c.op,
+            "sql": c.sql,
+            "intent_prob": c.intent_prob,
+            "similarity": c.similarity,
+            "penalties": c.penalties,
+            "invalid": c.invalid,
+            "score": None if c.score == -math.inf else c.score,
+            "reasoning": c.reasoning,
+            "fragments": c.fragments,
+            "chosen": c is chosen,
+        }
         for c in sorted(candidates, key=lambda c: -c.score if c.sql else math.inf)
     ]
     trace["sql"] = chosen.sql if chosen else None

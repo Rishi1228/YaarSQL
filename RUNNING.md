@@ -6,11 +6,11 @@ dataset, NLTK corpora and evaluation results are already in the repository.
 
 ## What you need
 
-| Tool | Version | Check with |
-|---|---|---|
-| Python | 3.10 or newer (tested on 3.14) | `python --version` |
-| Git | any recent version | `git --version` |
-| Internet | only for cloning and `pip install` | |
+| Tool     | Version                            | Check with         |
+| -------- | ---------------------------------- | ------------------ |
+| Python   | 3.10 or newer (tested on 3.14)     | `python --version` |
+| Git      | any recent version                 | `git --version`    |
+| Internet | only for cloning and `pip install` |                    |
 
 Download Python from <https://www.python.org/downloads/>. On Windows, tick
 **"Add python.exe to PATH"** in the installer.
@@ -99,11 +99,11 @@ with the answer **24**.
 
 ## Common problems
 
-| Problem | Fix |
-|---|---|
-| `python` is not recognized | Reinstall Python with "Add python.exe to PATH" ticked, or use `py` instead of `python` on Windows. |
-| `No module named flask` (or nltk/numpy) | You ran the plain `python`, not the one in `.venv`. Use `.venv\Scripts\python ...` as shown, or redo step 3. |
+| Problem                                                          | Fix                                                                                                                  |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `python` is not recognized                                       | Reinstall Python with "Add python.exe to PATH" ticked, or use `py` instead of `python` on Windows.                   |
+| `No module named flask` (or nltk/numpy)                          | You ran the plain `python`, not the one in `.venv`. Use `.venv\Scripts\python ...` as shown, or redo step 3.         |
 | Port 5000 is already in use (common on macOS because of AirPlay) | Start on another port: `.venv\Scripts\python -m flask --app app run --port 5001`, then open <http://127.0.0.1:5001>. |
-| `LookupError: Resource ... not found` from NLTK | The `data/nltk_data/` folder is missing or incomplete. Run step 6. |
-| Evaluation page is empty, or `models/` files are missing | Run step 6. |
-| `pip install` fails behind a proxy or without internet | Connect to the internet; `pip` must download Flask, NLTK, NumPy and pytest once. |
+| `LookupError: Resource ... not found` from NLTK                  | The `data/nltk_data/` folder is missing or incomplete. Run step 6.                                                   |
+| Evaluation page is empty, or `models/` files are missing         | Run step 6.                                                                                                          |
+| `pip install` fails behind a proxy or without internet           | Connect to the internet; `pip` must download Flask, NLTK, NumPy and pytest once.                                     |

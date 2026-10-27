@@ -13,6 +13,7 @@ Ablations: switch off one part of the pipeline at a time (see text2sql.Options).
 
 Run: python -m nlp.evaluate          (writes models/eval_results.json)
 """
+
 import json
 import sqlite3
 import time
@@ -23,6 +24,7 @@ from pathlib import Path
 from nlp.corpora import dataset
 from nlp.sql_parser import components, normalize
 from nlp.text2sql import DB_PATH, Options, run
+from nlp.transformer_intent import available as transformer_available
 
 MODELS_DIR = Path(__file__).resolve().parent.parent / "models"
 RESULTS = MODELS_DIR / "eval_results.json"
@@ -31,11 +33,20 @@ ABLATIONS = {
     "full": ("Full system", Options()),
     "no_reasoning": ("Without reasoning-based selection", Options(use_reasoning=False)),
     "top1_intent": ("Only the top intent (no candidate selection)", Options(top_k=1)),
-    "no_normalization": ("Without Hinglish spelling normalization", Options(normalize_spelling=False)),
+    "no_normalization": (
+        "Without Hinglish spelling normalization",
+        Options(normalize_spelling=False),
+    ),
     "no_pos": ("Without POS tags", Options(use_pos=False)),
     "unigram_intent": ("Unigram intent models (Naive Bayes)", Options(intent_n=1)),
     "trigram_intent": ("Trigram intent models", Options(intent_n=3)),
 }
+
+if transformer_available():
+    ABLATIONS["transformer_intent"] = (
+        "Transformer intent model",
+        Options(intent_model="transformer"),
+    )
 
 
 def _exec(con, sql):
@@ -54,7 +65,10 @@ def same_result(con, pred, gold):
         return [tuple(r) for r in p] == [tuple(r) for r in g]
 
     def norm(rows):
-        return sorted(tuple(round(v, 4) if isinstance(v, float) else v for v in r) for r in rows)
+        return sorted(
+            tuple(round(v, 4) if isinstance(v, float) else v for v in r) for r in rows
+        )
+
     return norm(p) == norm(g)
 
 
@@ -67,10 +81,15 @@ def error_category(pred, gold):
         return "unparseable SQL"
     if p["table"] != g["table"]:
         return "wrong table"
-    if p["aggregation"] != g["aggregation"] or (p["order"] is None) != (g["order"] is None) \
-            or (p["group_by"] is None) != (g["group_by"] is None):
+    if (
+        p["aggregation"] != g["aggregation"]
+        or (p["order"] is None) != (g["order"] is None)
+        or (p["group_by"] is None) != (g["group_by"] is None)
+    ):
         return "wrong question type (aggregation)"
-    if p["columns"] != g["columns"] or (p["order"] and g["order"] and p["order"][0] != g["order"][0]):
+    if p["columns"] != g["columns"] or (
+        p["order"] and g["order"] and p["order"][0] != g["order"][0]
+    ):
         return "wrong column"
     if p["conditions"] != g["conditions"]:
         return "wrong condition"
@@ -115,17 +134,35 @@ def evaluate_split(split="test", options=None, keep_examples=True):
             errors[lang][error_category(pred, it["sql"])] += 1
             errors["all"][error_category(pred, it["sql"])] += 1
         if keep_examples:
-            examples.append({"id": it["id"], "lang": lang, "intent": it.get("intent"), "question": it["question"],
-                             "gold": it["sql"], "pred": pred, "exec": ex, "exact": em})
+            examples.append(
+                {
+                    "id": it["id"],
+                    "lang": lang,
+                    "intent": it.get("intent"),
+                    "question": it["question"],
+                    "gold": it["sql"],
+                    "pred": pred,
+                    "exec": ex,
+                    "exact": em,
+                }
+            )
     con.close()
     summary = {}
     for key, c in by_lang.items():
         n = c["n"]
-        summary[key] = {"n": n, "execution_accuracy": c["exec"] / n, "exact_match": c["exact"] / n,
-                        "language_id": c["lang_ok"] / n,
-                        "components": {k: v / n for k, v in comp[key].items()}}
-    return {"summary": summary, "errors": {k: dict(v) for k, v in errors.items()},
-            "examples": examples if keep_examples else [], "seconds": time.time() - t0}
+        summary[key] = {
+            "n": n,
+            "execution_accuracy": c["exec"] / n,
+            "exact_match": c["exact"] / n,
+            "language_id": c["lang_ok"] / n,
+            "components": {k: v / n for k, v in comp[key].items()},
+        }
+    return {
+        "summary": summary,
+        "errors": {k: dict(v) for k, v in errors.items()},
+        "examples": examples if keep_examples else [],
+        "seconds": time.time() - t0,
+    }
 
 
 def run_all(splits=("test", "wild"), ablation_split="test"):
@@ -139,16 +176,30 @@ def run_all(splits=("test", "wild"), ablation_split="test"):
             res = out["splits"][ablation_split]
         else:
             res = evaluate_split(ablation_split, opt, keep_examples=False)
-        out["ablations"][key] = {"label": label,
-                                 **{lang: {"execution_accuracy": v["execution_accuracy"], "exact_match": v["exact_match"]}
-                                    for lang, v in res["summary"].items()}}
+        out["ablations"][key] = {
+            "label": label,
+            **{
+                lang: {
+                    "execution_accuracy": v["execution_accuracy"],
+                    "exact_match": v["exact_match"],
+                }
+                for lang, v in res["summary"].items()
+            },
+        }
     if dataset("wild"):
         for key in ("no_reasoning", "top1_intent"):
             res = evaluate_split("wild", ABLATIONS[key][1], keep_examples=False)
             out["ablations"][key]["wild"] = res["summary"]["all"]["execution_accuracy"]
-        out["ablations"]["full"]["wild"] = out["splits"]["wild"]["summary"]["all"]["execution_accuracy"]
+        out["ablations"]["full"]["wild"] = out["splits"]["wild"]["summary"]["all"][
+            "execution_accuracy"
+        ]
     from nlp.intent import evaluate as eval_intent
+
     out["intent"] = {str(n): eval_intent(n)[0] for n in (1, 2, 3)}
+    if transformer_available():
+        from nlp.transformer_intent import evaluate as eval_transformer
+
+        out["intent"]["transformer"] = eval_transformer()
     out["validation"] = validation_scores()
     out["generated"] = time.strftime("%Y-%m-%d %H:%M")
     RESULTS.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -160,12 +211,29 @@ def validation_scores():
     items = [it for it in dataset("train") if it["template"].endswith("/3")]
     con = sqlite3.connect(f"file:{DB_PATH}?mode=ro", uri=True)
     out = {}
-    for key, opt in [("full", Options(holdout_template=3)),
-                     ("no_reasoning", Options(holdout_template=3, use_reasoning=False)),
-                     ("unigram_intent", Options(holdout_template=3, intent_n=1)),
-                     ("trigram_intent", Options(holdout_template=3, intent_n=3))]:
-        ok = sum(same_result(con, run(it["question"], options=opt, execute_sql=False)["sql"] or "SELECT 0", it["sql"])
-                 for it in items)
+    configs = [
+        ("full", Options(holdout_template=3)),
+        ("no_reasoning", Options(holdout_template=3, use_reasoning=False)),
+        ("unigram_intent", Options(holdout_template=3, intent_n=1)),
+        ("trigram_intent", Options(holdout_template=3, intent_n=3)),
+    ]
+    if transformer_available():
+        configs.append(
+            (
+                "transformer_intent",
+                Options(holdout_template=3, intent_model="transformer"),
+            )
+        )
+    for key, opt in configs:
+        ok = sum(
+            same_result(
+                con,
+                run(it["question"], options=opt, execute_sql=False)["sql"]
+                or "SELECT 0",
+                it["sql"],
+            )
+            for it in items
+        )
         out[key] = ok / len(items)
     con.close()
     return out
@@ -180,6 +248,7 @@ def load_results():
 def tune(split="train", sample=None):
     """Grid search for the selection weights on the TRAINING split (never on test)."""
     import random
+
     items = dataset(split)
     if sample:
         items = random.Random(0).sample(items, sample)
@@ -189,8 +258,15 @@ def tune(split="train", sample=None):
         for ws in (0.0, 1.0, 2.0, 3.0, 5.0):
             for wp in (0.5, 1.0, 2.0):
                 opt = Options(w_intent=wi, w_sim=ws, w_penalty=wp)
-                ok = sum(same_result(con, run(it["question"], options=opt, execute_sql=False)["sql"] or "SELECT 0",
-                                     it["sql"]) for it in items)
+                ok = sum(
+                    same_result(
+                        con,
+                        run(it["question"], options=opt, execute_sql=False)["sql"]
+                        or "SELECT 0",
+                        it["sql"],
+                    )
+                    for it in items
+                )
                 results.append((ok / len(items), wi, ws, wp))
     con.close()
     return sorted(results, reverse=True)
@@ -198,11 +274,26 @@ def tune(split="train", sample=None):
 
 if __name__ == "__main__":
     import sys
+
     sys.stdout.reconfigure(encoding="utf-8")
     res = run_all()
     for split, r in res["splits"].items():
-        print(split, {k: (round(v["execution_accuracy"], 3), round(v["exact_match"], 3)) for k, v in r["summary"].items()})
+        print(
+            split,
+            {
+                k: (round(v["execution_accuracy"], 3), round(v["exact_match"], 3))
+                for k, v in r["summary"].items()
+            },
+        )
         print("  errors:", r["errors"].get("all"))
     for k, a in res["ablations"].items():
-        print(f"{a['label']:48s}", {lang: round(v["execution_accuracy"], 3) for lang, v in a.items()
-                                     if isinstance(v, dict)}, "wild:", a.get("wild"))
+        print(
+            f"{a['label']:48s}",
+            {
+                lang: round(v["execution_accuracy"], 3)
+                for lang, v in a.items()
+                if isinstance(v, dict)
+            },
+            "wild:",
+            a.get("wild"),
+        )
