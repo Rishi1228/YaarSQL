@@ -1,0 +1,107 @@
+{
+  "_about": "Bilingual data dictionary for college.db. Surface forms per language: en = English, hi = Hindi (Devanagari), hg = Hinglish (Romanized). dir = plural/direct form, obl = oblique form (before postpositions), sing = singular. g = grammatical gender (m/f) used for ka/ki agreement.",
+  "tables": {
+    "students": {
+      "en": [{"dir": "students", "sing": "student"}],
+      "hi": [{"dir": "छात्र", "obl": "छात्रों", "sing": "छात्र"},
+             {"dir": "विद्यार्थी", "obl": "विद्यार्थियों", "sing": "विद्यार्थी"}],
+      "hg": [{"dir": "students", "sing": "student"},
+             {"dir": "chhatra", "sing": "chhatra"},
+             {"dir": "bacche", "obl": "bacchon", "sing": "baccha"}]
+    },
+    "faculty": {
+      "en": [{"dir": "teachers", "sing": "teacher"},
+             {"dir": "professors", "sing": "professor"},
+             {"dir": "faculty members", "sing": "faculty member"}],
+      "hi": [{"dir": "शिक्षक", "obl": "शिक्षकों", "sing": "शिक्षक"},
+             {"dir": "अध्यापक", "obl": "अध्यापकों", "sing": "अध्यापक"}],
+      "hg": [{"dir": "teachers", "sing": "teacher"},
+             {"dir": "faculty", "sing": "faculty"},
+             {"dir": "professors", "sing": "professor"},
+             {"dir": "shikshak", "sing": "shikshak"}]
+    },
+    "courses": {
+      "en": [{"dir": "courses", "sing": "course"}, {"dir": "subjects", "sing": "subject"}],
+      "hi": [{"dir": "पाठ्यक्रम", "obl": "पाठ्यक्रमों", "sing": "पाठ्यक्रम"},
+             {"dir": "विषय", "obl": "विषयों", "sing": "विषय"}],
+      "hg": [{"dir": "courses", "sing": "course"}, {"dir": "subjects", "sing": "subject"},
+             {"dir": "vishay", "sing": "vishay"}]
+    },
+    "departments": {
+      "en": [{"dir": "departments", "sing": "department"}],
+      "hi": [{"dir": "विभाग", "obl": "विभागों", "sing": "विभाग"}],
+      "hg": [{"dir": "departments", "sing": "department"}, {"dir": "vibhag", "sing": "vibhag"}]
+    }
+  },
+  "columns": {
+    "students.cgpa": {
+      "en": [{"w": "cgpa"}, {"w": "grade point average"}],
+      "hi": [{"w": "सीजीपीए", "g": "m"}],
+      "hg": [{"w": "cgpa", "g": "m"}, {"w": "pointer", "g": "m"}]
+    },
+    "students.age": {
+      "en": [{"w": "age"}],
+      "hi": [{"w": "उम्र", "g": "f"}, {"w": "आयु", "g": "f"}],
+      "hg": [{"w": "age", "g": "f"}, {"w": "umar", "g": "f"}]
+    },
+    "students.fees": {
+      "en": [{"w": "fees"}, {"w": "fee"}],
+      "hi": [{"w": "फीस", "g": "f"}, {"w": "शुल्क", "g": "m"}],
+      "hg": [{"w": "fees", "g": "f"}, {"w": "fee", "g": "f"}]
+    },
+    "faculty.salary": {
+      "en": [{"w": "salary"}, {"w": "pay"}],
+      "hi": [{"w": "वेतन", "g": "m"}, {"w": "तनख्वाह", "g": "f"}],
+      "hg": [{"w": "salary", "g": "f"}, {"w": "tankhwah", "g": "f"}, {"w": "pagaar", "g": "m"}]
+    },
+    "faculty.experience": {
+      "en": [{"w": "experience"}, {"w": "years of experience"}],
+      "hi": [{"w": "अनुभव", "g": "m"}],
+      "hg": [{"w": "experience", "g": "m"}, {"w": "anubhav", "g": "m"}]
+    },
+    "courses.credits": {
+      "en": [{"w": "credits"}],
+      "hi": [{"w": "क्रेडिट", "g": "m"}],
+      "hg": [{"w": "credits", "g": "m"}, {"w": "credit", "g": "m"}]
+    }
+  },
+  "values": {
+    "departments.name": {
+      "Computer":    {"en": ["computer", "computer science"], "hi": ["कंप्यूटर"], "hg": ["computer", "comp"]},
+      "IT":          {"en": ["it", "information technology"], "hi": ["आईटी"], "hg": ["it"]},
+      "Mechanical":  {"en": ["mechanical"], "hi": ["मैकेनिकल"], "hg": ["mechanical", "mech"]},
+      "Electrical":  {"en": ["electrical"], "hi": ["इलेक्ट्रिकल"], "hg": ["electrical"]},
+      "Civil":       {"en": ["civil"], "hi": ["सिविल"], "hg": ["civil"]},
+      "Electronics": {"en": ["electronics"], "hi": ["इलेक्ट्रॉनिक्स"], "hg": ["electronics", "extc"]}
+    },
+    "students.city": {
+      "Mumbai":    {"en": ["mumbai", "bombay"], "hi": ["मुंबई"], "hg": ["mumbai", "bombay"]},
+      "Pune":      {"en": ["pune"], "hi": ["पुणे"], "hg": ["pune"]},
+      "Delhi":     {"en": ["delhi"], "hi": ["दिल्ली"], "hg": ["delhi", "dilli"]},
+      "Ahmedabad": {"en": ["ahmedabad"], "hi": ["अहमदाबाद"], "hg": ["ahmedabad", "amdavad"]},
+      "Surat":     {"en": ["surat"], "hi": ["सूरत"], "hg": ["surat"]},
+      "Nagpur":    {"en": ["nagpur"], "hi": ["नागपुर"], "hg": ["nagpur"]},
+      "Jaipur":    {"en": ["jaipur"], "hi": ["जयपुर"], "hg": ["jaipur"]},
+      "Indore":    {"en": ["indore"], "hi": ["इंदौर"], "hg": ["indore"]}
+    },
+    "students.year": {
+      "1": {"en": ["first", "1st"], "hi": ["पहले", "प्रथम"], "hg": ["first", "pehle"]},
+      "2": {"en": ["second", "2nd"], "hi": ["दूसरे", "द्वितीय"], "hg": ["second", "doosre"]},
+      "3": {"en": ["third", "3rd"], "hi": ["तीसरे", "तृतीय"], "hg": ["third", "teesre"]},
+      "4": {"en": ["fourth", "4th"], "hi": ["चौथे", "चतुर्थ"], "hg": ["fourth", "chauthe"]}
+    }
+  },
+  "thresholds": {
+    "students.cgpa": [7, 7.5, 8, 8.5, 9],
+    "students.age": [19, 20, 21, 22],
+    "students.fees": [100000, 120000],
+    "faculty.salary": [100000, 120000, 150000],
+    "faculty.experience": [5, 10, 15],
+    "courses.credits": [2, 3]
+  },
+  "number_words": {
+    "en": {"two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10},
+    "hi": {"दो": 2, "तीन": 3, "चार": 4, "पाँच": 5, "पांच": 5, "छह": 6, "छः": 6, "सात": 7, "आठ": 8, "नौ": 9, "दस": 10},
+    "hg": {"teen": 3, "char": 4, "chaar": 4, "paanch": 5, "panch": 5, "chhe": 6, "che": 6, "saat": 7, "aath": 8, "nau": 9, "das": 10}
+  }
+}

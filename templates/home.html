@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-head">
+  <p class="eyebrow">NLP Mini Project</p>
+  <h1>Ask a database in English, हिंदी or Hinglish</h1>
+  <p class="lede">A lab-scale take on <em>PARSQL: Enhancing Text-to-SQL through SQL Parsing and Reasoning</em>
+    (Dai et al., ACL Findings 2025), extended to Hindi and code-mixed Hinglish using classical NLP:
+    preprocessing, N-gram language models and HMM part-of-speech tagging.</p>
+</header>
+
+<section class="example-flow card">
+  <div class="flow-step">
+    <span class="flow-label">Question (Hinglish)</span>
+    <div class="flow-box">computer dept me kitney studnts h?</div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-step">
+    <span class="flow-label">SQL</span>
+    <div class="flow-box mono">SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer'</div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-step narrow">
+    <span class="flow-label">Answer</span>
+    <div class="flow-box big">24</div>
+  </div>
+</section>
+
+<div class="summary-row" id="home-stats">
+  <div class="stat"><span class="stat-label">Test accuracy (420 Qs)</span><span class="stat-value">{{ stats.test }}</span><span class="muted small">phrasing never seen in training</span></div>
+  <div class="stat"><span class="stat-label">Hand-written questions (60)</span><span class="stat-value">{{ stats.wild }}</span><span class="muted small">free phrasing, compound filters</span></div>
+  <div class="stat"><span class="stat-label">HMM POS · English / Hindi</span><span class="stat-value">{{ stats.pos_en }} / {{ stats.pos_hi }}</span><span class="muted small">Treebank / NLTK Indian corpus</span></div>
+  <div class="stat"><span class="stat-label">HMM POS · Hinglish</span><span class="stat-value">{{ stats.pos_hg }}</span><span class="muted small">5-fold cross-validation</span></div>
+</div>
+
+<h2 class="section-title">How it maps to the PARSQL paper</h2>
+<section class="card">
+  <table class="data-table">
+    <thead><tr><th>PARSQL (Dai et al., 2025)</th><th>This project</th><th>Where</th></tr></thead>
+    <tbody>
+      <tr><td>Natural-language understanding by a 3B language model</td><td>Preprocessing + n-gram models + HMM POS tags</td><td>Phases 1–3</td></tr>
+      <tr><td>PARSer: split SQL into clauses / sub-SQL</td><td>PARSer-lite clause parser and fragments</td><td><code>nlp/sql_parser.py</code></td></tr>
+      <tr><td>Text-to-reason: explanation for each SQL</td><td>Rule-based explanations in English, Hindi and Hinglish</td><td><code>nlp/reasoning.py</code></td></tr>
+      <tr><td>Similarity-based selection among candidate SQLs</td><td>Score = log P(question type) + 6 × similarity(question, explanation) − 2 × penalties</td><td><code>nlp/text2sql.py</code></td></tr>
+      <tr><td>Proposed Hinglish-Spider-Aug dataset</td><td>2,099 trilingual question–SQL pairs + 60 hand-written questions</td><td><code>data/dataset/</code></td></tr>
+      <tr><td>Execution accuracy per language, ablations</td><td>Same metrics; ablating the reasoning step costs 12 points</td><td>Evaluation page</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<h2 class="section-title">Build phases</h2>
+<div class="phase-grid">
+  {% set phases = [
+    (0, "Setup & dataset", "Flask site, sample college database, 2,099 trilingual question–SQL pairs + 60 hand-written test questions.", "ask"),
+    (1, "Preprocessing", "Unicode & Devanagari normalization, tokenization, language tagging, Hinglish spelling repair, stopwords, stemming.", "preprocess_page"),
+    (2, "Unigrams, bigrams, trigrams", "N-gram language models with 6 smoothing methods, perplexity, generation, autocomplete, language ID and question-type detection.", "ngram_page"),
+    (3, "HMM POS tagging", "Viterbi HMM tagger for English (Treebank), Hindi (NLTK Indian corpus) and Hinglish (hand-tagged + Romanized Hindi).", "pos_page"),
+    (4, "Text-to-SQL (PARSQL-lite)", "Schema linking, SQL candidates, explanations in three languages, similarity-based selection, execution.", "ask"),
+    (5, "Evaluation", "Execution & exact-match accuracy per language, clause-level errors and ablations.", "eval_page"),
+  ] %}
+  {% for n, title, desc, ep in phases %}
+  <article class="phase-card status-done">
+    <div class="phase-top">
+      <span class="phase-num">Phase {{ n }}</span>
+      <span class="badge badge-done">Done</span>
+    </div>
+    <h3>{{ title }}</h3>
+    <p>{{ desc }}</p>
+    <a class="link" href="{{ url_for(ep) }}">Open →</a>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}

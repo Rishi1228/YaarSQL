@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}HMM POS Tagger · PARSQL-Hinglish Lite{% endblock %}
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+{% endblock %}
+{% block content %}
+<header class="page-head">
+  <p class="eyebrow">Phase 3 · POS tagging with HMM</p>
+  <h1>HMM POS Tagger</h1>
+  <p class="lede">A first-order Hidden Markov Model trained on tagged corpora and decoded with the Viterbi
+    algorithm. English uses the Penn Treebank; Hindi uses the NLTK Indian corpus; Hinglish uses our
+    hand-tagged sentences plus Romanized Hindi.</p>
+</header>
+
+<section class="card">
+  <div class="row-input">
+    <input type="text" id="pos-text" value="computer department mein kitne students hain">
+    <button class="btn" id="pos-run">Tag</button>
+  </div>
+  <div class="controls slim">
+    <label class="field-inline">Language
+      <select id="pos-lang">
+        <option value="">Auto-detect</option>
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+        <option value="hi-iiit">Hindi (IIIT tagset)</option>
+        <option value="hg">Hinglish</option>
+      </select>
+    </label>
+    <label class="field-inline" id="mix-field">Hinglish training data
+      <select id="pos-mix">
+        {% for key, label in mixes.items() %}<option value="{{ key }}"{% if key == best_mix %} selected{% endif %}>{{ label }}</option>{% endfor %}
+      </select>
+    </label>
+    <div class="examples">
+      <button class="chip" data-ex="en" data-text="Which student has the highest cgpa in the computer department?">English</button>
+      <button class="chip" data-ex="hi" data-text="कंप्यूटर विभाग में सबसे अधिक सीजीपीए वाला छात्र कौन है?">हिंदी</button>
+      <button class="chip" data-ex="hg" data-text="mera phone kaam nahi kar raha hai">Hinglish chat</button>
+      <button class="chip" data-ex="hg" data-text="8 se zyada cgpa wale students dikhao">Hinglish query</button>
+    </div>
+  </div>
+  <p class="error" id="pos-error" hidden></p>
+  <div id="tagged" class="tagged"></div>
+  <div class="kv" id="pos-stats"></div>
+</section>
+
+<section class="card">
+  <div class="card-head">
+    <h2 class="card-title">Viterbi trellis</h2>
+    <span class="muted small">log δ relative to the best cell in each column (0 = best). Highlighted = chosen path; small letters = back-pointer.</span>
+  </div>
+  <div class="table-scroll"><table class="trellis" id="trellis"></table></div>
+</section>
+
+<div class="grid-2 wide-left">
+  <section class="card">
+    <div class="card-head">
+      <h2 class="card-title">Transition probabilities P(tag | previous tag)</h2>
+    </div>
+    <div class="table-scroll"><table class="matrix heat" id="trans"></table></div>
+  </section>
+  <section class="card">
+    <div class="card-head">
+      <h2 class="card-title">Emission probabilities P(word | tag)</h2>
+      <select id="emit-tag"></select>
+    </div>
+    <p class="muted small" id="model-meta"></p>
+    <div id="emissions"></div>
+  </section>
+</div>
+
+<h2 class="section-title">Evaluation on held-out sentences</h2>
+<div class="summary-row" id="eval-cards"></div>
+
+<div class="grid-2">
+  <section class="card">
+    <h2 class="card-title">HMM vs baselines (accuracy)</h2>
+    <table class="data-table" id="baseline-table"></table>
+    <p class="muted small" id="cv-note"></p>
+  </section>
+  <section class="card">
+    <h2 class="card-title">Hinglish: which training data helps?</h2>
+    <div class="chart-box"><canvas id="mix-chart"></canvas></div>
+    <p class="muted small">Test split = 21 hand-tagged Hinglish sentences; 5-fold cross-validation uses all 104.</p>
+  </section>
+</div>
+
+<section class="card">
+  <div class="card-head">
+    <h2 class="card-title">Per-tag results</h2>
+    <div class="tabs" id="eval-tabs"></div>
+  </div>
+  <div class="grid-2 tight">
+    <div class="chart-box tall"><canvas id="f1-chart"></canvas></div>
+    <div>
+      <p class="muted small">Confusion matrix (rows = gold tag, columns = predicted tag)</p>
+      <div class="table-scroll"><table class="matrix confusion" id="confusion"></table></div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/common.js') }}"></script>
+<script src="{{ url_for('static', filename='js/pos.js') }}"></script>
+{% endblock %}

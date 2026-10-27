@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Evaluation · PARSQL-Hinglish Lite{% endblock %}
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+{% endblock %}
+{% block content %}
+<header class="page-head">
+  <p class="eyebrow">Phase 5 · Evaluation</p>
+  <h1>Evaluation</h1>
+  <p class="lede">Execution accuracy (does the query return the right answer?) and exact match, separately for English,
+    Hindi and Hinglish, as in the PARSQL paper. Two test sets: <b>Test</b> = 420 questions whose phrasing was held out
+    from training, and <b>Wild</b> = 60 hand-written questions with free phrasing, compound filters and typos.</p>
+</header>
+
+<section class="card toolbar">
+  <span class="muted small" id="gen"></span>
+  <button class="btn" id="rerun">Re-run evaluation</button>
+</section>
+<p class="error card" id="err" hidden></p>
+
+<div class="summary-row five" id="cards"></div>
+
+<div class="grid-2">
+  <section class="card">
+    <h2 class="card-title">Accuracy by language</h2>
+    <div class="chart-box"><canvas id="lang-chart"></canvas></div>
+  </section>
+  <section class="card">
+    <h2 class="card-title">Ablation study (test set, execution accuracy)</h2>
+    <div class="chart-box"><canvas id="abl-chart"></canvas></div>
+  </section>
+</div>
+
+<div class="grid-2">
+  <section class="card">
+    <h2 class="card-title">Ablations in numbers</h2>
+    <table class="data-table compact" id="abl-table"></table>
+    <p class="muted small" id="val-note"></p>
+  </section>
+  <section class="card">
+    <h2 class="card-title">Clause-level (component) match, test set</h2>
+    <table class="data-table compact" id="comp-table"></table>
+    <h2 class="card-title spaced">Why the wrong answers were wrong</h2>
+    <table class="data-table compact" id="err-table"></table>
+  </section>
+</div>
+
+<section class="card">
+  <h2 class="card-title">The NLP components on their own</h2>
+  <div class="grid-3 inner">
+    <div><h3 class="mini-title">Language identification</h3><table class="data-table compact" id="lid-table"></table></div>
+    <div><h3 class="mini-title">Question-type detection (n-gram models)</h3><table class="data-table compact" id="intent-table"></table></div>
+    <div><h3 class="mini-title">HMM POS tagging</h3><table class="data-table compact" id="pos-table"></table>
+      <a class="link small" href="{{ url_for('pos_page') }}">Details on the POS page →</a></div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="card-head">
+    <h2 class="card-title">Every question</h2>
+    <div class="controls slim">
+      <select id="ex-split"><option value="test">Test</option><option value="wild">Wild</option></select>
+      <select id="ex-lang"><option value="">All languages</option><option value="en">English</option><option value="hi">Hindi</option><option value="hg">Hinglish</option></select>
+      <label class="field-inline check"><input type="checkbox" id="ex-wrong"> Wrong only</label>
+    </div>
+  </div>
+  <div class="table-scroll tall-scroll"><table class="data-table compact" id="ex-table"></table></div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/common.js') }}"></script>
+<script src="{{ url_for('static', filename='js/evaluation.js') }}"></script>
+{% endblock %}

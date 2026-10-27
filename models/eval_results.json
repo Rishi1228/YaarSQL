@@ -1,0 +1,5159 @@
+{
+ "splits": {
+  "test": {
+   "summary": {
+    "en": {
+     "n": 136,
+     "execution_accuracy": 0.7867647058823529,
+     "exact_match": 0.7867647058823529,
+     "language_id": 1.0,
+     "components": {
+      "table": 1.0,
+      "aggregation": 0.7867647058823529,
+      "conditions": 1.0,
+      "group_by": 1.0,
+      "order": 0.8823529411764706,
+      "limit": 0.8823529411764706
+     }
+    },
+    "all": {
+     "n": 420,
+     "execution_accuracy": 0.8738095238095238,
+     "exact_match": 0.8738095238095238,
+     "language_id": 1.0,
+     "components": {
+      "table": 1.0,
+      "aggregation": 0.8738095238095238,
+      "conditions": 1.0,
+      "group_by": 1.0,
+      "order": 0.9619047619047619,
+      "limit": 0.9619047619047619
+     }
+    },
+    "hi": {
+     "n": 140,
+     "execution_accuracy": 0.8857142857142857,
+     "exact_match": 0.8857142857142857,
+     "language_id": 1.0,
+     "components": {
+      "table": 1.0,
+      "aggregation": 0.8857142857142857,
+      "conditions": 1.0,
+      "group_by": 1.0,
+      "order": 1.0,
+      "limit": 1.0
+     }
+    },
+    "hg": {
+     "n": 144,
+     "execution_accuracy": 0.9444444444444444,
+     "exact_match": 0.9444444444444444,
+     "language_id": 1.0,
+     "components": {
+      "table": 1.0,
+      "aggregation": 0.9444444444444444,
+      "conditions": 1.0,
+      "group_by": 1.0,
+      "order": 1.0,
+      "limit": 1.0
+     }
+    }
+   },
+   "errors": {
+    "hi": {
+     "wrong question type (aggregation)": 16
+    },
+    "all": {
+     "wrong question type (aggregation)": 53
+    },
+    "hg": {
+     "wrong question type (aggregation)": 8
+    },
+    "en": {
+     "wrong question type (aggregation)": 29
+    }
+   },
+   "examples": [
+    {
+     "id": 29,
+     "lang": "en",
+     "intent": "COUNT_ALL",
+     "question": "how many students does the college have?",
+     "gold": "SELECT COUNT(*) FROM students",
+     "pred": "SELECT COUNT(*) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 30,
+     "lang": "en",
+     "intent": "COUNT_ALL",
+     "question": "how many teachers does the college have?",
+     "gold": "SELECT COUNT(*) FROM faculty",
+     "pred": "SELECT COUNT(*) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 31,
+     "lang": "en",
+     "intent": "COUNT_ALL",
+     "question": "how many departments does the college have?",
+     "gold": "SELECT COUNT(*) FROM departments",
+     "pred": "SELECT COUNT(*) FROM departments",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 32,
+     "lang": "en",
+     "intent": "COUNT_ALL",
+     "question": "how many subjects does the college have?",
+     "gold": "SELECT COUNT(*) FROM courses",
+     "pred": "SELECT COUNT(*) FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 33,
+     "lang": "en",
+     "intent": "COUNT_ALL",
+     "question": "how many faculty members does the college have?",
+     "gold": "SELECT COUNT(*) FROM faculty",
+     "pred": "SELECT COUNT(*) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 34,
+     "lang": "en",
+     "intent": "COUNT_ALL",
+     "question": "how many professors does the college have?",
+     "gold": "SELECT COUNT(*) FROM faculty",
+     "pred": "SELECT COUNT(*) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 35,
+     "lang": "en",
+     "intent": "COUNT_ALL",
+     "question": "how many courses does the college have?",
+     "gold": "SELECT COUNT(*) FROM courses",
+     "pred": "SELECT COUNT(*) FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 64,
+     "lang": "hi",
+     "intent": "COUNT_ALL",
+     "question": "कॉलेज में कितने पाठ्यक्रम हैं?",
+     "gold": "SELECT COUNT(*) FROM courses",
+     "pred": "SELECT COUNT(*) FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 65,
+     "lang": "hi",
+     "intent": "COUNT_ALL",
+     "question": "कॉलेज में कितने शिक्षक हैं?",
+     "gold": "SELECT COUNT(*) FROM faculty",
+     "pred": "SELECT COUNT(*) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 66,
+     "lang": "hi",
+     "intent": "COUNT_ALL",
+     "question": "कॉलेज में कितने विभाग हैं?",
+     "gold": "SELECT COUNT(*) FROM departments",
+     "pred": "SELECT COUNT(*) FROM departments",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 67,
+     "lang": "hi",
+     "intent": "COUNT_ALL",
+     "question": "कॉलेज में कितने अध्यापक हैं?",
+     "gold": "SELECT COUNT(*) FROM faculty",
+     "pred": "SELECT COUNT(*) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 68,
+     "lang": "hi",
+     "intent": "COUNT_ALL",
+     "question": "कॉलेज में कितने विद्यार्थी हैं?",
+     "gold": "SELECT COUNT(*) FROM students",
+     "pred": "SELECT COUNT(*) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 69,
+     "lang": "hi",
+     "intent": "COUNT_ALL",
+     "question": "कॉलेज में कितने विषय हैं?",
+     "gold": "SELECT COUNT(*) FROM courses",
+     "pred": "SELECT COUNT(*) FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 70,
+     "lang": "hi",
+     "intent": "COUNT_ALL",
+     "question": "कॉलेज में कितने छात्र हैं?",
+     "gold": "SELECT COUNT(*) FROM students",
+     "pred": "SELECT COUNT(*) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 103,
+     "lang": "hg",
+     "intent": "COUNT_ALL",
+     "question": "college mein kitne faculty h?",
+     "gold": "SELECT COUNT(*) FROM faculty",
+     "pred": "SELECT COUNT(*) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 104,
+     "lang": "hg",
+     "intent": "COUNT_ALL",
+     "question": "college mein kitne departments hain?",
+     "gold": "SELECT COUNT(*) FROM departments",
+     "pred": "SELECT COUNT(*) FROM departments",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 105,
+     "lang": "hg",
+     "intent": "COUNT_ALL",
+     "question": "college mai kitne chhatra hain?",
+     "gold": "SELECT COUNT(*) FROM students",
+     "pred": "SELECT COUNT(*) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 106,
+     "lang": "hg",
+     "intent": "COUNT_ALL",
+     "question": "college mien kitne vibhag hain?",
+     "gold": "SELECT COUNT(*) FROM departments",
+     "pred": "SELECT COUNT(*) FROM departments",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 107,
+     "lang": "hg",
+     "intent": "COUNT_ALL",
+     "question": "college mein kitne professors hain?",
+     "gold": "SELECT COUNT(*) FROM faculty",
+     "pred": "SELECT COUNT(*) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 108,
+     "lang": "hg",
+     "intent": "COUNT_ALL",
+     "question": "college mien kitne vishay hain?",
+     "gold": "SELECT COUNT(*) FROM courses",
+     "pred": "SELECT COUNT(*) FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 109,
+     "lang": "hg",
+     "intent": "COUNT_ALL",
+     "question": "college mein kitne bacche hain?",
+     "gold": "SELECT COUNT(*) FROM students",
+     "pred": "SELECT COUNT(*) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 110,
+     "lang": "hg",
+     "intent": "COUNT_ALL",
+     "question": "college mein ktne shikshak hain?",
+     "gold": "SELECT COUNT(*) FROM faculty",
+     "pred": "SELECT COUNT(*) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 143,
+     "lang": "en",
+     "intent": "COUNT_DEPT",
+     "question": "what is the count of faculty members in the mechanical department?",
+     "gold": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "pred": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 144,
+     "lang": "en",
+     "intent": "COUNT_DEPT",
+     "question": "what is the count of professors in the civil department?",
+     "gold": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "pred": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 145,
+     "lang": "en",
+     "intent": "COUNT_DEPT",
+     "question": "what is the count of courses in the mechanical department?",
+     "gold": "SELECT COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "pred": "SELECT COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 146,
+     "lang": "en",
+     "intent": "COUNT_DEPT",
+     "question": "what is the count of teachers in the mechanical department?",
+     "gold": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "pred": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 147,
+     "lang": "en",
+     "intent": "COUNT_DEPT",
+     "question": "what is the count of students in the electrical department?",
+     "gold": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "pred": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 148,
+     "lang": "en",
+     "intent": "COUNT_DEPT",
+     "question": "what is the count of courses in the electronics department?",
+     "gold": "SELECT COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "pred": "SELECT COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 149,
+     "lang": "en",
+     "intent": "COUNT_DEPT",
+     "question": "what is the count of faculty members in the electronics department?",
+     "gold": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "pred": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 150,
+     "lang": "en",
+     "intent": "COUNT_DEPT",
+     "question": "what is the count of teachers in the electronics department?",
+     "gold": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "pred": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 183,
+     "lang": "hi",
+     "intent": "COUNT_DEPT",
+     "question": "मैकेनिकल विभाग के कुल अध्यापक कितने हैं?",
+     "gold": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "pred": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 184,
+     "lang": "hi",
+     "intent": "COUNT_DEPT",
+     "question": "सिविल विभाग के कुल छात्र कितने हैं?",
+     "gold": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "pred": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 185,
+     "lang": "hi",
+     "intent": "COUNT_DEPT",
+     "question": "इलेक्ट्रिकल विभाग के कुल शिक्षक कितने हैं?",
+     "gold": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "pred": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 186,
+     "lang": "hi",
+     "intent": "COUNT_DEPT",
+     "question": "इलेक्ट्रिकल विभाग के कुल पाठ्यक्रम कितने हैं?",
+     "gold": "SELECT COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "pred": "SELECT COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 187,
+     "lang": "hi",
+     "intent": "COUNT_DEPT",
+     "question": "सिविल विभाग के कुल विषय कितने हैं?",
+     "gold": "SELECT COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "pred": "SELECT COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 188,
+     "lang": "hi",
+     "intent": "COUNT_DEPT",
+     "question": "कंप्यूटर विभाग के कुल विद्यार्थी कितने हैं?",
+     "gold": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer'",
+     "pred": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 189,
+     "lang": "hi",
+     "intent": "COUNT_DEPT",
+     "question": "इलेक्ट्रिकल विभाग के कुल अध्यापक कितने हैं?",
+     "gold": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "pred": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 190,
+     "lang": "hi",
+     "intent": "COUNT_DEPT",
+     "question": "इलेक्ट्रिकल विभाग के कुल विद्यार्थी कितने हैं?",
+     "gold": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "pred": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 223,
+     "lang": "hg",
+     "intent": "COUNT_DEPT",
+     "question": "extc vibhag mein total kitne courses hain?",
+     "gold": "SELECT COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "pred": "SELECT COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 224,
+     "lang": "hg",
+     "intent": "COUNT_DEPT",
+     "question": "mechanical vibhag mai ttl kitne professors hain?",
+     "gold": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "pred": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 225,
+     "lang": "hg",
+     "intent": "COUNT_DEPT",
+     "question": "electrical vibhag mein total kitne vishay hain?",
+     "gold": "SELECT COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "pred": "SELECT COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 226,
+     "lang": "hg",
+     "intent": "COUNT_DEPT",
+     "question": "civil vibhag mein totl kitnay professors hain?",
+     "gold": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "pred": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 227,
+     "lang": "hg",
+     "intent": "COUNT_DEPT",
+     "question": "electronics vibhag main ttl kitne stdents hain?",
+     "gold": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "pred": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 228,
+     "lang": "hg",
+     "intent": "COUNT_DEPT",
+     "question": "computer vibhag mien ttl kitne courses hei?",
+     "gold": "SELECT COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Computer'",
+     "pred": "SELECT COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Computer'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 229,
+     "lang": "hg",
+     "intent": "COUNT_DEPT",
+     "question": "electrical vibhag me total kitni professors hei?",
+     "gold": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "pred": "SELECT COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 230,
+     "lang": "hg",
+     "intent": "COUNT_DEPT",
+     "question": "civil vibhag mein total ktne students hain?",
+     "gold": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "pred": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 263,
+     "lang": "en",
+     "intent": "COUNT_CITY",
+     "question": "what is the count of students living in jaipur?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Jaipur'",
+     "pred": "SELECT COUNT(*) FROM students WHERE city = 'Jaipur'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 264,
+     "lang": "en",
+     "intent": "COUNT_CITY",
+     "question": "what is the count of students living in ahmedabad?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Ahmedabad'",
+     "pred": "SELECT COUNT(*) FROM students WHERE city = 'Ahmedabad'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 265,
+     "lang": "en",
+     "intent": "COUNT_CITY",
+     "question": "what is the count of students living in surat?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Surat'",
+     "pred": "SELECT COUNT(*) FROM students WHERE city = 'Surat'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 266,
+     "lang": "en",
+     "intent": "COUNT_CITY",
+     "question": "what is the count of students living in mumbai?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Mumbai'",
+     "pred": "SELECT COUNT(*) FROM students WHERE city = 'Mumbai'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 267,
+     "lang": "en",
+     "intent": "COUNT_CITY",
+     "question": "what is the count of students living in delhi?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Delhi'",
+     "pred": "SELECT COUNT(*) FROM students WHERE city = 'Delhi'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 268,
+     "lang": "en",
+     "intent": "COUNT_CITY",
+     "question": "what is the count of students living in pune?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Pune'",
+     "pred": "SELECT COUNT(*) FROM students WHERE city = 'Pune'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 269,
+     "lang": "en",
+     "intent": "COUNT_CITY",
+     "question": "what is the count of students living in indore?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Indore'",
+     "pred": "SELECT COUNT(*) FROM students WHERE city = 'Indore'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 270,
+     "lang": "en",
+     "intent": "COUNT_CITY",
+     "question": "what is the count of students living in nagpur?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Nagpur'",
+     "pred": "SELECT COUNT(*) FROM students WHERE city = 'Nagpur'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 303,
+     "lang": "hi",
+     "intent": "COUNT_CITY",
+     "question": "इंदौर में रहने वाले छात्रों की गिनती क्या है?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Indore'",
+     "pred": "SELECT name FROM students WHERE city = 'Indore'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 304,
+     "lang": "hi",
+     "intent": "COUNT_CITY",
+     "question": "सूरत में रहने वाले छात्रों की गिनती क्या है?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Surat'",
+     "pred": "SELECT name FROM students WHERE city = 'Surat'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 305,
+     "lang": "hi",
+     "intent": "COUNT_CITY",
+     "question": "इंदौर में रहने वाले विद्यार्थियों की गिनती क्या है?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Indore'",
+     "pred": "SELECT name FROM students WHERE city = 'Indore'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 306,
+     "lang": "hi",
+     "intent": "COUNT_CITY",
+     "question": "मुंबई में रहने वाले विद्यार्थियों की गिनती क्या है?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Mumbai'",
+     "pred": "SELECT name FROM students WHERE city = 'Mumbai'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 307,
+     "lang": "hi",
+     "intent": "COUNT_CITY",
+     "question": "दिल्ली में रहने वाले विद्यार्थियों की गिनती क्या है?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Delhi'",
+     "pred": "SELECT name FROM students WHERE city = 'Delhi'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 308,
+     "lang": "hi",
+     "intent": "COUNT_CITY",
+     "question": "जयपुर में रहने वाले छात्रों की गिनती क्या है?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Jaipur'",
+     "pred": "SELECT name FROM students WHERE city = 'Jaipur'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 309,
+     "lang": "hi",
+     "intent": "COUNT_CITY",
+     "question": "पुणे में रहने वाले छात्रों की गिनती क्या है?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Pune'",
+     "pred": "SELECT name FROM students WHERE city = 'Pune'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 310,
+     "lang": "hi",
+     "intent": "COUNT_CITY",
+     "question": "दिल्ली में रहने वाले छात्रों की गिनती क्या है?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Delhi'",
+     "pred": "SELECT name FROM students WHERE city = 'Delhi'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 343,
+     "lang": "hg",
+     "intent": "COUNT_CITY",
+     "question": "indore me rehne waale chhatra ka count kya hai?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Indore'",
+     "pred": "SELECT name FROM students WHERE city = 'Indore'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 344,
+     "lang": "hg",
+     "intent": "COUNT_CITY",
+     "question": "mumbai mein rhne waali studens ka count kya hai?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Mumbai'",
+     "pred": "SELECT name FROM students WHERE city = 'Mumbai'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 345,
+     "lang": "hg",
+     "intent": "COUNT_CITY",
+     "question": "surat mien rehne wale bacche ka count kya hai?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Surat'",
+     "pred": "SELECT name FROM students WHERE city = 'Surat'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 346,
+     "lang": "hg",
+     "intent": "COUNT_CITY",
+     "question": "nagpur mai rhne wale chhatra ka count kya hai?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Nagpur'",
+     "pred": "SELECT name FROM students WHERE city = 'Nagpur'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 347,
+     "lang": "hg",
+     "intent": "COUNT_CITY",
+     "question": "indore main rehne wali studens ka count kya hai?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Indore'",
+     "pred": "SELECT name FROM students WHERE city = 'Indore'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 348,
+     "lang": "hg",
+     "intent": "COUNT_CITY",
+     "question": "surat mein rehne wle chhatra ka count kya hai?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Surat'",
+     "pred": "SELECT name FROM students WHERE city = 'Surat'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 349,
+     "lang": "hg",
+     "intent": "COUNT_CITY",
+     "question": "pune mein rehne wale students ka count kyu hai?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Pune'",
+     "pred": "SELECT name FROM students WHERE city = 'Pune'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 350,
+     "lang": "hg",
+     "intent": "COUNT_CITY",
+     "question": "delhi me rehne wale bacche ka count kyu hai?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Delhi'",
+     "pred": "SELECT name FROM students WHERE city = 'Delhi'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 379,
+     "lang": "en",
+     "intent": "LIST_ALL",
+     "question": "show me every one of the faculty members",
+     "gold": "SELECT name FROM faculty",
+     "pred": "SELECT name FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 380,
+     "lang": "en",
+     "intent": "LIST_ALL",
+     "question": "show me every one of the teachers",
+     "gold": "SELECT name FROM faculty",
+     "pred": "SELECT name FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 381,
+     "lang": "en",
+     "intent": "LIST_ALL",
+     "question": "show me every one of the subjects",
+     "gold": "SELECT name FROM courses",
+     "pred": "SELECT name FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 382,
+     "lang": "en",
+     "intent": "LIST_ALL",
+     "question": "show me every one of the courses",
+     "gold": "SELECT name FROM courses",
+     "pred": "SELECT name FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 383,
+     "lang": "en",
+     "intent": "LIST_ALL",
+     "question": "show me every one of the students",
+     "gold": "SELECT name FROM students",
+     "pred": "SELECT name FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 384,
+     "lang": "en",
+     "intent": "LIST_ALL",
+     "question": "show me every one of the professors",
+     "gold": "SELECT name FROM faculty",
+     "pred": "SELECT name FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 385,
+     "lang": "en",
+     "intent": "LIST_ALL",
+     "question": "show me every one of the departments",
+     "gold": "SELECT name FROM departments",
+     "pred": "SELECT name FROM departments",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 414,
+     "lang": "hi",
+     "intent": "LIST_ALL",
+     "question": "सभी शिक्षकों की सूची दिखाओ",
+     "gold": "SELECT name FROM faculty",
+     "pred": "SELECT name FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 415,
+     "lang": "hi",
+     "intent": "LIST_ALL",
+     "question": "सभी पाठ्यक्रमों की सूची दिखाओ",
+     "gold": "SELECT name FROM courses",
+     "pred": "SELECT name FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 416,
+     "lang": "hi",
+     "intent": "LIST_ALL",
+     "question": "सभी विद्यार्थियों की सूची दिखाओ",
+     "gold": "SELECT name FROM students",
+     "pred": "SELECT name FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 417,
+     "lang": "hi",
+     "intent": "LIST_ALL",
+     "question": "सभी अध्यापकों की सूची दिखाओ",
+     "gold": "SELECT name FROM faculty",
+     "pred": "SELECT name FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 418,
+     "lang": "hi",
+     "intent": "LIST_ALL",
+     "question": "सभी विभागों की सूची दिखाओ",
+     "gold": "SELECT name FROM departments",
+     "pred": "SELECT name FROM departments",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 419,
+     "lang": "hi",
+     "intent": "LIST_ALL",
+     "question": "सभी विषयों की सूची दिखाओ",
+     "gold": "SELECT name FROM courses",
+     "pred": "SELECT name FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 420,
+     "lang": "hi",
+     "intent": "LIST_ALL",
+     "question": "सभी छात्रों की सूची दिखाओ",
+     "gold": "SELECT name FROM students",
+     "pred": "SELECT name FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 453,
+     "lang": "hg",
+     "intent": "LIST_ALL",
+     "question": "all courses ki lst dikhao",
+     "gold": "SELECT name FROM courses",
+     "pred": "SELECT name FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 454,
+     "lang": "hg",
+     "intent": "LIST_ALL",
+     "question": "all teachers ki list dikhao",
+     "gold": "SELECT name FROM faculty",
+     "pred": "SELECT name FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 455,
+     "lang": "hg",
+     "intent": "LIST_ALL",
+     "question": "all vibhag ki list dikhado",
+     "gold": "SELECT name FROM departments",
+     "pred": "SELECT name FROM departments",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 456,
+     "lang": "hg",
+     "intent": "LIST_ALL",
+     "question": "all vishay ki lst dikhao",
+     "gold": "SELECT name FROM courses",
+     "pred": "SELECT name FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 457,
+     "lang": "hg",
+     "intent": "LIST_ALL",
+     "question": "all bacche ki list dikhayein",
+     "gold": "SELECT name FROM students",
+     "pred": "SELECT name FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 458,
+     "lang": "hg",
+     "intent": "LIST_ALL",
+     "question": "all shikshak ki list dikhao",
+     "gold": "SELECT name FROM faculty",
+     "pred": "SELECT name FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 459,
+     "lang": "hg",
+     "intent": "LIST_ALL",
+     "question": "all departments ki list dikhaao",
+     "gold": "SELECT name FROM departments",
+     "pred": "SELECT name FROM departments",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 460,
+     "lang": "hg",
+     "intent": "LIST_ALL",
+     "question": "all professors ki list dikhao",
+     "gold": "SELECT name FROM faculty",
+     "pred": "SELECT name FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 493,
+     "lang": "en",
+     "intent": "LIST_CITY",
+     "question": "who are the students living in indore?",
+     "gold": "SELECT name FROM students WHERE city = 'Indore'",
+     "pred": "SELECT name FROM students WHERE city = 'Indore'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 494,
+     "lang": "en",
+     "intent": "LIST_CITY",
+     "question": "who are the students living in surat?",
+     "gold": "SELECT name FROM students WHERE city = 'Surat'",
+     "pred": "SELECT name FROM students WHERE city = 'Surat'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 495,
+     "lang": "en",
+     "intent": "LIST_CITY",
+     "question": "who are the students living in jaipur?",
+     "gold": "SELECT name FROM students WHERE city = 'Jaipur'",
+     "pred": "SELECT name FROM students WHERE city = 'Jaipur'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 496,
+     "lang": "en",
+     "intent": "LIST_CITY",
+     "question": "who are the students living in nagpur?",
+     "gold": "SELECT name FROM students WHERE city = 'Nagpur'",
+     "pred": "SELECT name FROM students WHERE city = 'Nagpur'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 497,
+     "lang": "en",
+     "intent": "LIST_CITY",
+     "question": "who are the students living in mumbai?",
+     "gold": "SELECT name FROM students WHERE city = 'Mumbai'",
+     "pred": "SELECT name FROM students WHERE city = 'Mumbai'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 498,
+     "lang": "en",
+     "intent": "LIST_CITY",
+     "question": "who are the students living in pune?",
+     "gold": "SELECT name FROM students WHERE city = 'Pune'",
+     "pred": "SELECT name FROM students WHERE city = 'Pune'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 499,
+     "lang": "en",
+     "intent": "LIST_CITY",
+     "question": "who are the students living in delhi?",
+     "gold": "SELECT name FROM students WHERE city = 'Delhi'",
+     "pred": "SELECT name FROM students WHERE city = 'Delhi'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 500,
+     "lang": "en",
+     "intent": "LIST_CITY",
+     "question": "who are the students living in ahmedabad?",
+     "gold": "SELECT name FROM students WHERE city = 'Ahmedabad'",
+     "pred": "SELECT name FROM students WHERE city = 'Ahmedabad'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 533,
+     "lang": "hi",
+     "intent": "LIST_CITY",
+     "question": "मुंबई में कौन कौन से छात्र रहते हैं?",
+     "gold": "SELECT name FROM students WHERE city = 'Mumbai'",
+     "pred": "SELECT name FROM students WHERE city = 'Mumbai'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 534,
+     "lang": "hi",
+     "intent": "LIST_CITY",
+     "question": "इंदौर में कौन कौन से विद्यार्थी रहते हैं?",
+     "gold": "SELECT name FROM students WHERE city = 'Indore'",
+     "pred": "SELECT name FROM students WHERE city = 'Indore'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 535,
+     "lang": "hi",
+     "intent": "LIST_CITY",
+     "question": "जयपुर में कौन कौन से विद्यार्थी रहते हैं?",
+     "gold": "SELECT name FROM students WHERE city = 'Jaipur'",
+     "pred": "SELECT name FROM students WHERE city = 'Jaipur'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 536,
+     "lang": "hi",
+     "intent": "LIST_CITY",
+     "question": "पुणे में कौन कौन से विद्यार्थी रहते हैं?",
+     "gold": "SELECT name FROM students WHERE city = 'Pune'",
+     "pred": "SELECT name FROM students WHERE city = 'Pune'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 537,
+     "lang": "hi",
+     "intent": "LIST_CITY",
+     "question": "नागपुर में कौन कौन से छात्र रहते हैं?",
+     "gold": "SELECT name FROM students WHERE city = 'Nagpur'",
+     "pred": "SELECT name FROM students WHERE city = 'Nagpur'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 538,
+     "lang": "hi",
+     "intent": "LIST_CITY",
+     "question": "सूरत में कौन कौन से छात्र रहते हैं?",
+     "gold": "SELECT name FROM students WHERE city = 'Surat'",
+     "pred": "SELECT name FROM students WHERE city = 'Surat'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 539,
+     "lang": "hi",
+     "intent": "LIST_CITY",
+     "question": "पुणे में कौन कौन से छात्र रहते हैं?",
+     "gold": "SELECT name FROM students WHERE city = 'Pune'",
+     "pred": "SELECT name FROM students WHERE city = 'Pune'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 540,
+     "lang": "hi",
+     "intent": "LIST_CITY",
+     "question": "मुंबई में कौन कौन से विद्यार्थी रहते हैं?",
+     "gold": "SELECT name FROM students WHERE city = 'Mumbai'",
+     "pred": "SELECT name FROM students WHERE city = 'Mumbai'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 573,
+     "lang": "hg",
+     "intent": "LIST_CITY",
+     "question": "indore ke saare chhatra kaun h?",
+     "gold": "SELECT name FROM students WHERE city = 'Indore'",
+     "pred": "SELECT name FROM students WHERE city = 'Indore'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 574,
+     "lang": "hg",
+     "intent": "LIST_CITY",
+     "question": "dilli ke sari bacche kaun hain?",
+     "gold": "SELECT name FROM students WHERE city = 'Delhi'",
+     "pred": "SELECT name FROM students WHERE city = 'Delhi'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 575,
+     "lang": "hg",
+     "intent": "LIST_CITY",
+     "question": "amdavad ke saare chhatra kaun hn?",
+     "gold": "SELECT name FROM students WHERE city = 'Ahmedabad'",
+     "pred": "SELECT name FROM students WHERE city = 'Ahmedabad'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 576,
+     "lang": "hg",
+     "intent": "LIST_CITY",
+     "question": "bombay ke saare bacche kaun hain?",
+     "gold": "SELECT name FROM students WHERE city = 'Mumbai'",
+     "pred": "SELECT name FROM students WHERE city = 'Mumbai'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 577,
+     "lang": "hg",
+     "intent": "LIST_CITY",
+     "question": "bombay ke saare chhatra kaunse h?",
+     "gold": "SELECT name FROM students WHERE city = 'Mumbai'",
+     "pred": "SELECT name FROM students WHERE city = 'Mumbai'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 578,
+     "lang": "hg",
+     "intent": "LIST_CITY",
+     "question": "jaipur ke saari bacche kaun hain?",
+     "gold": "SELECT name FROM students WHERE city = 'Jaipur'",
+     "pred": "SELECT name FROM students WHERE city = 'Jaipur'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 579,
+     "lang": "hg",
+     "intent": "LIST_CITY",
+     "question": "nagpur ke saare students kaon hei?",
+     "gold": "SELECT name FROM students WHERE city = 'Nagpur'",
+     "pred": "SELECT name FROM students WHERE city = 'Nagpur'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 580,
+     "lang": "hg",
+     "intent": "LIST_CITY",
+     "question": "pune ke saare chhatra kaun hain?",
+     "gold": "SELECT name FROM students WHERE city = 'Pune'",
+     "pred": "SELECT name FROM students WHERE city = 'Pune'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 613,
+     "lang": "en",
+     "intent": "LIST_DEPT",
+     "question": "display all courses belonging to electrical department",
+     "gold": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "pred": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 614,
+     "lang": "en",
+     "intent": "LIST_DEPT",
+     "question": "display all professors belonging to mechanical department",
+     "gold": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "pred": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 615,
+     "lang": "en",
+     "intent": "LIST_DEPT",
+     "question": "display all subjects belonging to mechanical department",
+     "gold": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "pred": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 616,
+     "lang": "en",
+     "intent": "LIST_DEPT",
+     "question": "display all faculty members belonging to computer science department",
+     "gold": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Computer'",
+     "pred": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Computer'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 617,
+     "lang": "en",
+     "intent": "LIST_DEPT",
+     "question": "display all courses belonging to electronics department",
+     "gold": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "pred": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 618,
+     "lang": "en",
+     "intent": "LIST_DEPT",
+     "question": "display all students belonging to computer science department",
+     "gold": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer'",
+     "pred": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 619,
+     "lang": "en",
+     "intent": "LIST_DEPT",
+     "question": "display all students belonging to civil department",
+     "gold": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "pred": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 620,
+     "lang": "en",
+     "intent": "LIST_DEPT",
+     "question": "display all teachers belonging to mechanical department",
+     "gold": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "pred": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 653,
+     "lang": "hi",
+     "intent": "LIST_DEPT",
+     "question": "इलेक्ट्रॉनिक्स विभाग में कौन कौन से अध्यापक हैं?",
+     "gold": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "pred": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 654,
+     "lang": "hi",
+     "intent": "LIST_DEPT",
+     "question": "इलेक्ट्रिकल विभाग में कौन कौन से विषय हैं?",
+     "gold": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "pred": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 655,
+     "lang": "hi",
+     "intent": "LIST_DEPT",
+     "question": "इलेक्ट्रिकल विभाग में कौन कौन से अध्यापक हैं?",
+     "gold": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "pred": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 656,
+     "lang": "hi",
+     "intent": "LIST_DEPT",
+     "question": "मैकेनिकल विभाग में कौन कौन से पाठ्यक्रम हैं?",
+     "gold": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "pred": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Mechanical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 657,
+     "lang": "hi",
+     "intent": "LIST_DEPT",
+     "question": "इलेक्ट्रॉनिक्स विभाग में कौन कौन से पाठ्यक्रम हैं?",
+     "gold": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "pred": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 658,
+     "lang": "hi",
+     "intent": "LIST_DEPT",
+     "question": "कंप्यूटर विभाग में कौन कौन से विद्यार्थी हैं?",
+     "gold": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer'",
+     "pred": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 659,
+     "lang": "hi",
+     "intent": "LIST_DEPT",
+     "question": "सिविल विभाग में कौन कौन से विषय हैं?",
+     "gold": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "pred": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 660,
+     "lang": "hi",
+     "intent": "LIST_DEPT",
+     "question": "इलेक्ट्रॉनिक्स विभाग में कौन कौन से छात्र हैं?",
+     "gold": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "pred": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 693,
+     "lang": "hg",
+     "intent": "LIST_DEPT",
+     "question": "civil vibhag mein kaunse kon se subjects hain?",
+     "gold": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "pred": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 694,
+     "lang": "hg",
+     "intent": "LIST_DEPT",
+     "question": "comp vibhag mein kaon kaun se teachrs hain?",
+     "gold": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Computer'",
+     "pred": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Computer'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 695,
+     "lang": "hg",
+     "intent": "LIST_DEPT",
+     "question": "civil vibhag mien kaun kaun se vishay hn?",
+     "gold": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "pred": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 696,
+     "lang": "hg",
+     "intent": "LIST_DEPT",
+     "question": "civil vibhag me kaon kaun se teachers hain?",
+     "gold": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "pred": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 697,
+     "lang": "hg",
+     "intent": "LIST_DEPT",
+     "question": "extc vibhag mein kaun kaun se vishay hain?",
+     "gold": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "pred": "SELECT courses.name FROM courses JOIN departments ON courses.dept_id = departments.id WHERE departments.name = 'Electronics'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 698,
+     "lang": "hg",
+     "intent": "LIST_DEPT",
+     "question": "it vibhag mein kaun kaun se professors hein?",
+     "gold": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'IT'",
+     "pred": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'IT'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 699,
+     "lang": "hg",
+     "intent": "LIST_DEPT",
+     "question": "it vibhag mein kaun kaunse se faculty hai?",
+     "gold": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'IT'",
+     "pred": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'IT'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 700,
+     "lang": "hg",
+     "intent": "LIST_DEPT",
+     "question": "electrical vibhag mein kaunse kon se teachers hain?",
+     "gold": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "pred": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Electrical'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 717,
+     "lang": "en",
+     "intent": "LIST_YEAR",
+     "question": "who are the students studying in 4th year?",
+     "gold": "SELECT name FROM students WHERE year = 4",
+     "pred": "SELECT name FROM students WHERE year = 4",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 718,
+     "lang": "en",
+     "intent": "LIST_YEAR",
+     "question": "who are the students studying in 2nd year?",
+     "gold": "SELECT name FROM students WHERE year = 2",
+     "pred": "SELECT name FROM students WHERE year = 2",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 719,
+     "lang": "en",
+     "intent": "LIST_YEAR",
+     "question": "who are the students studying in 1st year?",
+     "gold": "SELECT name FROM students WHERE year = 1",
+     "pred": "SELECT name FROM students WHERE year = 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 720,
+     "lang": "en",
+     "intent": "LIST_YEAR",
+     "question": "who are the students studying in third year?",
+     "gold": "SELECT name FROM students WHERE year = 3",
+     "pred": "SELECT name FROM students WHERE year = 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 753,
+     "lang": "hi",
+     "intent": "LIST_YEAR",
+     "question": "तीसरे साल में पढ़ने वाले विद्यार्थी कौन हैं?",
+     "gold": "SELECT name FROM students WHERE year = 3",
+     "pred": "SELECT name FROM students WHERE year = 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 754,
+     "lang": "hi",
+     "intent": "LIST_YEAR",
+     "question": "तीसरे साल में पढ़ने वाले छात्र कौन हैं?",
+     "gold": "SELECT name FROM students WHERE year = 3",
+     "pred": "SELECT name FROM students WHERE year = 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 755,
+     "lang": "hi",
+     "intent": "LIST_YEAR",
+     "question": "चौथे साल में पढ़ने वाले विद्यार्थी कौन हैं?",
+     "gold": "SELECT name FROM students WHERE year = 4",
+     "pred": "SELECT name FROM students WHERE year = 4",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 756,
+     "lang": "hi",
+     "intent": "LIST_YEAR",
+     "question": "प्रथम साल में पढ़ने वाले विद्यार्थी कौन हैं?",
+     "gold": "SELECT name FROM students WHERE year = 1",
+     "pred": "SELECT name FROM students WHERE year = 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 757,
+     "lang": "hi",
+     "intent": "LIST_YEAR",
+     "question": "दूसरे साल में पढ़ने वाले छात्र कौन हैं?",
+     "gold": "SELECT name FROM students WHERE year = 2",
+     "pred": "SELECT name FROM students WHERE year = 2",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 758,
+     "lang": "hi",
+     "intent": "LIST_YEAR",
+     "question": "चौथे साल में पढ़ने वाले छात्र कौन हैं?",
+     "gold": "SELECT name FROM students WHERE year = 4",
+     "pred": "SELECT name FROM students WHERE year = 4",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 759,
+     "lang": "hi",
+     "intent": "LIST_YEAR",
+     "question": "प्रथम साल में पढ़ने वाले छात्र कौन हैं?",
+     "gold": "SELECT name FROM students WHERE year = 1",
+     "pred": "SELECT name FROM students WHERE year = 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 760,
+     "lang": "hi",
+     "intent": "LIST_YEAR",
+     "question": "दूसरे साल में पढ़ने वाले विद्यार्थी कौन हैं?",
+     "gold": "SELECT name FROM students WHERE year = 2",
+     "pred": "SELECT name FROM students WHERE year = 2",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 793,
+     "lang": "hg",
+     "intent": "LIST_YEAR",
+     "question": "fourth saal main padhne wale chhatra kaun hai?",
+     "gold": "SELECT name FROM students WHERE year = 4",
+     "pred": "SELECT name FROM students WHERE year = 4",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 794,
+     "lang": "hg",
+     "intent": "LIST_YEAR",
+     "question": "fourth saal mai padhne wale stdents kaun he?",
+     "gold": "SELECT name FROM students WHERE year = 4",
+     "pred": "SELECT name FROM students WHERE year = 4",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 795,
+     "lang": "hg",
+     "intent": "LIST_YEAR",
+     "question": "pehle sal main padne wle stdents kon he?",
+     "gold": "SELECT name FROM students WHERE year = 1",
+     "pred": "SELECT name FROM students WHERE year = 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 796,
+     "lang": "hg",
+     "intent": "LIST_YEAR",
+     "question": "tisra sal mein padhne waale students kaun h?",
+     "gold": "SELECT name FROM students WHERE year = 3",
+     "pred": "SELECT name FROM students WHERE year = 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 797,
+     "lang": "hg",
+     "intent": "LIST_YEAR",
+     "question": "teesre sal mein parhne vali bacche kaunse h?",
+     "gold": "SELECT name FROM students WHERE year = 3",
+     "pred": "SELECT name FROM students WHERE year = 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 798,
+     "lang": "hg",
+     "intent": "LIST_YEAR",
+     "question": "doosre saal mein parhne wale bacche kaun hei?",
+     "gold": "SELECT name FROM students WHERE year = 2",
+     "pred": "SELECT name FROM students WHERE year = 2",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 799,
+     "lang": "hg",
+     "intent": "LIST_YEAR",
+     "question": "pahle saal mai padne wale chhatra kaun hain?",
+     "gold": "SELECT name FROM students WHERE year = 1",
+     "pred": "SELECT name FROM students WHERE year = 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 800,
+     "lang": "hg",
+     "intent": "LIST_YEAR",
+     "question": "pehle sal mein padhne wale bacche kaun hai?",
+     "gold": "SELECT name FROM students WHERE year = 1",
+     "pred": "SELECT name FROM students WHERE year = 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 833,
+     "lang": "en",
+     "intent": "LIST_GT",
+     "question": "find teachers where experience exceeds 5",
+     "gold": "SELECT name FROM faculty WHERE experience > 5",
+     "pred": "SELECT AVG(experience) FROM faculty WHERE experience > 5",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 834,
+     "lang": "en",
+     "intent": "LIST_GT",
+     "question": "find teachers where experience exceeds 15",
+     "gold": "SELECT name FROM faculty WHERE experience > 15",
+     "pred": "SELECT AVG(experience) FROM faculty WHERE experience > 15",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 835,
+     "lang": "en",
+     "intent": "LIST_GT",
+     "question": "find courses where credits exceeds 2",
+     "gold": "SELECT name FROM courses WHERE credits > 2",
+     "pred": "SELECT AVG(credits) FROM courses WHERE credits > 2",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 836,
+     "lang": "en",
+     "intent": "LIST_GT",
+     "question": "find students where cgpa exceeds 7",
+     "gold": "SELECT name FROM students WHERE cgpa > 7",
+     "pred": "SELECT AVG(cgpa) FROM students WHERE cgpa > 7",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 837,
+     "lang": "en",
+     "intent": "LIST_GT",
+     "question": "find teachers where pay exceeds 120000",
+     "gold": "SELECT name FROM faculty WHERE salary > 120000",
+     "pred": "SELECT name FROM faculty WHERE salary > 120000",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 838,
+     "lang": "en",
+     "intent": "LIST_GT",
+     "question": "find faculty members where pay exceeds 100000",
+     "gold": "SELECT name FROM faculty WHERE salary > 100000",
+     "pred": "SELECT AVG(salary) FROM faculty WHERE salary > 100000",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 839,
+     "lang": "en",
+     "intent": "LIST_GT",
+     "question": "find professors where pay exceeds 120000",
+     "gold": "SELECT name FROM faculty WHERE salary > 120000",
+     "pred": "SELECT name FROM faculty WHERE salary > 120000",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 840,
+     "lang": "en",
+     "intent": "LIST_GT",
+     "question": "find faculty members where years of experience exceeds 10",
+     "gold": "SELECT name FROM faculty WHERE experience > 10",
+     "pred": "SELECT AVG(experience) FROM faculty WHERE experience > 10",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 873,
+     "lang": "hi",
+     "intent": "LIST_GT",
+     "question": "21 से ज़्यादा आयु वाले छात्र कौन हैं?",
+     "gold": "SELECT name FROM students WHERE age > 21",
+     "pred": "SELECT name FROM students WHERE age > 21",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 874,
+     "lang": "hi",
+     "intent": "LIST_GT",
+     "question": "120000 से ज़्यादा वेतन वाले शिक्षक कौन हैं?",
+     "gold": "SELECT name FROM faculty WHERE salary > 120000",
+     "pred": "SELECT name FROM faculty WHERE salary > 120000",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 875,
+     "lang": "hi",
+     "intent": "LIST_GT",
+     "question": "2 से ज़्यादा क्रेडिट वाले पाठ्यक्रम कौन हैं?",
+     "gold": "SELECT name FROM courses WHERE credits > 2",
+     "pred": "SELECT name FROM courses WHERE credits > 2",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 876,
+     "lang": "hi",
+     "intent": "LIST_GT",
+     "question": "7.5 से ज़्यादा सीजीपीए वाले छात्र कौन हैं?",
+     "gold": "SELECT name FROM students WHERE cgpa > 7.5",
+     "pred": "SELECT name FROM students WHERE cgpa > 7.5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 877,
+     "lang": "hi",
+     "intent": "LIST_GT",
+     "question": "3 से ज़्यादा क्रेडिट वाले पाठ्यक्रम कौन हैं?",
+     "gold": "SELECT name FROM courses WHERE credits > 3",
+     "pred": "SELECT name FROM courses WHERE credits > 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 878,
+     "lang": "hi",
+     "intent": "LIST_GT",
+     "question": "7.5 से ज़्यादा सीजीपीए वाले विद्यार्थी कौन हैं?",
+     "gold": "SELECT name FROM students WHERE cgpa > 7.5",
+     "pred": "SELECT name FROM students WHERE cgpa > 7.5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 879,
+     "lang": "hi",
+     "intent": "LIST_GT",
+     "question": "120000 से ज़्यादा तनख्वाह वाले अध्यापक कौन हैं?",
+     "gold": "SELECT name FROM faculty WHERE salary > 120000",
+     "pred": "SELECT name FROM faculty WHERE salary > 120000",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 880,
+     "lang": "hi",
+     "intent": "LIST_GT",
+     "question": "10 से ज़्यादा अनुभव वाले शिक्षक कौन हैं?",
+     "gold": "SELECT name FROM faculty WHERE experience > 10",
+     "pred": "SELECT name FROM faculty WHERE experience > 10",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 913,
+     "lang": "hg",
+     "intent": "LIST_GT",
+     "question": "7.5 se zyada cgpa wale students kaun hain?",
+     "gold": "SELECT name FROM students WHERE cgpa > 7.5",
+     "pred": "SELECT name FROM students WHERE cgpa > 7.5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 914,
+     "lang": "hg",
+     "intent": "LIST_GT",
+     "question": "5 se zyada anubhav wali teachers kaun hain?",
+     "gold": "SELECT name FROM faculty WHERE experience > 5",
+     "pred": "SELECT name FROM faculty WHERE experience > 5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 915,
+     "lang": "hg",
+     "intent": "LIST_GT",
+     "question": "19 se jyaada age wale students kaun hn?",
+     "gold": "SELECT name FROM students WHERE age > 19",
+     "pred": "SELECT name FROM students WHERE age > 19",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 916,
+     "lang": "hg",
+     "intent": "LIST_GT",
+     "question": "3 se zyada credits wale courses kaun hn?",
+     "gold": "SELECT name FROM courses WHERE credits > 3",
+     "pred": "SELECT name FROM courses WHERE credits > 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 917,
+     "lang": "hg",
+     "intent": "LIST_GT",
+     "question": "150000 se ziyada pagaar wale shikshak kaon he?",
+     "gold": "SELECT name FROM faculty WHERE salary > 150000",
+     "pred": "SELECT name FROM faculty WHERE salary > 150000",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 918,
+     "lang": "hg",
+     "intent": "LIST_GT",
+     "question": "19 se zyada age wale chhatra kaon hain?",
+     "gold": "SELECT name FROM students WHERE age > 19",
+     "pred": "SELECT name FROM students WHERE age > 19",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 919,
+     "lang": "hg",
+     "intent": "LIST_GT",
+     "question": "10 se zyada anubhav wale teachers kaun hain?",
+     "gold": "SELECT name FROM faculty WHERE experience > 10",
+     "pred": "SELECT name FROM faculty WHERE experience > 10",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 920,
+     "lang": "hg",
+     "intent": "LIST_GT",
+     "question": "150000 se zyada tankhwah wale teachers kaun hain?",
+     "gold": "SELECT name FROM faculty WHERE salary > 150000",
+     "pred": "SELECT name FROM faculty WHERE salary > 150000",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 953,
+     "lang": "en",
+     "intent": "LIST_LT",
+     "question": "find teachers where pay is smaller than 150000",
+     "gold": "SELECT name FROM faculty WHERE salary < 150000",
+     "pred": "SELECT name FROM faculty WHERE salary < 150000",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 954,
+     "lang": "en",
+     "intent": "LIST_LT",
+     "question": "find teachers where salary is smaller than 150000",
+     "gold": "SELECT name FROM faculty WHERE salary < 150000",
+     "pred": "SELECT AVG(salary) FROM faculty WHERE salary < 150000",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 955,
+     "lang": "en",
+     "intent": "LIST_LT",
+     "question": "find subjects where credits is smaller than 3",
+     "gold": "SELECT name FROM courses WHERE credits < 3",
+     "pred": "SELECT AVG(credits) FROM courses WHERE credits < 3",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 956,
+     "lang": "en",
+     "intent": "LIST_LT",
+     "question": "find students where cgpa is smaller than 9",
+     "gold": "SELECT name FROM students WHERE cgpa < 9",
+     "pred": "SELECT AVG(cgpa) FROM students WHERE cgpa < 9",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 957,
+     "lang": "en",
+     "intent": "LIST_LT",
+     "question": "find faculty members where years of experience is smaller than 10",
+     "gold": "SELECT name FROM faculty WHERE experience < 10",
+     "pred": "SELECT AVG(experience) FROM faculty WHERE experience < 10",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 958,
+     "lang": "en",
+     "intent": "LIST_LT",
+     "question": "find teachers where salary is smaller than 120000",
+     "gold": "SELECT name FROM faculty WHERE salary < 120000",
+     "pred": "SELECT AVG(salary) FROM faculty WHERE salary < 120000",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 959,
+     "lang": "en",
+     "intent": "LIST_LT",
+     "question": "find faculty members where salary is smaller than 150000",
+     "gold": "SELECT name FROM faculty WHERE salary < 150000",
+     "pred": "SELECT AVG(salary) FROM faculty WHERE salary < 150000",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 960,
+     "lang": "en",
+     "intent": "LIST_LT",
+     "question": "find students where age is smaller than 20",
+     "gold": "SELECT name FROM students WHERE age < 20",
+     "pred": "SELECT AVG(age) FROM students WHERE age < 20",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 993,
+     "lang": "hi",
+     "intent": "LIST_LT",
+     "question": "10 से कम अनुभव वाले अध्यापक कौन हैं?",
+     "gold": "SELECT name FROM faculty WHERE experience < 10",
+     "pred": "SELECT name FROM faculty WHERE experience < 10",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 994,
+     "lang": "hi",
+     "intent": "LIST_LT",
+     "question": "7 से कम सीजीपीए वाले छात्र कौन हैं?",
+     "gold": "SELECT name FROM students WHERE cgpa < 7",
+     "pred": "SELECT name FROM students WHERE cgpa < 7",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 995,
+     "lang": "hi",
+     "intent": "LIST_LT",
+     "question": "20 से कम उम्र वाले विद्यार्थी कौन हैं?",
+     "gold": "SELECT name FROM students WHERE age < 20",
+     "pred": "SELECT name FROM students WHERE age < 20",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 996,
+     "lang": "hi",
+     "intent": "LIST_LT",
+     "question": "150000 से कम तनख्वाह वाले अध्यापक कौन हैं?",
+     "gold": "SELECT name FROM faculty WHERE salary < 150000",
+     "pred": "SELECT name FROM faculty WHERE salary < 150000",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 997,
+     "lang": "hi",
+     "intent": "LIST_LT",
+     "question": "120000 से कम तनख्वाह वाले अध्यापक कौन हैं?",
+     "gold": "SELECT name FROM faculty WHERE salary < 120000",
+     "pred": "SELECT name FROM faculty WHERE salary < 120000",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 998,
+     "lang": "hi",
+     "intent": "LIST_LT",
+     "question": "120000 से कम वेतन वाले शिक्षक कौन हैं?",
+     "gold": "SELECT name FROM faculty WHERE salary < 120000",
+     "pred": "SELECT name FROM faculty WHERE salary < 120000",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 999,
+     "lang": "hi",
+     "intent": "LIST_LT",
+     "question": "2 से कम क्रेडिट वाले विषय कौन हैं?",
+     "gold": "SELECT name FROM courses WHERE credits < 2",
+     "pred": "SELECT name FROM courses WHERE credits < 2",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1000,
+     "lang": "hi",
+     "intent": "LIST_LT",
+     "question": "3 से कम क्रेडिट वाले पाठ्यक्रम कौन हैं?",
+     "gold": "SELECT name FROM courses WHERE credits < 3",
+     "pred": "SELECT name FROM courses WHERE credits < 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1033,
+     "lang": "hg",
+     "intent": "LIST_LT",
+     "question": "10 se km anubhav wale professors kon hain?",
+     "gold": "SELECT name FROM faculty WHERE experience < 10",
+     "pred": "SELECT name FROM faculty WHERE experience < 10",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1034,
+     "lang": "hg",
+     "intent": "LIST_LT",
+     "question": "120000 se kam fees wale bacche kaunse hn?",
+     "gold": "SELECT name FROM students WHERE fees < 120000",
+     "pred": "SELECT name FROM students WHERE fees < 120000",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1035,
+     "lang": "hg",
+     "intent": "LIST_LT",
+     "question": "5 se kam experience wale teachers kaon hain?",
+     "gold": "SELECT name FROM faculty WHERE experience < 5",
+     "pred": "SELECT name FROM faculty WHERE experience < 5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1036,
+     "lang": "hg",
+     "intent": "LIST_LT",
+     "question": "100000 se kum pagaar wale professors kaun hain?",
+     "gold": "SELECT name FROM faculty WHERE salary < 100000",
+     "pred": "SELECT name FROM faculty WHERE salary < 100000",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1037,
+     "lang": "hg",
+     "intent": "LIST_LT",
+     "question": "7 se kum pointer wale bacche kaun hain?",
+     "gold": "SELECT name FROM students WHERE cgpa < 7",
+     "pred": "SELECT name FROM students WHERE cgpa < 7",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1038,
+     "lang": "hg",
+     "intent": "LIST_LT",
+     "question": "19 se kam age wale bacche kaun hn?",
+     "gold": "SELECT name FROM students WHERE age < 19",
+     "pred": "SELECT name FROM students WHERE age < 19",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1039,
+     "lang": "hg",
+     "intent": "LIST_LT",
+     "question": "150000 se kum pagaar wale techers kaun hain?",
+     "gold": "SELECT name FROM faculty WHERE salary < 150000",
+     "pred": "SELECT name FROM faculty WHERE salary < 150000",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1040,
+     "lang": "hg",
+     "intent": "LIST_LT",
+     "question": "9 se km pointer wali bacche kaun hei?",
+     "gold": "SELECT name FROM students WHERE cgpa < 9",
+     "pred": "SELECT name FROM students WHERE cgpa < 9",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1073,
+     "lang": "en",
+     "intent": "MAX_VAL",
+     "question": "tell me the top experience value among faculty members",
+     "gold": "SELECT MAX(experience) FROM faculty",
+     "pred": "SELECT MAX(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1074,
+     "lang": "en",
+     "intent": "MAX_VAL",
+     "question": "tell me the top credits value among subjects",
+     "gold": "SELECT MAX(credits) FROM courses",
+     "pred": "SELECT MAX(credits) FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1075,
+     "lang": "en",
+     "intent": "MAX_VAL",
+     "question": "tell me the top salary value among professors",
+     "gold": "SELECT MAX(salary) FROM faculty",
+     "pred": "SELECT MAX(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1076,
+     "lang": "en",
+     "intent": "MAX_VAL",
+     "question": "tell me the top years of experience value among faculty members",
+     "gold": "SELECT MAX(experience) FROM faculty",
+     "pred": "SELECT MAX(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1077,
+     "lang": "en",
+     "intent": "MAX_VAL",
+     "question": "tell me the top cgpa value among students",
+     "gold": "SELECT MAX(cgpa) FROM students",
+     "pred": "SELECT MAX(cgpa) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1078,
+     "lang": "en",
+     "intent": "MAX_VAL",
+     "question": "tell me the top pay value among professors",
+     "gold": "SELECT MAX(salary) FROM faculty",
+     "pred": "SELECT MAX(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1079,
+     "lang": "en",
+     "intent": "MAX_VAL",
+     "question": "tell me the top experience value among teachers",
+     "gold": "SELECT MAX(experience) FROM faculty",
+     "pred": "SELECT MAX(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1080,
+     "lang": "en",
+     "intent": "MAX_VAL",
+     "question": "tell me the top credits value among courses",
+     "gold": "SELECT MAX(credits) FROM courses",
+     "pred": "SELECT MAX(credits) FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1113,
+     "lang": "hi",
+     "intent": "MAX_VAL",
+     "question": "छात्रों में फीस का अधिकतम मान क्या है?",
+     "gold": "SELECT MAX(fees) FROM students",
+     "pred": "SELECT MAX(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1114,
+     "lang": "hi",
+     "intent": "MAX_VAL",
+     "question": "छात्रों में आयु का अधिकतम मान क्या है?",
+     "gold": "SELECT MAX(age) FROM students",
+     "pred": "SELECT MAX(age) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1115,
+     "lang": "hi",
+     "intent": "MAX_VAL",
+     "question": "विद्यार्थियों में शुल्क का अधिकतम मान क्या है?",
+     "gold": "SELECT MAX(fees) FROM students",
+     "pred": "SELECT MAX(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1116,
+     "lang": "hi",
+     "intent": "MAX_VAL",
+     "question": "छात्रों में शुल्क का अधिकतम मान क्या है?",
+     "gold": "SELECT MAX(fees) FROM students",
+     "pred": "SELECT MAX(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1117,
+     "lang": "hi",
+     "intent": "MAX_VAL",
+     "question": "विद्यार्थियों में सीजीपीए का अधिकतम मान क्या है?",
+     "gold": "SELECT MAX(cgpa) FROM students",
+     "pred": "SELECT MAX(cgpa) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1118,
+     "lang": "hi",
+     "intent": "MAX_VAL",
+     "question": "छात्रों में उम्र का अधिकतम मान क्या है?",
+     "gold": "SELECT MAX(age) FROM students",
+     "pred": "SELECT MAX(age) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1119,
+     "lang": "hi",
+     "intent": "MAX_VAL",
+     "question": "विद्यार्थियों में आयु का अधिकतम मान क्या है?",
+     "gold": "SELECT MAX(age) FROM students",
+     "pred": "SELECT MAX(age) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1120,
+     "lang": "hi",
+     "intent": "MAX_VAL",
+     "question": "शिक्षकों में अनुभव का अधिकतम मान क्या है?",
+     "gold": "SELECT MAX(experience) FROM faculty",
+     "pred": "SELECT MAX(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1153,
+     "lang": "hg",
+     "intent": "MAX_VAL",
+     "question": "shikshak ke experience ki maxm value kya hai?",
+     "gold": "SELECT MAX(experience) FROM faculty",
+     "pred": "SELECT MAX(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1154,
+     "lang": "hg",
+     "intent": "MAX_VAL",
+     "question": "students ke umar ki maximum value kya hai?",
+     "gold": "SELECT MAX(age) FROM students",
+     "pred": "SELECT MAX(age) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1155,
+     "lang": "hg",
+     "intent": "MAX_VAL",
+     "question": "faculty ke tankhwah ki maximum value kya hai?",
+     "gold": "SELECT MAX(salary) FROM faculty",
+     "pred": "SELECT MAX(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1156,
+     "lang": "hg",
+     "intent": "MAX_VAL",
+     "question": "bacche ke age ki maximum value kia hai?",
+     "gold": "SELECT MAX(age) FROM students",
+     "pred": "SELECT MAX(age) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1157,
+     "lang": "hg",
+     "intent": "MAX_VAL",
+     "question": "faculty ke pagaar ki max value kyaa hai?",
+     "gold": "SELECT MAX(salary) FROM faculty",
+     "pred": "SELECT MAX(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1158,
+     "lang": "hg",
+     "intent": "MAX_VAL",
+     "question": "faculty ke salary ki maxm value kyaa hai?",
+     "gold": "SELECT MAX(salary) FROM faculty",
+     "pred": "SELECT MAX(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1159,
+     "lang": "hg",
+     "intent": "MAX_VAL",
+     "question": "students ke cgpa ki maxm value kia hai?",
+     "gold": "SELECT MAX(cgpa) FROM students",
+     "pred": "SELECT MAX(cgpa) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1160,
+     "lang": "hg",
+     "intent": "MAX_VAL",
+     "question": "bacche ke fees ki maximum value kya hai?",
+     "gold": "SELECT MAX(fees) FROM students",
+     "pred": "SELECT MAX(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1193,
+     "lang": "en",
+     "intent": "MIN_VAL",
+     "question": "tell me the least fee value among students",
+     "gold": "SELECT MIN(fees) FROM students",
+     "pred": "SELECT MIN(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1194,
+     "lang": "en",
+     "intent": "MIN_VAL",
+     "question": "tell me the least grade point average value among students",
+     "gold": "SELECT MIN(cgpa) FROM students",
+     "pred": "SELECT MIN(cgpa) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1195,
+     "lang": "en",
+     "intent": "MIN_VAL",
+     "question": "tell me the least pay value among teachers",
+     "gold": "SELECT MIN(salary) FROM faculty",
+     "pred": "SELECT MIN(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1196,
+     "lang": "en",
+     "intent": "MIN_VAL",
+     "question": "tell me the least salary value among teachers",
+     "gold": "SELECT MIN(salary) FROM faculty",
+     "pred": "SELECT MIN(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1197,
+     "lang": "en",
+     "intent": "MIN_VAL",
+     "question": "tell me the least experience value among professors",
+     "gold": "SELECT MIN(experience) FROM faculty",
+     "pred": "SELECT MIN(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1198,
+     "lang": "en",
+     "intent": "MIN_VAL",
+     "question": "tell me the least experience value among faculty members",
+     "gold": "SELECT MIN(experience) FROM faculty",
+     "pred": "SELECT MIN(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1199,
+     "lang": "en",
+     "intent": "MIN_VAL",
+     "question": "tell me the least experience value among teachers",
+     "gold": "SELECT MIN(experience) FROM faculty",
+     "pred": "SELECT MIN(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1200,
+     "lang": "en",
+     "intent": "MIN_VAL",
+     "question": "tell me the least salary value among professors",
+     "gold": "SELECT MIN(salary) FROM faculty",
+     "pred": "SELECT MIN(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1233,
+     "lang": "hi",
+     "intent": "MIN_VAL",
+     "question": "अध्यापकों में तनख्वाह का न्यूनतम मान क्या है?",
+     "gold": "SELECT MIN(salary) FROM faculty",
+     "pred": "SELECT MIN(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1234,
+     "lang": "hi",
+     "intent": "MIN_VAL",
+     "question": "छात्रों में आयु का न्यूनतम मान क्या है?",
+     "gold": "SELECT MIN(age) FROM students",
+     "pred": "SELECT MIN(age) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1235,
+     "lang": "hi",
+     "intent": "MIN_VAL",
+     "question": "शिक्षकों में तनख्वाह का न्यूनतम मान क्या है?",
+     "gold": "SELECT MIN(salary) FROM faculty",
+     "pred": "SELECT MIN(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1236,
+     "lang": "hi",
+     "intent": "MIN_VAL",
+     "question": "अध्यापकों में वेतन का न्यूनतम मान क्या है?",
+     "gold": "SELECT MIN(salary) FROM faculty",
+     "pred": "SELECT MIN(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1237,
+     "lang": "hi",
+     "intent": "MIN_VAL",
+     "question": "विद्यार्थियों में उम्र का न्यूनतम मान क्या है?",
+     "gold": "SELECT MIN(age) FROM students",
+     "pred": "SELECT MIN(age) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1238,
+     "lang": "hi",
+     "intent": "MIN_VAL",
+     "question": "शिक्षकों में अनुभव का न्यूनतम मान क्या है?",
+     "gold": "SELECT MIN(experience) FROM faculty",
+     "pred": "SELECT MIN(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1239,
+     "lang": "hi",
+     "intent": "MIN_VAL",
+     "question": "पाठ्यक्रमों में क्रेडिट का न्यूनतम मान क्या है?",
+     "gold": "SELECT MIN(credits) FROM courses",
+     "pred": "SELECT MIN(credits) FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1240,
+     "lang": "hi",
+     "intent": "MIN_VAL",
+     "question": "छात्रों में उम्र का न्यूनतम मान क्या है?",
+     "gold": "SELECT MIN(age) FROM students",
+     "pred": "SELECT MIN(age) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1273,
+     "lang": "hg",
+     "intent": "MIN_VAL",
+     "question": "students ke fee ki minimum value kya hai?",
+     "gold": "SELECT MIN(fees) FROM students",
+     "pred": "SELECT MIN(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1274,
+     "lang": "hg",
+     "intent": "MIN_VAL",
+     "question": "teachers ke pagaar ki minimum value kyu hai?",
+     "gold": "SELECT MIN(salary) FROM faculty",
+     "pred": "SELECT MIN(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1275,
+     "lang": "hg",
+     "intent": "MIN_VAL",
+     "question": "shikshak ke sallary ki min value kia hai?",
+     "gold": "SELECT MIN(salary) FROM faculty",
+     "pred": "SELECT MIN(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1276,
+     "lang": "hg",
+     "intent": "MIN_VAL",
+     "question": "bacche ke fee ki minimum value kya hai?",
+     "gold": "SELECT MIN(fees) FROM students",
+     "pred": "SELECT MIN(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1277,
+     "lang": "hg",
+     "intent": "MIN_VAL",
+     "question": "teachrs ke tankhwah ki minimum value kia hai?",
+     "gold": "SELECT MIN(salary) FROM faculty",
+     "pred": "SELECT MIN(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1278,
+     "lang": "hg",
+     "intent": "MIN_VAL",
+     "question": "teachers ke anubhav ki minimum value kya hai?",
+     "gold": "SELECT MIN(experience) FROM faculty",
+     "pred": "SELECT MIN(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1279,
+     "lang": "hg",
+     "intent": "MIN_VAL",
+     "question": "vishay ke credit ki min value kya hai?",
+     "gold": "SELECT MIN(credits) FROM courses",
+     "pred": "SELECT MIN(credits) FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1280,
+     "lang": "hg",
+     "intent": "MIN_VAL",
+     "question": "shikshak ke experience ki min value kya hai?",
+     "gold": "SELECT MIN(experience) FROM faculty",
+     "pred": "SELECT MIN(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1313,
+     "lang": "en",
+     "intent": "AVG_VAL",
+     "question": "what is the mean cgpa for students?",
+     "gold": "SELECT AVG(cgpa) FROM students",
+     "pred": "SELECT AVG(cgpa) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1314,
+     "lang": "en",
+     "intent": "AVG_VAL",
+     "question": "what is the mean grade point average for students?",
+     "gold": "SELECT AVG(cgpa) FROM students",
+     "pred": "SELECT AVG(cgpa) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1315,
+     "lang": "en",
+     "intent": "AVG_VAL",
+     "question": "what is the mean pay for faculty members?",
+     "gold": "SELECT AVG(salary) FROM faculty",
+     "pred": "SELECT AVG(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1316,
+     "lang": "en",
+     "intent": "AVG_VAL",
+     "question": "what is the mean age for students?",
+     "gold": "SELECT AVG(age) FROM students",
+     "pred": "SELECT AVG(age) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1317,
+     "lang": "en",
+     "intent": "AVG_VAL",
+     "question": "what is the mean years of experience for professors?",
+     "gold": "SELECT AVG(experience) FROM faculty",
+     "pred": "SELECT AVG(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1318,
+     "lang": "en",
+     "intent": "AVG_VAL",
+     "question": "what is the mean credits for courses?",
+     "gold": "SELECT AVG(credits) FROM courses",
+     "pred": "SELECT AVG(credits) FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1319,
+     "lang": "en",
+     "intent": "AVG_VAL",
+     "question": "what is the mean experience for professors?",
+     "gold": "SELECT AVG(experience) FROM faculty",
+     "pred": "SELECT AVG(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1320,
+     "lang": "en",
+     "intent": "AVG_VAL",
+     "question": "what is the mean salary for professors?",
+     "gold": "SELECT AVG(salary) FROM faculty",
+     "pred": "SELECT AVG(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1353,
+     "lang": "hi",
+     "intent": "AVG_VAL",
+     "question": "शिक्षकों में तनख्वाह का औसत क्या है?",
+     "gold": "SELECT AVG(salary) FROM faculty",
+     "pred": "SELECT AVG(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1354,
+     "lang": "hi",
+     "intent": "AVG_VAL",
+     "question": "विद्यार्थियों में फीस का औसत क्या है?",
+     "gold": "SELECT AVG(fees) FROM students",
+     "pred": "SELECT AVG(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1355,
+     "lang": "hi",
+     "intent": "AVG_VAL",
+     "question": "छात्रों में सीजीपीए का औसत क्या है?",
+     "gold": "SELECT AVG(cgpa) FROM students",
+     "pred": "SELECT AVG(cgpa) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1356,
+     "lang": "hi",
+     "intent": "AVG_VAL",
+     "question": "विद्यार्थियों में आयु का औसत क्या है?",
+     "gold": "SELECT AVG(age) FROM students",
+     "pred": "SELECT AVG(age) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1357,
+     "lang": "hi",
+     "intent": "AVG_VAL",
+     "question": "विषयों में क्रेडिट का औसत क्या है?",
+     "gold": "SELECT AVG(credits) FROM courses",
+     "pred": "SELECT AVG(credits) FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1358,
+     "lang": "hi",
+     "intent": "AVG_VAL",
+     "question": "अध्यापकों में अनुभव का औसत क्या है?",
+     "gold": "SELECT AVG(experience) FROM faculty",
+     "pred": "SELECT AVG(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1359,
+     "lang": "hi",
+     "intent": "AVG_VAL",
+     "question": "शिक्षकों में वेतन का औसत क्या है?",
+     "gold": "SELECT AVG(salary) FROM faculty",
+     "pred": "SELECT AVG(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1360,
+     "lang": "hi",
+     "intent": "AVG_VAL",
+     "question": "छात्रों में शुल्क का औसत क्या है?",
+     "gold": "SELECT AVG(fees) FROM students",
+     "pred": "SELECT AVG(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1393,
+     "lang": "hg",
+     "intent": "AVG_VAL",
+     "question": "students ke pointer ka avg kitna hai?",
+     "gold": "SELECT AVG(cgpa) FROM students",
+     "pred": "SELECT AVG(cgpa) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1394,
+     "lang": "hg",
+     "intent": "AVG_VAL",
+     "question": "students ke age ka average kitna hai?",
+     "gold": "SELECT AVG(age) FROM students",
+     "pred": "SELECT AVG(age) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1395,
+     "lang": "hg",
+     "intent": "AVG_VAL",
+     "question": "shikshak ke anubhav ka average kitna hai?",
+     "gold": "SELECT AVG(experience) FROM faculty",
+     "pred": "SELECT AVG(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1396,
+     "lang": "hg",
+     "intent": "AVG_VAL",
+     "question": "shikshak ke experience ka average kitna hai?",
+     "gold": "SELECT AVG(experience) FROM faculty",
+     "pred": "SELECT AVG(experience) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1397,
+     "lang": "hg",
+     "intent": "AVG_VAL",
+     "question": "shikshak ke pagaar ka average kitna hai?",
+     "gold": "SELECT AVG(salary) FROM faculty",
+     "pred": "SELECT AVG(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1398,
+     "lang": "hg",
+     "intent": "AVG_VAL",
+     "question": "courses ke credit ka average kitna hai?",
+     "gold": "SELECT AVG(credits) FROM courses",
+     "pred": "SELECT AVG(credits) FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1399,
+     "lang": "hg",
+     "intent": "AVG_VAL",
+     "question": "shikshak ke salary ka avrage kitna hai?",
+     "gold": "SELECT AVG(salary) FROM faculty",
+     "pred": "SELECT AVG(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1400,
+     "lang": "hg",
+     "intent": "AVG_VAL",
+     "question": "professors ke pagaar ka average kitna hai?",
+     "gold": "SELECT AVG(salary) FROM faculty",
+     "pred": "SELECT AVG(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1433,
+     "lang": "en",
+     "intent": "SUM_VAL",
+     "question": "what is the combined credits of courses?",
+     "gold": "SELECT SUM(credits) FROM courses",
+     "pred": "SELECT SUM(credits) FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1434,
+     "lang": "en",
+     "intent": "SUM_VAL",
+     "question": "what is the combined salary of professors?",
+     "gold": "SELECT SUM(salary) FROM faculty",
+     "pred": "SELECT SUM(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1435,
+     "lang": "en",
+     "intent": "SUM_VAL",
+     "question": "what is the combined credits of subjects?",
+     "gold": "SELECT SUM(credits) FROM courses",
+     "pred": "SELECT SUM(credits) FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1436,
+     "lang": "en",
+     "intent": "SUM_VAL",
+     "question": "what is the combined fees of students?",
+     "gold": "SELECT SUM(fees) FROM students",
+     "pred": "SELECT SUM(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1437,
+     "lang": "en",
+     "intent": "SUM_VAL",
+     "question": "what is the combined salary of teachers?",
+     "gold": "SELECT SUM(salary) FROM faculty",
+     "pred": "SELECT SUM(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1438,
+     "lang": "en",
+     "intent": "SUM_VAL",
+     "question": "what is the combined pay of teachers?",
+     "gold": "SELECT SUM(salary) FROM faculty",
+     "pred": "SELECT SUM(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1439,
+     "lang": "en",
+     "intent": "SUM_VAL",
+     "question": "what is the combined pay of professors?",
+     "gold": "SELECT SUM(salary) FROM faculty",
+     "pred": "SELECT SUM(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1440,
+     "lang": "en",
+     "intent": "SUM_VAL",
+     "question": "what is the combined pay of faculty members?",
+     "gold": "SELECT SUM(salary) FROM faculty",
+     "pred": "SELECT SUM(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1473,
+     "lang": "hi",
+     "intent": "SUM_VAL",
+     "question": "पाठ्यक्रमों का संयुक्त क्रेडिट क्या है?",
+     "gold": "SELECT SUM(credits) FROM courses",
+     "pred": "SELECT AVG(credits) FROM courses",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1474,
+     "lang": "hi",
+     "intent": "SUM_VAL",
+     "question": "छात्रों की संयुक्त फीस क्या है?",
+     "gold": "SELECT SUM(fees) FROM students",
+     "pred": "SELECT AVG(fees) FROM students",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1475,
+     "lang": "hi",
+     "intent": "SUM_VAL",
+     "question": "शिक्षकों की संयुक्त तनख्वाह क्या है?",
+     "gold": "SELECT SUM(salary) FROM faculty",
+     "pred": "SELECT AVG(salary) FROM faculty",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1476,
+     "lang": "hi",
+     "intent": "SUM_VAL",
+     "question": "विषयों का संयुक्त क्रेडिट क्या है?",
+     "gold": "SELECT SUM(credits) FROM courses",
+     "pred": "SELECT AVG(credits) FROM courses",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1477,
+     "lang": "hi",
+     "intent": "SUM_VAL",
+     "question": "शिक्षकों का संयुक्त वेतन क्या है?",
+     "gold": "SELECT SUM(salary) FROM faculty",
+     "pred": "SELECT AVG(salary) FROM faculty",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1478,
+     "lang": "hi",
+     "intent": "SUM_VAL",
+     "question": "अध्यापकों का संयुक्त वेतन क्या है?",
+     "gold": "SELECT SUM(salary) FROM faculty",
+     "pred": "SELECT AVG(salary) FROM faculty",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1479,
+     "lang": "hi",
+     "intent": "SUM_VAL",
+     "question": "विद्यार्थियों का संयुक्त शुल्क क्या है?",
+     "gold": "SELECT SUM(fees) FROM students",
+     "pred": "SELECT AVG(fees) FROM students",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1480,
+     "lang": "hi",
+     "intent": "SUM_VAL",
+     "question": "विद्यार्थियों की संयुक्त फीस क्या है?",
+     "gold": "SELECT SUM(fees) FROM students",
+     "pred": "SELECT AVG(fees) FROM students",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1513,
+     "lang": "hg",
+     "intent": "SUM_VAL",
+     "question": "sare subjects ka kul credit kitna hai?",
+     "gold": "SELECT SUM(credits) FROM courses",
+     "pred": "SELECT SUM(credits) FROM courses",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1514,
+     "lang": "hg",
+     "intent": "SUM_VAL",
+     "question": "saari chhatra ki kul fees kitna hai?",
+     "gold": "SELECT SUM(fees) FROM students",
+     "pred": "SELECT SUM(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1515,
+     "lang": "hg",
+     "intent": "SUM_VAL",
+     "question": "sari faculty ki kul tankhwah kitna hai?",
+     "gold": "SELECT SUM(salary) FROM faculty",
+     "pred": "SELECT SUM(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1516,
+     "lang": "hg",
+     "intent": "SUM_VAL",
+     "question": "saari studnts ki kul fees kitna hai?",
+     "gold": "SELECT SUM(fees) FROM students",
+     "pred": "SELECT SUM(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1517,
+     "lang": "hg",
+     "intent": "SUM_VAL",
+     "question": "saare shikshak ki kul salary kitna hai?",
+     "gold": "SELECT SUM(salary) FROM faculty",
+     "pred": "SELECT SUM(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1518,
+     "lang": "hg",
+     "intent": "SUM_VAL",
+     "question": "saari faculty ki kul salary kitna hai?",
+     "gold": "SELECT SUM(salary) FROM faculty",
+     "pred": "SELECT SUM(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1519,
+     "lang": "hg",
+     "intent": "SUM_VAL",
+     "question": "saare bacche ki kul fees kitna hai?",
+     "gold": "SELECT SUM(fees) FROM students",
+     "pred": "SELECT SUM(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1520,
+     "lang": "hg",
+     "intent": "SUM_VAL",
+     "question": "saare teachers ka kul pagaar kitna hai?",
+     "gold": "SELECT SUM(salary) FROM faculty",
+     "pred": "SELECT SUM(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1553,
+     "lang": "en",
+     "intent": "ARGMAX",
+     "question": "find the student having the highest grade point average",
+     "gold": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 1",
+     "pred": "SELECT MAX(cgpa) FROM students",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1554,
+     "lang": "en",
+     "intent": "ARGMAX",
+     "question": "find the professor having the highest salary",
+     "gold": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 1",
+     "pred": "SELECT MAX(salary) FROM faculty",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1555,
+     "lang": "en",
+     "intent": "ARGMAX",
+     "question": "find the student having the highest age",
+     "gold": "SELECT name FROM students ORDER BY age DESC LIMIT 1",
+     "pred": "SELECT MAX(age) FROM students",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1556,
+     "lang": "en",
+     "intent": "ARGMAX",
+     "question": "find the faculty member having the highest pay",
+     "gold": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 1",
+     "pred": "SELECT MAX(salary) FROM faculty",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1557,
+     "lang": "en",
+     "intent": "ARGMAX",
+     "question": "find the subject having the highest credits",
+     "gold": "SELECT name FROM courses ORDER BY credits DESC LIMIT 1",
+     "pred": "SELECT MAX(credits) FROM courses",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1558,
+     "lang": "en",
+     "intent": "ARGMAX",
+     "question": "find the student having the highest cgpa",
+     "gold": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 1",
+     "pred": "SELECT MAX(cgpa) FROM students",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1559,
+     "lang": "en",
+     "intent": "ARGMAX",
+     "question": "find the student having the highest fees",
+     "gold": "SELECT name FROM students ORDER BY fees DESC LIMIT 1",
+     "pred": "SELECT MAX(fees) FROM students",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1560,
+     "lang": "en",
+     "intent": "ARGMAX",
+     "question": "find the faculty member having the highest salary",
+     "gold": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 1",
+     "pred": "SELECT MAX(salary) FROM faculty",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1593,
+     "lang": "hi",
+     "intent": "ARGMAX",
+     "question": "सबसे ज़्यादा सीजीपीए वाला छात्र कौन है?",
+     "gold": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1594,
+     "lang": "hi",
+     "intent": "ARGMAX",
+     "question": "सबसे ज़्यादा अनुभव वाला अध्यापक कौन है?",
+     "gold": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 1",
+     "pred": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1595,
+     "lang": "hi",
+     "intent": "ARGMAX",
+     "question": "सबसे ज़्यादा सीजीपीए वाला विद्यार्थी कौन है?",
+     "gold": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1596,
+     "lang": "hi",
+     "intent": "ARGMAX",
+     "question": "सबसे ज़्यादा शुल्क वाला छात्र कौन है?",
+     "gold": "SELECT name FROM students ORDER BY fees DESC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY fees DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1597,
+     "lang": "hi",
+     "intent": "ARGMAX",
+     "question": "सबसे ज़्यादा फीस वाला विद्यार्थी कौन है?",
+     "gold": "SELECT name FROM students ORDER BY fees DESC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY fees DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1598,
+     "lang": "hi",
+     "intent": "ARGMAX",
+     "question": "सबसे ज़्यादा वेतन वाला अध्यापक कौन है?",
+     "gold": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 1",
+     "pred": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1599,
+     "lang": "hi",
+     "intent": "ARGMAX",
+     "question": "सबसे ज़्यादा आयु वाला विद्यार्थी कौन है?",
+     "gold": "SELECT name FROM students ORDER BY age DESC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY age DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1600,
+     "lang": "hi",
+     "intent": "ARGMAX",
+     "question": "सबसे ज़्यादा क्रेडिट वाला पाठ्यक्रम कौन है?",
+     "gold": "SELECT name FROM courses ORDER BY credits DESC LIMIT 1",
+     "pred": "SELECT name FROM courses ORDER BY credits DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1633,
+     "lang": "hg",
+     "intent": "ARGMAX",
+     "question": "sabsey zyada pointer wala chhatra kaun hai?",
+     "gold": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1634,
+     "lang": "hg",
+     "intent": "ARGMAX",
+     "question": "sabse zyada experience wala professor kaun hai?",
+     "gold": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 1",
+     "pred": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1635,
+     "lang": "hg",
+     "intent": "ARGMAX",
+     "question": "sbsy jada tankhwah wala faculty kaun hai?",
+     "gold": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 1",
+     "pred": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1636,
+     "lang": "hg",
+     "intent": "ARGMAX",
+     "question": "sabse zyada age waala chhatra kon hai?",
+     "gold": "SELECT name FROM students ORDER BY age DESC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY age DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1637,
+     "lang": "hg",
+     "intent": "ARGMAX",
+     "question": "sabse zyada fees wala student kaun hai?",
+     "gold": "SELECT name FROM students ORDER BY fees DESC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY fees DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1638,
+     "lang": "hg",
+     "intent": "ARGMAX",
+     "question": "sabsay jada anubhav wala faculty kaun hai?",
+     "gold": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 1",
+     "pred": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1639,
+     "lang": "hg",
+     "intent": "ARGMAX",
+     "question": "sabse zyada credit wala vishay kaon hai?",
+     "gold": "SELECT name FROM courses ORDER BY credits DESC LIMIT 1",
+     "pred": "SELECT name FROM courses ORDER BY credits DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1640,
+     "lang": "hg",
+     "intent": "ARGMAX",
+     "question": "sabse zyada age wala baccha kaun hai?",
+     "gold": "SELECT name FROM students ORDER BY age DESC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY age DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1673,
+     "lang": "en",
+     "intent": "ARGMIN",
+     "question": "find the teacher having the smallest experience",
+     "gold": "SELECT name FROM faculty ORDER BY experience ASC LIMIT 1",
+     "pred": "SELECT MIN(experience) FROM faculty",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1674,
+     "lang": "en",
+     "intent": "ARGMIN",
+     "question": "find the teacher having the smallest salary",
+     "gold": "SELECT name FROM faculty ORDER BY salary ASC LIMIT 1",
+     "pred": "SELECT MIN(salary) FROM faculty",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1675,
+     "lang": "en",
+     "intent": "ARGMIN",
+     "question": "find the student having the smallest fee",
+     "gold": "SELECT name FROM students ORDER BY fees ASC LIMIT 1",
+     "pred": "SELECT MIN(fees) FROM students",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1676,
+     "lang": "en",
+     "intent": "ARGMIN",
+     "question": "find the professor having the smallest experience",
+     "gold": "SELECT name FROM faculty ORDER BY experience ASC LIMIT 1",
+     "pred": "SELECT MIN(experience) FROM faculty",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1677,
+     "lang": "en",
+     "intent": "ARGMIN",
+     "question": "find the faculty member having the smallest pay",
+     "gold": "SELECT name FROM faculty ORDER BY salary ASC LIMIT 1",
+     "pred": "SELECT MIN(salary) FROM faculty",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1678,
+     "lang": "en",
+     "intent": "ARGMIN",
+     "question": "find the faculty member having the smallest years of experience",
+     "gold": "SELECT name FROM faculty ORDER BY experience ASC LIMIT 1",
+     "pred": "SELECT MIN(experience) FROM faculty",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1679,
+     "lang": "en",
+     "intent": "ARGMIN",
+     "question": "find the student having the smallest age",
+     "gold": "SELECT name FROM students ORDER BY age ASC LIMIT 1",
+     "pred": "SELECT MIN(age) FROM students",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1680,
+     "lang": "en",
+     "intent": "ARGMIN",
+     "question": "find the student having the smallest fees",
+     "gold": "SELECT name FROM students ORDER BY fees ASC LIMIT 1",
+     "pred": "SELECT MIN(fees) FROM students",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 1713,
+     "lang": "hi",
+     "intent": "ARGMIN",
+     "question": "सबसे कम उम्र वाला विद्यार्थी कौन है?",
+     "gold": "SELECT name FROM students ORDER BY age ASC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY age ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1714,
+     "lang": "hi",
+     "intent": "ARGMIN",
+     "question": "सबसे कम वेतन वाला अध्यापक कौन है?",
+     "gold": "SELECT name FROM faculty ORDER BY salary ASC LIMIT 1",
+     "pred": "SELECT name FROM faculty ORDER BY salary ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1715,
+     "lang": "hi",
+     "intent": "ARGMIN",
+     "question": "सबसे कम फीस वाला विद्यार्थी कौन है?",
+     "gold": "SELECT name FROM students ORDER BY fees ASC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY fees ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1716,
+     "lang": "hi",
+     "intent": "ARGMIN",
+     "question": "सबसे कम तनख्वाह वाला शिक्षक कौन है?",
+     "gold": "SELECT name FROM faculty ORDER BY salary ASC LIMIT 1",
+     "pred": "SELECT name FROM faculty ORDER BY salary ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1717,
+     "lang": "hi",
+     "intent": "ARGMIN",
+     "question": "सबसे कम सीजीपीए वाला विद्यार्थी कौन है?",
+     "gold": "SELECT name FROM students ORDER BY cgpa ASC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY cgpa ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1718,
+     "lang": "hi",
+     "intent": "ARGMIN",
+     "question": "सबसे कम क्रेडिट वाला पाठ्यक्रम कौन है?",
+     "gold": "SELECT name FROM courses ORDER BY credits ASC LIMIT 1",
+     "pred": "SELECT name FROM courses ORDER BY credits ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1719,
+     "lang": "hi",
+     "intent": "ARGMIN",
+     "question": "सबसे कम शुल्क वाला विद्यार्थी कौन है?",
+     "gold": "SELECT name FROM students ORDER BY fees ASC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY fees ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1720,
+     "lang": "hi",
+     "intent": "ARGMIN",
+     "question": "सबसे कम अनुभव वाला शिक्षक कौन है?",
+     "gold": "SELECT name FROM faculty ORDER BY experience ASC LIMIT 1",
+     "pred": "SELECT name FROM faculty ORDER BY experience ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1753,
+     "lang": "hg",
+     "intent": "ARGMIN",
+     "question": "sabse kam umar wala student kaun hai?",
+     "gold": "SELECT name FROM students ORDER BY age ASC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY age ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1754,
+     "lang": "hg",
+     "intent": "ARGMIN",
+     "question": "sabse km anubhav wala teacher kon hai?",
+     "gold": "SELECT name FROM faculty ORDER BY experience ASC LIMIT 1",
+     "pred": "SELECT name FROM faculty ORDER BY experience ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1755,
+     "lang": "hg",
+     "intent": "ARGMIN",
+     "question": "sbse kam credits wala course kaun hai?",
+     "gold": "SELECT name FROM courses ORDER BY credits ASC LIMIT 1",
+     "pred": "SELECT name FROM courses ORDER BY credits ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1756,
+     "lang": "hg",
+     "intent": "ARGMIN",
+     "question": "sabse kum salry wala professor kaun hai?",
+     "gold": "SELECT name FROM faculty ORDER BY salary ASC LIMIT 1",
+     "pred": "SELECT name FROM faculty ORDER BY salary ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1757,
+     "lang": "hg",
+     "intent": "ARGMIN",
+     "question": "sabse kam cgpa wala baccha kon hai?",
+     "gold": "SELECT name FROM students ORDER BY cgpa ASC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY cgpa ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1758,
+     "lang": "hg",
+     "intent": "ARGMIN",
+     "question": "sabse kum fee waala chhatra kaun hai?",
+     "gold": "SELECT name FROM students ORDER BY fees ASC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY fees ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1759,
+     "lang": "hg",
+     "intent": "ARGMIN",
+     "question": "sbse kam fees wala chhatra kaun hai?",
+     "gold": "SELECT name FROM students ORDER BY fees ASC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY fees ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1760,
+     "lang": "hg",
+     "intent": "ARGMIN",
+     "question": "sabse kam cgpa wala student kon hai?",
+     "gold": "SELECT name FROM students ORDER BY cgpa ASC LIMIT 1",
+     "pred": "SELECT name FROM students ORDER BY cgpa ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1793,
+     "lang": "en",
+     "intent": "TOP_K",
+     "question": "give me the 3 professors having the highest experience",
+     "gold": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 3",
+     "pred": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1794,
+     "lang": "en",
+     "intent": "TOP_K",
+     "question": "give me the 3 teachers having the highest years of experience",
+     "gold": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 3",
+     "pred": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1795,
+     "lang": "en",
+     "intent": "TOP_K",
+     "question": "give me the 10 professors having the highest experience",
+     "gold": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 10",
+     "pred": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 10",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1796,
+     "lang": "en",
+     "intent": "TOP_K",
+     "question": "give me the 5 students having the highest fee",
+     "gold": "SELECT name FROM students ORDER BY fees DESC LIMIT 5",
+     "pred": "SELECT name FROM students ORDER BY fees DESC LIMIT 5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1797,
+     "lang": "en",
+     "intent": "TOP_K",
+     "question": "give me the 3 faculty members having the highest years of experience",
+     "gold": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 3",
+     "pred": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1798,
+     "lang": "en",
+     "intent": "TOP_K",
+     "question": "give me the 5 faculty members having the highest experience",
+     "gold": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 5",
+     "pred": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1799,
+     "lang": "en",
+     "intent": "TOP_K",
+     "question": "give me the 5 courses having the highest credits",
+     "gold": "SELECT name FROM courses ORDER BY credits DESC LIMIT 5",
+     "pred": "SELECT name FROM courses ORDER BY credits DESC LIMIT 5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1800,
+     "lang": "en",
+     "intent": "TOP_K",
+     "question": "give me the 10 students having the highest grade point average",
+     "gold": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 10",
+     "pred": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 10",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1833,
+     "lang": "hi",
+     "intent": "TOP_K",
+     "question": "शुल्क के हिसाब से टॉप दस छात्र बताओ",
+     "gold": "SELECT name FROM students ORDER BY fees DESC LIMIT 10",
+     "pred": "SELECT name FROM students ORDER BY fees DESC LIMIT 10",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1834,
+     "lang": "hi",
+     "intent": "TOP_K",
+     "question": "सीजीपीए के हिसाब से टॉप 5 विद्यार्थी बताओ",
+     "gold": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 5",
+     "pred": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1835,
+     "lang": "hi",
+     "intent": "TOP_K",
+     "question": "तनख्वाह के हिसाब से टॉप 5 शिक्षक बताओ",
+     "gold": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 5",
+     "pred": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1836,
+     "lang": "hi",
+     "intent": "TOP_K",
+     "question": "उम्र के हिसाब से टॉप 5 छात्र बताओ",
+     "gold": "SELECT name FROM students ORDER BY age DESC LIMIT 5",
+     "pred": "SELECT name FROM students ORDER BY age DESC LIMIT 5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1837,
+     "lang": "hi",
+     "intent": "TOP_K",
+     "question": "शुल्क के हिसाब से टॉप दस विद्यार्थी बताओ",
+     "gold": "SELECT name FROM students ORDER BY fees DESC LIMIT 10",
+     "pred": "SELECT name FROM students ORDER BY fees DESC LIMIT 10",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1838,
+     "lang": "hi",
+     "intent": "TOP_K",
+     "question": "आयु के हिसाब से टॉप 5 छात्र बताओ",
+     "gold": "SELECT name FROM students ORDER BY age DESC LIMIT 5",
+     "pred": "SELECT name FROM students ORDER BY age DESC LIMIT 5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1839,
+     "lang": "hi",
+     "intent": "TOP_K",
+     "question": "उम्र के हिसाब से टॉप 5 विद्यार्थी बताओ",
+     "gold": "SELECT name FROM students ORDER BY age DESC LIMIT 5",
+     "pred": "SELECT name FROM students ORDER BY age DESC LIMIT 5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1840,
+     "lang": "hi",
+     "intent": "TOP_K",
+     "question": "तनख्वाह के हिसाब से टॉप 3 शिक्षक बताओ",
+     "gold": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 3",
+     "pred": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1873,
+     "lang": "hg",
+     "intent": "TOP_K",
+     "question": "credits ke hisaab se top 3 subjects batao",
+     "gold": "SELECT name FROM courses ORDER BY credits DESC LIMIT 3",
+     "pred": "SELECT name FROM courses ORDER BY credits DESC LIMIT 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1874,
+     "lang": "hg",
+     "intent": "TOP_K",
+     "question": "cgpa ke hisaab se top das chhatra batao",
+     "gold": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 10",
+     "pred": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 10",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1875,
+     "lang": "hg",
+     "intent": "TOP_K",
+     "question": "tankhwah ke hisaab se top 10 teachers bataao",
+     "gold": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 10",
+     "pred": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 10",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1876,
+     "lang": "hg",
+     "intent": "TOP_K",
+     "question": "credits ke hesab se top 5 vishay batao",
+     "gold": "SELECT name FROM courses ORDER BY credits DESC LIMIT 5",
+     "pred": "SELECT name FROM courses ORDER BY credits DESC LIMIT 5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1877,
+     "lang": "hg",
+     "intent": "TOP_K",
+     "question": "umar ke hisab se top 10 bacche batao",
+     "gold": "SELECT name FROM students ORDER BY age DESC LIMIT 10",
+     "pred": "SELECT name FROM students ORDER BY age DESC LIMIT 10",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1878,
+     "lang": "hg",
+     "intent": "TOP_K",
+     "question": "anubhav ke hisab se top 3 teachers batado",
+     "gold": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 3",
+     "pred": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1879,
+     "lang": "hg",
+     "intent": "TOP_K",
+     "question": "fees ke hisaab se top 5 students batao",
+     "gold": "SELECT name FROM students ORDER BY fees DESC LIMIT 5",
+     "pred": "SELECT name FROM students ORDER BY fees DESC LIMIT 5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1880,
+     "lang": "hg",
+     "intent": "TOP_K",
+     "question": "anubhav ke hisaab se top 3 faculty bata",
+     "gold": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 3",
+     "pred": "SELECT name FROM faculty ORDER BY experience DESC LIMIT 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1905,
+     "lang": "en",
+     "intent": "GROUP_COUNT",
+     "question": "for each department, how many teachers are there?",
+     "gold": "SELECT departments.name, COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1906,
+     "lang": "en",
+     "intent": "GROUP_COUNT",
+     "question": "for each department, how many subjects are there?",
+     "gold": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1907,
+     "lang": "en",
+     "intent": "GROUP_COUNT",
+     "question": "for each department, how many students are there?",
+     "gold": "SELECT departments.name, COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1908,
+     "lang": "en",
+     "intent": "GROUP_COUNT",
+     "question": "for each department, how many faculty members are there?",
+     "gold": "SELECT departments.name, COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1909,
+     "lang": "en",
+     "intent": "GROUP_COUNT",
+     "question": "for each department, how many courses are there?",
+     "gold": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1910,
+     "lang": "en",
+     "intent": "GROUP_COUNT",
+     "question": "for each department, how many professors are there?",
+     "gold": "SELECT departments.name, COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1935,
+     "lang": "hi",
+     "intent": "GROUP_COUNT",
+     "question": "प्रत्येक विभाग में कुल कितने शिक्षक हैं?",
+     "gold": "SELECT departments.name, COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1936,
+     "lang": "hi",
+     "intent": "GROUP_COUNT",
+     "question": "प्रत्येक विभाग में कुल कितने पाठ्यक्रम हैं?",
+     "gold": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1937,
+     "lang": "hi",
+     "intent": "GROUP_COUNT",
+     "question": "प्रत्येक विभाग में कुल कितने विद्यार्थी हैं?",
+     "gold": "SELECT departments.name, COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1938,
+     "lang": "hi",
+     "intent": "GROUP_COUNT",
+     "question": "प्रत्येक विभाग में कुल कितने छात्र हैं?",
+     "gold": "SELECT departments.name, COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1939,
+     "lang": "hi",
+     "intent": "GROUP_COUNT",
+     "question": "प्रत्येक विभाग में कुल कितने अध्यापक हैं?",
+     "gold": "SELECT departments.name, COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1940,
+     "lang": "hi",
+     "intent": "GROUP_COUNT",
+     "question": "प्रत्येक विभाग में कुल कितने विषय हैं?",
+     "gold": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1973,
+     "lang": "hg",
+     "intent": "GROUP_COUNT",
+     "question": "har ek departmnt mein total kitnay professors hain?",
+     "gold": "SELECT departments.name, COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1974,
+     "lang": "hg",
+     "intent": "GROUP_COUNT",
+     "question": "har ek department me ttl kitne students hain?",
+     "gold": "SELECT departments.name, COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1975,
+     "lang": "hg",
+     "intent": "GROUP_COUNT",
+     "question": "har ek department mei total kitna subjects hn?",
+     "gold": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1976,
+     "lang": "hg",
+     "intent": "GROUP_COUNT",
+     "question": "har ek deptt mai total kitney chhatra hain?",
+     "gold": "SELECT departments.name, COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1977,
+     "lang": "hg",
+     "intent": "GROUP_COUNT",
+     "question": "har ek department mein total kitne vishay hai?",
+     "gold": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1978,
+     "lang": "hg",
+     "intent": "GROUP_COUNT",
+     "question": "har ek dept mein total kitna courses hn?",
+     "gold": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1979,
+     "lang": "hg",
+     "intent": "GROUP_COUNT",
+     "question": "har ek department mein total kitne shikshak hain?",
+     "gold": "SELECT departments.name, COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 1980,
+     "lang": "hg",
+     "intent": "GROUP_COUNT",
+     "question": "har ek department mein totl kitni bacche hn?",
+     "gold": "SELECT departments.name, COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2013,
+     "lang": "en",
+     "intent": "GROUP_AVG",
+     "question": "for every department, find the mean experience of professors",
+     "gold": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2014,
+     "lang": "en",
+     "intent": "GROUP_AVG",
+     "question": "for every department, find the mean salary of teachers",
+     "gold": "SELECT departments.name, AVG(faculty.salary) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.salary) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2015,
+     "lang": "en",
+     "intent": "GROUP_AVG",
+     "question": "for every department, find the mean salary of professors",
+     "gold": "SELECT departments.name, AVG(faculty.salary) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.salary) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2016,
+     "lang": "en",
+     "intent": "GROUP_AVG",
+     "question": "for every department, find the mean credits of courses",
+     "gold": "SELECT departments.name, AVG(courses.credits) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(courses.credits) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2017,
+     "lang": "en",
+     "intent": "GROUP_AVG",
+     "question": "for every department, find the mean pay of teachers",
+     "gold": "SELECT departments.name, AVG(faculty.salary) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.salary) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2018,
+     "lang": "en",
+     "intent": "GROUP_AVG",
+     "question": "for every department, find the mean years of experience of teachers",
+     "gold": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2019,
+     "lang": "en",
+     "intent": "GROUP_AVG",
+     "question": "for every department, find the mean credits of subjects",
+     "gold": "SELECT departments.name, AVG(courses.credits) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(courses.credits) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2020,
+     "lang": "en",
+     "intent": "GROUP_AVG",
+     "question": "for every department, find the mean years of experience of professors",
+     "gold": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2052,
+     "lang": "hi",
+     "intent": "GROUP_AVG",
+     "question": "विभागवार अध्यापकों का औसत अनुभव दिखाइए",
+     "gold": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2053,
+     "lang": "hi",
+     "intent": "GROUP_AVG",
+     "question": "विभागवार विद्यार्थियों की औसत उम्र दिखाइए",
+     "gold": "SELECT departments.name, AVG(students.age) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(students.age) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2054,
+     "lang": "hi",
+     "intent": "GROUP_AVG",
+     "question": "विभागवार शिक्षकों का औसत वेतन दिखाइए",
+     "gold": "SELECT departments.name, AVG(faculty.salary) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.salary) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2055,
+     "lang": "hi",
+     "intent": "GROUP_AVG",
+     "question": "विभागवार विद्यार्थियों की औसत आयु दिखाइए",
+     "gold": "SELECT departments.name, AVG(students.age) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(students.age) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2056,
+     "lang": "hi",
+     "intent": "GROUP_AVG",
+     "question": "विभागवार छात्रों की औसत उम्र दिखाइए",
+     "gold": "SELECT departments.name, AVG(students.age) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(students.age) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2057,
+     "lang": "hi",
+     "intent": "GROUP_AVG",
+     "question": "विभागवार शिक्षकों की औसत तनख्वाह दिखाइए",
+     "gold": "SELECT departments.name, AVG(faculty.salary) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.salary) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2058,
+     "lang": "hi",
+     "intent": "GROUP_AVG",
+     "question": "विभागवार अध्यापकों का औसत वेतन दिखाइए",
+     "gold": "SELECT departments.name, AVG(faculty.salary) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.salary) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2059,
+     "lang": "hi",
+     "intent": "GROUP_AVG",
+     "question": "विभागवार शिक्षकों का औसत अनुभव दिखाइए",
+     "gold": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2092,
+     "lang": "hg",
+     "intent": "GROUP_AVG",
+     "question": "pratyek departmnt ke chhatra ki average fees kyaa hai?",
+     "gold": "SELECT departments.name, AVG(students.fees) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(students.fees) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2093,
+     "lang": "hg",
+     "intent": "GROUP_AVG",
+     "question": "pratyek department ke courses ka avg credits kya hai?",
+     "gold": "SELECT departments.name, AVG(courses.credits) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(courses.credits) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2094,
+     "lang": "hg",
+     "intent": "GROUP_AVG",
+     "question": "pratyek department ke bacche ki average umar kyaa hai?",
+     "gold": "SELECT departments.name, AVG(students.age) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(students.age) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2095,
+     "lang": "hg",
+     "intent": "GROUP_AVG",
+     "question": "pratyek department ke students ki averge fees kya hai?",
+     "gold": "SELECT departments.name, AVG(students.fees) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(students.fees) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2096,
+     "lang": "hg",
+     "intent": "GROUP_AVG",
+     "question": "pratyek departmnt ke shikshak ka average anubhav kya hai?",
+     "gold": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2097,
+     "lang": "hg",
+     "intent": "GROUP_AVG",
+     "question": "pratyek deptt ke students ki avrage umar kyu hai?",
+     "gold": "SELECT departments.name, AVG(students.age) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(students.age) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2098,
+     "lang": "hg",
+     "intent": "GROUP_AVG",
+     "question": "pratyek departmnt ke shikshak ka average pagaar kya hai?",
+     "gold": "SELECT departments.name, AVG(faculty.salary) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.salary) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 2099,
+     "lang": "hg",
+     "intent": "GROUP_AVG",
+     "question": "pratyek department ke students ki averge fee kya hai?",
+     "gold": "SELECT departments.name, AVG(students.fees) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(students.fees) FROM students JOIN departments ON students.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    }
+   ],
+   "seconds": 8.196727991104126
+  },
+  "wild": {
+   "summary": {
+    "en": {
+     "n": 20,
+     "execution_accuracy": 0.85,
+     "exact_match": 0.85,
+     "language_id": 1.0,
+     "components": {
+      "table": 1.0,
+      "aggregation": 0.95,
+      "conditions": 1.0,
+      "group_by": 1.0,
+      "order": 0.85,
+      "limit": 0.9
+     }
+    },
+    "all": {
+     "n": 60,
+     "execution_accuracy": 0.9333333333333333,
+     "exact_match": 0.9333333333333333,
+     "language_id": 1.0,
+     "components": {
+      "table": 0.9833333333333333,
+      "aggregation": 0.9833333333333333,
+      "conditions": 1.0,
+      "group_by": 1.0,
+      "order": 0.95,
+      "limit": 0.9666666666666667
+     }
+    },
+    "hi": {
+     "n": 20,
+     "execution_accuracy": 1.0,
+     "exact_match": 1.0,
+     "language_id": 1.0,
+     "components": {
+      "table": 1.0,
+      "aggregation": 1.0,
+      "conditions": 1.0,
+      "group_by": 1.0,
+      "order": 1.0,
+      "limit": 1.0
+     }
+    },
+    "hg": {
+     "n": 20,
+     "execution_accuracy": 0.95,
+     "exact_match": 0.95,
+     "language_id": 1.0,
+     "components": {
+      "table": 0.95,
+      "aggregation": 1.0,
+      "conditions": 1.0,
+      "group_by": 1.0,
+      "order": 1.0,
+      "limit": 1.0
+     }
+    }
+   },
+   "errors": {
+    "en": {
+     "wrong question type (aggregation)": 2,
+     "wrong order / limit": 1
+    },
+    "all": {
+     "wrong question type (aggregation)": 2,
+     "wrong order / limit": 1,
+     "wrong table": 1
+    },
+    "hg": {
+     "wrong table": 1
+    }
+   },
+   "examples": [
+    {
+     "id": 10000,
+     "lang": "en",
+     "intent": null,
+     "question": "how many students do we have",
+     "gold": "SELECT COUNT(*) FROM students",
+     "pred": "SELECT COUNT(*) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10001,
+     "lang": "en",
+     "intent": null,
+     "question": "list every professor",
+     "gold": "SELECT name FROM faculty",
+     "pred": "SELECT name FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10002,
+     "lang": "en",
+     "intent": null,
+     "question": "how many students come from Mumbai?",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Mumbai'",
+     "pred": "SELECT COUNT(*) FROM students WHERE city = 'Mumbai'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10003,
+     "lang": "en",
+     "intent": null,
+     "question": "who teaches in the civil department?",
+     "gold": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "pred": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10004,
+     "lang": "en",
+     "intent": null,
+     "question": "names of students with a cgpa higher than 9",
+     "gold": "SELECT name FROM students WHERE cgpa > 9",
+     "pred": "SELECT name FROM students WHERE cgpa > 9",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10005,
+     "lang": "en",
+     "intent": null,
+     "question": "what's the average salary of teachers",
+     "gold": "SELECT AVG(salary) FROM faculty",
+     "pred": "SELECT AVG(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10006,
+     "lang": "en",
+     "intent": null,
+     "question": "which teacher earns the most",
+     "gold": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 1",
+     "pred": "SELECT name FROM faculty",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 10007,
+     "lang": "en",
+     "intent": null,
+     "question": "top 5 students based on cgpa",
+     "gold": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 5",
+     "pred": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10008,
+     "lang": "en",
+     "intent": null,
+     "question": "number of courses in each department",
+     "gold": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10009,
+     "lang": "en",
+     "intent": null,
+     "question": "average cgpa of students from pune",
+     "gold": "SELECT AVG(cgpa) FROM students WHERE city = 'Pune'",
+     "pred": "SELECT AVG(cgpa) FROM students WHERE city = 'Pune'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10010,
+     "lang": "en",
+     "intent": null,
+     "question": "how many students in the IT department have cgpa above 8",
+     "gold": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'IT' AND students.cgpa > 8",
+     "pred": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'IT' AND students.cgpa > 8",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10011,
+     "lang": "en",
+     "intent": null,
+     "question": "youngest student age",
+     "gold": "SELECT MIN(age) FROM students",
+     "pred": "SELECT name FROM students ORDER BY age ASC LIMIT 1",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 10012,
+     "lang": "en",
+     "intent": null,
+     "question": "total salary paid to all faculty",
+     "gold": "SELECT SUM(salary) FROM faculty",
+     "pred": "SELECT SUM(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10013,
+     "lang": "en",
+     "intent": null,
+     "question": "show third year students",
+     "gold": "SELECT name FROM students WHERE year = 3",
+     "pred": "SELECT name FROM students WHERE year = 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10014,
+     "lang": "en",
+     "intent": null,
+     "question": "which course has the fewest credits",
+     "gold": "SELECT name FROM courses ORDER BY credits ASC LIMIT 1",
+     "pred": "SELECT name FROM courses ORDER BY credits DESC LIMIT 1",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 10015,
+     "lang": "en",
+     "intent": null,
+     "question": "teachers with less than 8 years of experience",
+     "gold": "SELECT name FROM faculty WHERE experience < 8",
+     "pred": "SELECT name FROM faculty WHERE experience < 8",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10016,
+     "lang": "en",
+     "intent": null,
+     "question": "average experience of teachers per department",
+     "gold": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10017,
+     "lang": "en",
+     "intent": null,
+     "question": "list students from delhi in the computer department",
+     "gold": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer' AND students.city = 'Delhi'",
+     "pred": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer' AND students.city = 'Delhi'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10018,
+     "lang": "en",
+     "intent": null,
+     "question": "maximum fees paid by a student",
+     "gold": "SELECT MAX(fees) FROM students",
+     "pred": "SELECT MAX(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10019,
+     "lang": "en",
+     "intent": null,
+     "question": "how many departments are there",
+     "gold": "SELECT COUNT(*) FROM departments",
+     "pred": "SELECT COUNT(*) FROM departments",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10020,
+     "lang": "hi",
+     "intent": null,
+     "question": "कुल कितने छात्र हैं",
+     "gold": "SELECT COUNT(*) FROM students",
+     "pred": "SELECT COUNT(*) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10021,
+     "lang": "hi",
+     "intent": null,
+     "question": "सभी शिक्षकों के नाम बताओ",
+     "gold": "SELECT name FROM faculty",
+     "pred": "SELECT name FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10022,
+     "lang": "hi",
+     "intent": null,
+     "question": "मुंबई के कितने छात्र हैं",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Mumbai'",
+     "pred": "SELECT COUNT(*) FROM students WHERE city = 'Mumbai'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10023,
+     "lang": "hi",
+     "intent": null,
+     "question": "सिविल विभाग के शिक्षक कौन हैं",
+     "gold": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "pred": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10024,
+     "lang": "hi",
+     "intent": null,
+     "question": "9 से ज़्यादा सीजीपीए वाले छात्रों के नाम",
+     "gold": "SELECT name FROM students WHERE cgpa > 9",
+     "pred": "SELECT name FROM students WHERE cgpa > 9",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10025,
+     "lang": "hi",
+     "intent": null,
+     "question": "शिक्षकों का औसत वेतन बताइए",
+     "gold": "SELECT AVG(salary) FROM faculty",
+     "pred": "SELECT AVG(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10026,
+     "lang": "hi",
+     "intent": null,
+     "question": "सबसे ज़्यादा वेतन किस शिक्षक का है",
+     "gold": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 1",
+     "pred": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10027,
+     "lang": "hi",
+     "intent": null,
+     "question": "सीजीपीए के आधार पर शीर्ष 5 छात्र",
+     "gold": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 5",
+     "pred": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10028,
+     "lang": "hi",
+     "intent": null,
+     "question": "हर विभाग में कितने पाठ्यक्रम हैं",
+     "gold": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10029,
+     "lang": "hi",
+     "intent": null,
+     "question": "पुणे के छात्रों का औसत सीजीपीए",
+     "gold": "SELECT AVG(cgpa) FROM students WHERE city = 'Pune'",
+     "pred": "SELECT AVG(cgpa) FROM students WHERE city = 'Pune'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10030,
+     "lang": "hi",
+     "intent": null,
+     "question": "आईटी विभाग के कितने छात्रों का सीजीपीए 8 से अधिक है",
+     "gold": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'IT' AND students.cgpa > 8",
+     "pred": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'IT' AND students.cgpa > 8",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10031,
+     "lang": "hi",
+     "intent": null,
+     "question": "छात्रों की न्यूनतम उम्र क्या है",
+     "gold": "SELECT MIN(age) FROM students",
+     "pred": "SELECT MIN(age) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10032,
+     "lang": "hi",
+     "intent": null,
+     "question": "सभी शिक्षकों का कुल वेतन",
+     "gold": "SELECT SUM(salary) FROM faculty",
+     "pred": "SELECT SUM(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10033,
+     "lang": "hi",
+     "intent": null,
+     "question": "तीसरे वर्ष के छात्र दिखाओ",
+     "gold": "SELECT name FROM students WHERE year = 3",
+     "pred": "SELECT name FROM students WHERE year = 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10034,
+     "lang": "hi",
+     "intent": null,
+     "question": "सबसे कम क्रेडिट वाला विषय कौन सा है",
+     "gold": "SELECT name FROM courses ORDER BY credits ASC LIMIT 1",
+     "pred": "SELECT name FROM courses ORDER BY credits ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10035,
+     "lang": "hi",
+     "intent": null,
+     "question": "8 साल से कम अनुभव वाले शिक्षक",
+     "gold": "SELECT name FROM faculty WHERE experience < 8",
+     "pred": "SELECT name FROM faculty WHERE experience < 8",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10036,
+     "lang": "hi",
+     "intent": null,
+     "question": "हर विभाग के शिक्षकों का औसत अनुभव",
+     "gold": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10037,
+     "lang": "hi",
+     "intent": null,
+     "question": "कंप्यूटर विभाग के दिल्ली वाले छात्र",
+     "gold": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer' AND students.city = 'Delhi'",
+     "pred": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer' AND students.city = 'Delhi'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10038,
+     "lang": "hi",
+     "intent": null,
+     "question": "छात्रों की अधिकतम फीस कितनी है",
+     "gold": "SELECT MAX(fees) FROM students",
+     "pred": "SELECT MAX(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10039,
+     "lang": "hi",
+     "intent": null,
+     "question": "कितने विभाग हैं",
+     "gold": "SELECT COUNT(*) FROM departments",
+     "pred": "SELECT COUNT(*) FROM departments",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10040,
+     "lang": "hg",
+     "intent": null,
+     "question": "total kitne students hai college me",
+     "gold": "SELECT COUNT(*) FROM students",
+     "pred": "SELECT COUNT(*) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10041,
+     "lang": "hg",
+     "intent": null,
+     "question": "saare teachers ke naam dikhao",
+     "gold": "SELECT name FROM faculty",
+     "pred": "SELECT name FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10042,
+     "lang": "hg",
+     "intent": null,
+     "question": "mumbai se kitne bacche hai",
+     "gold": "SELECT COUNT(*) FROM students WHERE city = 'Mumbai'",
+     "pred": "SELECT COUNT(*) FROM students WHERE city = 'Mumbai'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10043,
+     "lang": "hg",
+     "intent": null,
+     "question": "civil dept me kon kon padhata hai",
+     "gold": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "pred": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Civil'",
+     "exec": false,
+     "exact": false
+    },
+    {
+     "id": 10044,
+     "lang": "hg",
+     "intent": null,
+     "question": "9 se jyada cgpa wale students ke naam",
+     "gold": "SELECT name FROM students WHERE cgpa > 9",
+     "pred": "SELECT name FROM students WHERE cgpa > 9",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10045,
+     "lang": "hg",
+     "intent": null,
+     "question": "teachers ki avg salary kitni hai",
+     "gold": "SELECT AVG(salary) FROM faculty",
+     "pred": "SELECT AVG(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10046,
+     "lang": "hg",
+     "intent": null,
+     "question": "sabse jyada salary kis teacher ki hai",
+     "gold": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 1",
+     "pred": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10047,
+     "lang": "hg",
+     "intent": null,
+     "question": "cgpa ke hisab se top 5 students",
+     "gold": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 5",
+     "pred": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 5",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10048,
+     "lang": "hg",
+     "intent": null,
+     "question": "har department me kitne courses hai",
+     "gold": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10049,
+     "lang": "hg",
+     "intent": null,
+     "question": "pune ke students ka average cgpa",
+     "gold": "SELECT AVG(cgpa) FROM students WHERE city = 'Pune'",
+     "pred": "SELECT AVG(cgpa) FROM students WHERE city = 'Pune'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10050,
+     "lang": "hg",
+     "intent": null,
+     "question": "it dept ke kitne students ka cgpa 8 se upar hai",
+     "gold": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'IT' AND students.cgpa > 8",
+     "pred": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'IT' AND students.cgpa > 8",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10051,
+     "lang": "hg",
+     "intent": null,
+     "question": "students ki minimum age kya hai",
+     "gold": "SELECT MIN(age) FROM students",
+     "pred": "SELECT MIN(age) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10052,
+     "lang": "hg",
+     "intent": null,
+     "question": "saare teachers ki total salary",
+     "gold": "SELECT SUM(salary) FROM faculty",
+     "pred": "SELECT SUM(salary) FROM faculty",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10053,
+     "lang": "hg",
+     "intent": null,
+     "question": "third year ke students dikhao",
+     "gold": "SELECT name FROM students WHERE year = 3",
+     "pred": "SELECT name FROM students WHERE year = 3",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10054,
+     "lang": "hg",
+     "intent": null,
+     "question": "sabse kam credits wala subject konsa hai",
+     "gold": "SELECT name FROM courses ORDER BY credits ASC LIMIT 1",
+     "pred": "SELECT name FROM courses ORDER BY credits ASC LIMIT 1",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10055,
+     "lang": "hg",
+     "intent": null,
+     "question": "8 saal se kam experience wale teachers",
+     "gold": "SELECT name FROM faculty WHERE experience < 8",
+     "pred": "SELECT name FROM faculty WHERE experience < 8",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10056,
+     "lang": "hg",
+     "intent": null,
+     "question": "har department ke teachers ka average experience",
+     "gold": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "pred": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10057,
+     "lang": "hg",
+     "intent": null,
+     "question": "computer department ke delhi wale students",
+     "gold": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer' AND students.city = 'Delhi'",
+     "pred": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer' AND students.city = 'Delhi'",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10058,
+     "lang": "hg",
+     "intent": null,
+     "question": "students ki maximum fees kitni hai",
+     "gold": "SELECT MAX(fees) FROM students",
+     "pred": "SELECT MAX(fees) FROM students",
+     "exec": true,
+     "exact": true
+    },
+    {
+     "id": 10059,
+     "lang": "hg",
+     "intent": null,
+     "question": "kitne departments hai",
+     "gold": "SELECT COUNT(*) FROM departments",
+     "pred": "SELECT COUNT(*) FROM departments",
+     "exec": true,
+     "exact": true
+    }
+   ],
+   "seconds": 0.6418440341949463
+  }
+ },
+ "ablations": {
+  "full": {
+   "label": "Full system",
+   "en": {
+    "execution_accuracy": 0.7867647058823529,
+    "exact_match": 0.7867647058823529
+   },
+   "all": {
+    "execution_accuracy": 0.8738095238095238,
+    "exact_match": 0.8738095238095238
+   },
+   "hi": {
+    "execution_accuracy": 0.8857142857142857,
+    "exact_match": 0.8857142857142857
+   },
+   "hg": {
+    "execution_accuracy": 0.9444444444444444,
+    "exact_match": 0.9444444444444444
+   },
+   "wild": 0.9333333333333333
+  },
+  "no_reasoning": {
+   "label": "Without reasoning-based selection",
+   "en": {
+    "execution_accuracy": 0.5882352941176471,
+    "exact_match": 0.5882352941176471
+   },
+   "all": {
+    "execution_accuracy": 0.7547619047619047,
+    "exact_match": 0.7547619047619047
+   },
+   "hi": {
+    "execution_accuracy": 0.8357142857142857,
+    "exact_match": 0.8357142857142857
+   },
+   "hg": {
+    "execution_accuracy": 0.8333333333333334,
+    "exact_match": 0.8333333333333334
+   },
+   "wild": 0.9333333333333333
+  },
+  "top1_intent": {
+   "label": "Only the top intent (no candidate selection)",
+   "en": {
+    "execution_accuracy": 0.5294117647058824,
+    "exact_match": 0.5294117647058824
+   },
+   "all": {
+    "execution_accuracy": 0.638095238095238,
+    "exact_match": 0.638095238095238
+   },
+   "hi": {
+    "execution_accuracy": 0.6,
+    "exact_match": 0.6
+   },
+   "hg": {
+    "execution_accuracy": 0.7777777777777778,
+    "exact_match": 0.7777777777777778
+   },
+   "wild": 0.95
+  },
+  "no_normalization": {
+   "label": "Without Hinglish spelling normalization",
+   "en": {
+    "execution_accuracy": 0.7867647058823529,
+    "exact_match": 0.7867647058823529
+   },
+   "all": {
+    "execution_accuracy": 0.8571428571428571,
+    "exact_match": 0.8571428571428571
+   },
+   "hi": {
+    "execution_accuracy": 0.8857142857142857,
+    "exact_match": 0.8857142857142857
+   },
+   "hg": {
+    "execution_accuracy": 0.8958333333333334,
+    "exact_match": 0.8958333333333334
+   }
+  },
+  "no_pos": {
+   "label": "Without POS tags",
+   "en": {
+    "execution_accuracy": 0.7867647058823529,
+    "exact_match": 0.7867647058823529
+   },
+   "all": {
+    "execution_accuracy": 0.8738095238095238,
+    "exact_match": 0.8738095238095238
+   },
+   "hi": {
+    "execution_accuracy": 0.8857142857142857,
+    "exact_match": 0.8857142857142857
+   },
+   "hg": {
+    "execution_accuracy": 0.9444444444444444,
+    "exact_match": 0.9444444444444444
+   }
+  },
+  "unigram_intent": {
+   "label": "Unigram intent models (Naive Bayes)",
+   "en": {
+    "execution_accuracy": 0.8014705882352942,
+    "exact_match": 0.8014705882352942
+   },
+   "all": {
+    "execution_accuracy": 0.9166666666666666,
+    "exact_match": 0.9166666666666666
+   },
+   "hi": {
+    "execution_accuracy": 0.9428571428571428,
+    "exact_match": 0.9428571428571428
+   },
+   "hg": {
+    "execution_accuracy": 1.0,
+    "exact_match": 1.0
+   }
+  },
+  "trigram_intent": {
+   "label": "Trigram intent models",
+   "en": {
+    "execution_accuracy": 0.7867647058823529,
+    "exact_match": 0.7867647058823529
+   },
+   "all": {
+    "execution_accuracy": 0.8738095238095238,
+    "exact_match": 0.8738095238095238
+   },
+   "hi": {
+    "execution_accuracy": 0.8857142857142857,
+    "exact_match": 0.8857142857142857
+   },
+   "hg": {
+    "execution_accuracy": 0.9444444444444444,
+    "exact_match": 0.9444444444444444
+   }
+  }
+ },
+ "intent": {
+  "1": {
+   "en": {
+    "top1": 0.4411764705882353,
+    "top3": 0.8235294117647058
+   },
+   "hi": {
+    "top1": 0.5642857142857143,
+    "top3": 1.0
+   },
+   "hg": {
+    "top1": 0.6597222222222222,
+    "top3": 1.0
+   },
+   "all": {
+    "top1": 0.5571428571428572,
+    "top3": 0.9428571428571428
+   }
+  },
+  "2": {
+   "en": {
+    "top1": 0.4852941176470588,
+    "top3": 0.8823529411764706
+   },
+   "hi": {
+    "top1": 0.6,
+    "top3": 0.9428571428571428
+   },
+   "hg": {
+    "top1": 0.7222222222222222,
+    "top3": 0.9444444444444444
+   },
+   "all": {
+    "top1": 0.6047619047619047,
+    "top3": 0.9238095238095239
+   }
+  },
+  "3": {
+   "en": {
+    "top1": 0.4852941176470588,
+    "top3": 0.8823529411764706
+   },
+   "hi": {
+    "top1": 0.6,
+    "top3": 0.9428571428571428
+   },
+   "hg": {
+    "top1": 0.6666666666666666,
+    "top3": 0.9444444444444444
+   },
+   "all": {
+    "top1": 0.5857142857142857,
+    "top3": 0.9238095238095239
+   }
+  }
+ },
+ "validation": {
+  "full": 0.9785202863961814,
+  "no_reasoning": 0.847255369928401,
+  "unigram_intent": 0.9307875894988067,
+  "trigram_intent": 0.9880668257756563
+ },
+ "generated": "2026-10-26 20:12"
+}

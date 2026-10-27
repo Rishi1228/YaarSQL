@@ -1,0 +1,111 @@
+# Hand-tagged Hinglish (Romanized Hindi-English code-mixed) sentences, universal tagset (Petrov et al., 2012):
+# NOUN VERB ADJ ADV PRON DET ADP NUM CONJ PRT . X
+# Conventions: postpositions (ka ki ke ko se mein par tak) = ADP; hai/hain/tha = VERB; wala/wale/wali = PRT;
+# kya/kaun/kis = PRON; kitne/har/sabhi/saare = DET; sabse = ADV; zyada/kam/adhik = ADJ; nahi/bhi/hi/to = PRT.
+# One sentence per line: word/TAG word/TAG ...
+# --- everyday conversation ---
+mera/PRON phone/NOUN kaam/NOUN nahi/PRT kar/VERB raha/VERB hai/VERB ./.
+kal/NOUN meri/PRON exam/NOUN hai/VERB aur/CONJ maine/PRON kuch/DET nahi/PRT padha/VERB ./.
+yaar/NOUN aaj/NOUN movie/NOUN dekhne/VERB chalein/VERB ?/.
+tum/PRON kab/ADV aa/VERB rahe/VERB ho/VERB ?/.
+mujhe/PRON yeh/DET song/NOUN bahut/ADV pasand/ADJ hai/VERB ./.
+traffic/NOUN ki/ADP wajah/NOUN se/ADP main/PRON late/ADJ ho/VERB gaya/VERB ./.
+please/PRT mujhe/PRON notes/NOUN bhej/VERB do/VERB ./.
+uska/PRON birthday/NOUN next/ADJ week/NOUN hai/VERB ./.
+hum/PRON log/NOUN canteen/NOUN mein/ADP milenge/VERB ./.
+assignment/NOUN ki/ADP deadline/NOUN kab/ADV hai/VERB ?/.
+mera/PRON laptop/NOUN bahut/ADV slow/ADJ chal/VERB raha/VERB hai/VERB ./.
+kya/PRON tumne/PRON lecture/NOUN attend/VERB kiya/VERB ?/.
+professor/NOUN ne/ADP aaj/NOUN quiz/NOUN liya/VERB ./.
+library/NOUN 9/NUM baje/NOUN band/ADJ hoti/VERB hai/VERB ./.
+mujhe/PRON coffee/NOUN chahiye/VERB ./.
+yeh/DET restaurant/NOUN bahut/ADV accha/ADJ hai/VERB ./.
+weekend/NOUN par/ADP hum/PRON trip/NOUN plan/VERB kar/VERB rahe/VERB hain/VERB ./.
+uski/PRON car/NOUN nayi/ADJ hai/VERB ./.
+mummy/NOUN ne/ADP khana/NOUN bana/VERB diya/VERB ./.
+bas/NOUN 10/NUM minute/NOUN mein/ADP aayegi/VERB ./.
+mera/PRON result/NOUN accha/ADJ aaya/VERB ./.
+tum/PRON bhi/PRT chalo/VERB na/PRT ./.
+wifi/NOUN ka/ADP password/NOUN kya/PRON hai/VERB ?/.
+aaj/NOUN bahut/ADV garmi/NOUN hai/VERB ./.
+match/NOUN kitne/DET baje/NOUN start/VERB hoga/VERB ?/.
+main/PRON ghar/NOUN ja/VERB raha/VERB hoon/VERB ./.
+usne/PRON mujhe/PRON call/NOUN kiya/VERB tha/VERB ./.
+yeh/DET question/NOUN thoda/ADV mushkil/ADJ hai/VERB ./.
+kal/NOUN college/NOUN band/ADJ rahega/VERB ./.
+sab/DET log/NOUN ready/ADJ hain/VERB ?/.
+mujhe/PRON maths/NOUN samajh/VERB nahi/PRT aata/VERB ./.
+practical/NOUN ke/ADP liye/ADP lab/NOUN coat/NOUN zaroori/ADJ hai/VERB ./.
+uska/PRON ghar/NOUN station/NOUN ke/ADP paas/ADV hai/VERB ./.
+ek/NUM chai/NOUN aur/CONJ do/NUM samosa/NOUN dena/VERB ./.
+meeting/NOUN cancel/VERB ho/VERB gayi/VERB ./.
+tumhara/PRON project/NOUN kaisa/ADJ chal/VERB raha/VERB hai/VERB ?/.
+hum/PRON kal/NOUN subah/NOUN jaldi/ADV niklenge/VERB ./.
+phone/NOUN ki/ADP battery/NOUN khatam/ADJ ho/VERB gayi/VERB ./.
+mujhe/PRON online/ADJ class/NOUN pasand/ADJ nahi/PRT hai/VERB ./.
+yeh/DET book/NOUN library/NOUN se/ADP li/VERB thi/VERB ./.
+exam/NOUN ke/ADP baad/ADP party/NOUN karenge/VERB ./.
+uski/PRON awaaz/NOUN bahut/ADV sweet/ADJ hai/VERB ./.
+mera/PRON dost/NOUN pune/NOUN mein/ADP rehta/VERB hai/VERB ./.
+kaun/PRON aa/VERB raha/VERB hai/VERB ?/.
+yeh/DET kaam/NOUN kal/NOUN tak/ADP khatam/ADJ karna/VERB hai/VERB ./.
+mujhe/PRON pata/NOUN nahi/PRT tha/VERB ./.
+bahar/ADV baarish/NOUN ho/VERB rahi/VERB hai/VERB ./.
+class/NOUN mein/ADP 60/NUM students/NOUN hain/VERB ./.
+tumne/PRON khana/NOUN khaya/VERB ?/.
+main/PRON thoda/ADV busy/ADJ hoon/VERB ./.
+uska/PRON number/NOUN mujhe/PRON send/VERB karo/VERB ./.
+yeh/DET shirt/NOUN kitne/DET ki/ADP hai/VERB ?/.
+hamara/PRON team/NOUN match/NOUN jeet/VERB gaya/VERB ./.
+kal/NOUN se/ADP gym/NOUN join/VERB karunga/VERB ./.
+yeh/DET topic/NOUN important/ADJ hai/VERB ya/CONJ nahi/PRT ?/.
+tum/PRON itne/ADV late/ADJ kyun/ADV aaye/VERB ?/.
+sir/NOUN ne/ADP attendance/NOUN li/VERB ./.
+mere/PRON paas/ADV paise/NOUN nahi/PRT hain/VERB ./.
+yeh/DET app/NOUN bahut/ADV useful/ADJ hai/VERB ./.
+hum/PRON log/NOUN 5/NUM baje/NOUN milte/VERB hain/VERB ./.
+uski/PRON shaadi/NOUN december/NOUN mein/ADP hai/VERB ./.
+mujhe/PRON python/NOUN seekhna/VERB hai/VERB ./.
+canteen/NOUN ka/ADP khana/NOUN accha/ADJ nahi/PRT hai/VERB ./.
+tumhe/PRON kaunsa/DET subject/NOUN pasand/ADJ hai/VERB ?/.
+mera/PRON bhai/NOUN engineering/NOUN kar/VERB raha/VERB hai/VERB ./.
+sabse/ADV accha/ADJ option/NOUN kaunsa/DET hai/VERB ?/.
+yeh/DET road/NOUN bahut/ADV kharab/ADJ hai/VERB ./.
+mujhe/PRON neend/NOUN aa/VERB rahi/VERB hai/VERB ./.
+# --- questions about the college database ---
+computer/NOUN department/NOUN mein/ADP kitne/DET students/NOUN hain/VERB ?/.
+pune/NOUN ke/ADP saare/DET students/NOUN ke/ADP naam/NOUN batao/VERB ./.
+sabse/ADV zyada/ADJ cgpa/NOUN wala/PRT student/NOUN kaun/PRON hai/VERB ?/.
+har/DET department/NOUN mein/ADP kitne/DET teachers/NOUN hain/VERB ?/.
+students/NOUN ki/ADP average/ADJ age/NOUN kya/PRON hai/VERB ?/.
+8/NUM se/ADP zyada/ADJ cgpa/NOUN wale/PRT students/NOUN dikhao/VERB ./.
+mechanical/NOUN department/NOUN ke/ADP teachers/NOUN ki/ADP list/NOUN do/VERB ./.
+top/ADJ 5/NUM students/NOUN cgpa/NOUN ke/ADP hisaab/NOUN se/ADP batao/VERB ./.
+sabse/ADV kam/ADJ salary/NOUN kis/PRON teacher/NOUN ki/ADP hai/VERB ?/.
+delhi/NOUN se/ADP kitne/DET bacche/NOUN hain/VERB ?/.
+civil/NOUN vibhag/NOUN ke/ADP courses/NOUN dikhao/VERB ./.
+teachers/NOUN ka/ADP maximum/ADJ experience/NOUN kya/PRON hai/VERB ?/.
+pehle/ADJ saal/NOUN ke/ADP students/NOUN kaun/PRON hain/VERB ?/.
+students/NOUN ki/ADP total/ADJ fees/NOUN kitni/DET hai/VERB ?/.
+kitne/DET courses/NOUN hain/VERB ?/.
+jaipur/NOUN mein/ADP rehne/VERB wale/PRT students/NOUN ke/ADP naam/NOUN batao/VERB ./.
+har/DET department/NOUN ke/ADP students/NOUN ka/ADP average/ADJ cgpa/NOUN batao/VERB ./.
+20/NUM se/ADP kam/ADJ age/NOUN wale/PRT students/NOUN dikhao/VERB ./.
+it/NOUN department/NOUN ke/ADP sabhi/DET teachers/NOUN dikhao/VERB ./.
+sabse/ADV zyada/ADJ credits/NOUN wala/PRT course/NOUN kaunsa/DET hai/VERB ?/.
+teachers/NOUN ki/ADP minimum/ADJ salary/NOUN batao/VERB ./.
+electronics/NOUN mein/ADP kaun/DET se/PRT courses/NOUN hain/VERB ?/.
+surat/NOUN ke/ADP students/NOUN ki/ADP sankhya/NOUN batao/VERB ./.
+sabhi/DET departments/NOUN dikhao/VERB ./.
+3/NUM se/ADP zyada/ADJ credits/NOUN wale/PRT courses/NOUN ki/ADP list/NOUN do/VERB ./.
+doosre/ADJ year/NOUN ke/ADP students/NOUN ki/ADP list/NOUN dikhao/VERB ./.
+sabse/ADV kam/ADJ fees/NOUN wala/PRT student/NOUN kaun/PRON hai/VERB ?/.
+students/NOUN ka/ADP highest/ADJ cgpa/NOUN kya/PRON hai/VERB ?/.
+teachers/NOUN ki/ADP total/ADJ salary/NOUN batao/VERB ./.
+department/NOUN wise/ADV students/NOUN ka/ADP count/NOUN dikhao/VERB ./.
+nagpur/NOUN mein/ADP kitne/DET students/NOUN rehte/VERB hain/VERB ?/.
+top/ADJ 3/NUM teachers/NOUN salary/NOUN ke/ADP basis/NOUN par/ADP dikhao/VERB ./.
+electrical/NOUN department/NOUN ke/ADP courses/NOUN ki/ADP sankhya/NOUN kya/PRON hai/VERB ?/.
+students/NOUN ki/ADP average/ADJ fees/NOUN kitni/DET hai/VERB ?/.
+kis/PRON student/NOUN ka/ADP cgpa/NOUN sabse/ADV kam/ADJ hai/VERB ?/.
+10/NUM saal/NOUN se/ADP zyada/ADJ experience/NOUN wale/PRT teachers/NOUN batao/VERB ./.

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}PARSQL-Hinglish Lite{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="{{ url_for('home') }}">
+      <span class="brand-mark">PQ</span>
+      <span class="brand-text">PARSQL<br><small>Hinglish Lite</small></span>
+    </a>
+    <nav>
+      {% for item in nav %}
+        {% set active = request.endpoint == item.endpoint %}
+        <a href="{{ url_for(item.endpoint) }}"
+           class="nav-link{% if active %} active{% endif %}{% if not item.ready %} pending{% endif %}">
+          <span class="nav-icon">{{ item.icon }}</span>
+          <span class="nav-label">{{ item.label }}</span>
+          {% if item.phase %}<span class="nav-phase">P{{ item.phase }}</span>{% endif %}
+        </a>
+      {% endfor %}
+    </nav>
+    <div class="sidebar-foot">NLP Mini Project<br>English · हिंदी · Hinglish</div>
+  </aside>
+  <main class="content">
+    {% block content %}{% endblock %}
+  </main>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,542 @@
+[
+ {
+  "id": 10000,
+  "lang": "en",
+  "intent": null,
+  "question": "how many students do we have",
+  "sql": "SELECT COUNT(*) FROM students",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10001,
+  "lang": "en",
+  "intent": null,
+  "question": "list every professor",
+  "sql": "SELECT name FROM faculty",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10002,
+  "lang": "en",
+  "intent": null,
+  "question": "how many students come from Mumbai?",
+  "sql": "SELECT COUNT(*) FROM students WHERE city = 'Mumbai'",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10003,
+  "lang": "en",
+  "intent": null,
+  "question": "who teaches in the civil department?",
+  "sql": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10004,
+  "lang": "en",
+  "intent": null,
+  "question": "names of students with a cgpa higher than 9",
+  "sql": "SELECT name FROM students WHERE cgpa > 9",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10005,
+  "lang": "en",
+  "intent": null,
+  "question": "what's the average salary of teachers",
+  "sql": "SELECT AVG(salary) FROM faculty",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10006,
+  "lang": "en",
+  "intent": null,
+  "question": "which teacher earns the most",
+  "sql": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 1",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10007,
+  "lang": "en",
+  "intent": null,
+  "question": "top 5 students based on cgpa",
+  "sql": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 5",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10008,
+  "lang": "en",
+  "intent": null,
+  "question": "number of courses in each department",
+  "sql": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10009,
+  "lang": "en",
+  "intent": null,
+  "question": "average cgpa of students from pune",
+  "sql": "SELECT AVG(cgpa) FROM students WHERE city = 'Pune'",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10010,
+  "lang": "en",
+  "intent": null,
+  "question": "how many students in the IT department have cgpa above 8",
+  "sql": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'IT' AND students.cgpa > 8",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10011,
+  "lang": "en",
+  "intent": null,
+  "question": "youngest student age",
+  "sql": "SELECT MIN(age) FROM students",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10012,
+  "lang": "en",
+  "intent": null,
+  "question": "total salary paid to all faculty",
+  "sql": "SELECT SUM(salary) FROM faculty",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10013,
+  "lang": "en",
+  "intent": null,
+  "question": "show third year students",
+  "sql": "SELECT name FROM students WHERE year = 3",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10014,
+  "lang": "en",
+  "intent": null,
+  "question": "which course has the fewest credits",
+  "sql": "SELECT name FROM courses ORDER BY credits ASC LIMIT 1",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10015,
+  "lang": "en",
+  "intent": null,
+  "question": "teachers with less than 8 years of experience",
+  "sql": "SELECT name FROM faculty WHERE experience < 8",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10016,
+  "lang": "en",
+  "intent": null,
+  "question": "average experience of teachers per department",
+  "sql": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10017,
+  "lang": "en",
+  "intent": null,
+  "question": "list students from delhi in the computer department",
+  "sql": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer' AND students.city = 'Delhi'",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10018,
+  "lang": "en",
+  "intent": null,
+  "question": "maximum fees paid by a student",
+  "sql": "SELECT MAX(fees) FROM students",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10019,
+  "lang": "en",
+  "intent": null,
+  "question": "how many departments are there",
+  "sql": "SELECT COUNT(*) FROM departments",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10020,
+  "lang": "hi",
+  "intent": null,
+  "question": "कुल कितने छात्र हैं",
+  "sql": "SELECT COUNT(*) FROM students",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10021,
+  "lang": "hi",
+  "intent": null,
+  "question": "सभी शिक्षकों के नाम बताओ",
+  "sql": "SELECT name FROM faculty",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10022,
+  "lang": "hi",
+  "intent": null,
+  "question": "मुंबई के कितने छात्र हैं",
+  "sql": "SELECT COUNT(*) FROM students WHERE city = 'Mumbai'",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10023,
+  "lang": "hi",
+  "intent": null,
+  "question": "सिविल विभाग के शिक्षक कौन हैं",
+  "sql": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10024,
+  "lang": "hi",
+  "intent": null,
+  "question": "9 से ज़्यादा सीजीपीए वाले छात्रों के नाम",
+  "sql": "SELECT name FROM students WHERE cgpa > 9",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10025,
+  "lang": "hi",
+  "intent": null,
+  "question": "शिक्षकों का औसत वेतन बताइए",
+  "sql": "SELECT AVG(salary) FROM faculty",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10026,
+  "lang": "hi",
+  "intent": null,
+  "question": "सबसे ज़्यादा वेतन किस शिक्षक का है",
+  "sql": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 1",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10027,
+  "lang": "hi",
+  "intent": null,
+  "question": "सीजीपीए के आधार पर शीर्ष 5 छात्र",
+  "sql": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 5",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10028,
+  "lang": "hi",
+  "intent": null,
+  "question": "हर विभाग में कितने पाठ्यक्रम हैं",
+  "sql": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10029,
+  "lang": "hi",
+  "intent": null,
+  "question": "पुणे के छात्रों का औसत सीजीपीए",
+  "sql": "SELECT AVG(cgpa) FROM students WHERE city = 'Pune'",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10030,
+  "lang": "hi",
+  "intent": null,
+  "question": "आईटी विभाग के कितने छात्रों का सीजीपीए 8 से अधिक है",
+  "sql": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'IT' AND students.cgpa > 8",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10031,
+  "lang": "hi",
+  "intent": null,
+  "question": "छात्रों की न्यूनतम उम्र क्या है",
+  "sql": "SELECT MIN(age) FROM students",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10032,
+  "lang": "hi",
+  "intent": null,
+  "question": "सभी शिक्षकों का कुल वेतन",
+  "sql": "SELECT SUM(salary) FROM faculty",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10033,
+  "lang": "hi",
+  "intent": null,
+  "question": "तीसरे वर्ष के छात्र दिखाओ",
+  "sql": "SELECT name FROM students WHERE year = 3",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10034,
+  "lang": "hi",
+  "intent": null,
+  "question": "सबसे कम क्रेडिट वाला विषय कौन सा है",
+  "sql": "SELECT name FROM courses ORDER BY credits ASC LIMIT 1",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10035,
+  "lang": "hi",
+  "intent": null,
+  "question": "8 साल से कम अनुभव वाले शिक्षक",
+  "sql": "SELECT name FROM faculty WHERE experience < 8",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10036,
+  "lang": "hi",
+  "intent": null,
+  "question": "हर विभाग के शिक्षकों का औसत अनुभव",
+  "sql": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10037,
+  "lang": "hi",
+  "intent": null,
+  "question": "कंप्यूटर विभाग के दिल्ली वाले छात्र",
+  "sql": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer' AND students.city = 'Delhi'",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10038,
+  "lang": "hi",
+  "intent": null,
+  "question": "छात्रों की अधिकतम फीस कितनी है",
+  "sql": "SELECT MAX(fees) FROM students",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10039,
+  "lang": "hi",
+  "intent": null,
+  "question": "कितने विभाग हैं",
+  "sql": "SELECT COUNT(*) FROM departments",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10040,
+  "lang": "hg",
+  "intent": null,
+  "question": "total kitne students hai college me",
+  "sql": "SELECT COUNT(*) FROM students",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10041,
+  "lang": "hg",
+  "intent": null,
+  "question": "saare teachers ke naam dikhao",
+  "sql": "SELECT name FROM faculty",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10042,
+  "lang": "hg",
+  "intent": null,
+  "question": "mumbai se kitne bacche hai",
+  "sql": "SELECT COUNT(*) FROM students WHERE city = 'Mumbai'",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10043,
+  "lang": "hg",
+  "intent": null,
+  "question": "civil dept me kon kon padhata hai",
+  "sql": "SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10044,
+  "lang": "hg",
+  "intent": null,
+  "question": "9 se jyada cgpa wale students ke naam",
+  "sql": "SELECT name FROM students WHERE cgpa > 9",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10045,
+  "lang": "hg",
+  "intent": null,
+  "question": "teachers ki avg salary kitni hai",
+  "sql": "SELECT AVG(salary) FROM faculty",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10046,
+  "lang": "hg",
+  "intent": null,
+  "question": "sabse jyada salary kis teacher ki hai",
+  "sql": "SELECT name FROM faculty ORDER BY salary DESC LIMIT 1",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10047,
+  "lang": "hg",
+  "intent": null,
+  "question": "cgpa ke hisab se top 5 students",
+  "sql": "SELECT name FROM students ORDER BY cgpa DESC LIMIT 5",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10048,
+  "lang": "hg",
+  "intent": null,
+  "question": "har department me kitne courses hai",
+  "sql": "SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10049,
+  "lang": "hg",
+  "intent": null,
+  "question": "pune ke students ka average cgpa",
+  "sql": "SELECT AVG(cgpa) FROM students WHERE city = 'Pune'",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10050,
+  "lang": "hg",
+  "intent": null,
+  "question": "it dept ke kitne students ka cgpa 8 se upar hai",
+  "sql": "SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'IT' AND students.cgpa > 8",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10051,
+  "lang": "hg",
+  "intent": null,
+  "question": "students ki minimum age kya hai",
+  "sql": "SELECT MIN(age) FROM students",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10052,
+  "lang": "hg",
+  "intent": null,
+  "question": "saare teachers ki total salary",
+  "sql": "SELECT SUM(salary) FROM faculty",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10053,
+  "lang": "hg",
+  "intent": null,
+  "question": "third year ke students dikhao",
+  "sql": "SELECT name FROM students WHERE year = 3",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10054,
+  "lang": "hg",
+  "intent": null,
+  "question": "sabse kam credits wala subject konsa hai",
+  "sql": "SELECT name FROM courses ORDER BY credits ASC LIMIT 1",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10055,
+  "lang": "hg",
+  "intent": null,
+  "question": "8 saal se kam experience wale teachers",
+  "sql": "SELECT name FROM faculty WHERE experience < 8",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10056,
+  "lang": "hg",
+  "intent": null,
+  "question": "har department ke teachers ka average experience",
+  "sql": "SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10057,
+  "lang": "hg",
+  "intent": null,
+  "question": "computer department ke delhi wale students",
+  "sql": "SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer' AND students.city = 'Delhi'",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10058,
+  "lang": "hg",
+  "intent": null,
+  "question": "students ki maximum fees kitni hai",
+  "sql": "SELECT MAX(fees) FROM students",
+  "template": "wild",
+  "split": "wild"
+ },
+ {
+  "id": 10059,
+  "lang": "hg",
+  "intent": null,
+  "question": "kitne departments hai",
+  "sql": "SELECT COUNT(*) FROM departments",
+  "template": "wild",
+  "split": "wild"
+ }
+]

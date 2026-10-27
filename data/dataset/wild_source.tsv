@@ -1,0 +1,61 @@
+# lang	question	gold SQL   (hand-written, free phrasing; never used for training or tuning)
+en	how many students do we have	SELECT COUNT(*) FROM students
+en	list every professor	SELECT name FROM faculty
+en	how many students come from Mumbai?	SELECT COUNT(*) FROM students WHERE city = 'Mumbai'
+en	who teaches in the civil department?	SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'
+en	names of students with a cgpa higher than 9	SELECT name FROM students WHERE cgpa > 9
+en	what's the average salary of teachers	SELECT AVG(salary) FROM faculty
+en	which teacher earns the most	SELECT name FROM faculty ORDER BY salary DESC LIMIT 1
+en	top 5 students based on cgpa	SELECT name FROM students ORDER BY cgpa DESC LIMIT 5
+en	number of courses in each department	SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name
+en	average cgpa of students from pune	SELECT AVG(cgpa) FROM students WHERE city = 'Pune'
+en	how many students in the IT department have cgpa above 8	SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'IT' AND students.cgpa > 8
+en	youngest student age	SELECT MIN(age) FROM students
+en	total salary paid to all faculty	SELECT SUM(salary) FROM faculty
+en	show third year students	SELECT name FROM students WHERE year = 3
+en	which course has the fewest credits	SELECT name FROM courses ORDER BY credits ASC LIMIT 1
+en	teachers with less than 8 years of experience	SELECT name FROM faculty WHERE experience < 8
+en	average experience of teachers per department	SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name
+en	list students from delhi in the computer department	SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer' AND students.city = 'Delhi'
+en	maximum fees paid by a student	SELECT MAX(fees) FROM students
+en	how many departments are there	SELECT COUNT(*) FROM departments
+hi	कुल कितने छात्र हैं	SELECT COUNT(*) FROM students
+hi	सभी शिक्षकों के नाम बताओ	SELECT name FROM faculty
+hi	मुंबई के कितने छात्र हैं	SELECT COUNT(*) FROM students WHERE city = 'Mumbai'
+hi	सिविल विभाग के शिक्षक कौन हैं	SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'
+hi	9 से ज़्यादा सीजीपीए वाले छात्रों के नाम	SELECT name FROM students WHERE cgpa > 9
+hi	शिक्षकों का औसत वेतन बताइए	SELECT AVG(salary) FROM faculty
+hi	सबसे ज़्यादा वेतन किस शिक्षक का है	SELECT name FROM faculty ORDER BY salary DESC LIMIT 1
+hi	सीजीपीए के आधार पर शीर्ष 5 छात्र	SELECT name FROM students ORDER BY cgpa DESC LIMIT 5
+hi	हर विभाग में कितने पाठ्यक्रम हैं	SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name
+hi	पुणे के छात्रों का औसत सीजीपीए	SELECT AVG(cgpa) FROM students WHERE city = 'Pune'
+hi	आईटी विभाग के कितने छात्रों का सीजीपीए 8 से अधिक है	SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'IT' AND students.cgpa > 8
+hi	छात्रों की न्यूनतम उम्र क्या है	SELECT MIN(age) FROM students
+hi	सभी शिक्षकों का कुल वेतन	SELECT SUM(salary) FROM faculty
+hi	तीसरे वर्ष के छात्र दिखाओ	SELECT name FROM students WHERE year = 3
+hi	सबसे कम क्रेडिट वाला विषय कौन सा है	SELECT name FROM courses ORDER BY credits ASC LIMIT 1
+hi	8 साल से कम अनुभव वाले शिक्षक	SELECT name FROM faculty WHERE experience < 8
+hi	हर विभाग के शिक्षकों का औसत अनुभव	SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name
+hi	कंप्यूटर विभाग के दिल्ली वाले छात्र	SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer' AND students.city = 'Delhi'
+hi	छात्रों की अधिकतम फीस कितनी है	SELECT MAX(fees) FROM students
+hi	कितने विभाग हैं	SELECT COUNT(*) FROM departments
+hg	total kitne students hai college me	SELECT COUNT(*) FROM students
+hg	saare teachers ke naam dikhao	SELECT name FROM faculty
+hg	mumbai se kitne bacche hai	SELECT COUNT(*) FROM students WHERE city = 'Mumbai'
+hg	civil dept me kon kon padhata hai	SELECT faculty.name FROM faculty JOIN departments ON faculty.dept_id = departments.id WHERE departments.name = 'Civil'
+hg	9 se jyada cgpa wale students ke naam	SELECT name FROM students WHERE cgpa > 9
+hg	teachers ki avg salary kitni hai	SELECT AVG(salary) FROM faculty
+hg	sabse jyada salary kis teacher ki hai	SELECT name FROM faculty ORDER BY salary DESC LIMIT 1
+hg	cgpa ke hisab se top 5 students	SELECT name FROM students ORDER BY cgpa DESC LIMIT 5
+hg	har department me kitne courses hai	SELECT departments.name, COUNT(*) FROM courses JOIN departments ON courses.dept_id = departments.id GROUP BY departments.name
+hg	pune ke students ka average cgpa	SELECT AVG(cgpa) FROM students WHERE city = 'Pune'
+hg	it dept ke kitne students ka cgpa 8 se upar hai	SELECT COUNT(*) FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'IT' AND students.cgpa > 8
+hg	students ki minimum age kya hai	SELECT MIN(age) FROM students
+hg	saare teachers ki total salary	SELECT SUM(salary) FROM faculty
+hg	third year ke students dikhao	SELECT name FROM students WHERE year = 3
+hg	sabse kam credits wala subject konsa hai	SELECT name FROM courses ORDER BY credits ASC LIMIT 1
+hg	8 saal se kam experience wale teachers	SELECT name FROM faculty WHERE experience < 8
+hg	har department ke teachers ka average experience	SELECT departments.name, AVG(faculty.experience) FROM faculty JOIN departments ON faculty.dept_id = departments.id GROUP BY departments.name
+hg	computer department ke delhi wale students	SELECT students.name FROM students JOIN departments ON students.dept_id = departments.id WHERE departments.name = 'Computer' AND students.city = 'Delhi'
+hg	students ki maximum fees kitni hai	SELECT MAX(fees) FROM students
+hg	kitne departments hai	SELECT COUNT(*) FROM departments
