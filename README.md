@@ -15,6 +15,8 @@ and `NLP_EXP_1.pdf` for the problem statement.
 
 ## Run it
 
+Setting up on another PC? See [RUNNING.md](RUNNING.md) for step-by-step instructions and common problems.
+
 ```powershell
 python -m venv .venv
 .venv\Scripts\python -m pip install -r requirements.txt
